@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.game.score.R
 import com.game.score.databinding.MainFragmentBinding
 import com.google.android.material.snackbar.Snackbar
@@ -47,6 +48,13 @@ class MainFragment : Fragment() {
         binding.buttonSend.setOnClickListener(_buttonListener)
         //endregion
 
+        binding.textViewDeviceCode.setOnLongClickListener {
+            val controller = Navigation.findNavController(it)
+            controller.navigate(R.id.settingsFragment)
+
+            return@setOnLongClickListener true
+        }
+
         return binding.root
     }
 
@@ -56,6 +64,18 @@ class MainFragment : Fragment() {
         // TODO: Use the ViewModel
         binding.data = viewModel
         binding.lifecycleOwner = this
+
+        init()
+    }
+
+    private fun init() {
+        with(viewModel){
+            //临时测试数据
+            gameMatch.value = "盛装舞步个人赛资格赛"
+            athleteNameAndTeamName.value = "贾海涛(浙江队)"
+            deviceCode.value = "E"
+            matchStep.value = "1 立定敬礼"
+        }
     }
 
     /**
@@ -97,6 +117,8 @@ class MainFragment : Fragment() {
                         val level = batteryStatus.getIntExtra("level", 0)
                         Toast.makeText(context, "剩余电量:$level%", Toast.LENGTH_SHORT).show()
                     }
+                }
+                R.id.button_V -> {
                 }
             }
         }

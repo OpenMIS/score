@@ -282,10 +282,11 @@
             app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
         <TextView
-            android:id="@+id/textView_match"
+            android:id="@+id/textView_gameMatch"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="3dp"
+            android:text="@{data.gameMatch}"
             android:textSize="@dimen/button_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
@@ -298,6 +299,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="3dp"
+            android:text="@{data.athleteNameAndTeamName}"
             android:textSize="@dimen/button_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline10"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
@@ -310,6 +312,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
+            android:text="@{data.deviceCode}"
             android:textSize="@dimen/button_textSize"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView_athleteNameAndTeamName"
             app:layout_constraintEnd_toEndOf="parent"
@@ -317,10 +320,11 @@
             tools:text="E" />
 
         <TextView
-            android:id="@+id/textView_step"
+            android:id="@+id/textView_matchStep"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
+            android:text="@{data.matchStep}"
             android:textSize="@dimen/textView_big_textSize"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
             app:layout_constraintHorizontal_bias="0.0"

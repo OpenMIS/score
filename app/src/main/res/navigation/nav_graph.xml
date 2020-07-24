@@ -14,4 +14,8 @@
         android:name="com.game.score.ui.main.ScoreFragment"
         android:label="fragment_score_list"
         tools:layout="@layout/fragment_score_list" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.game.score.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>
