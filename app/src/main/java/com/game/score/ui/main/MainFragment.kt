@@ -56,8 +56,10 @@ class MainFragment : Fragment() {
         binding.lifecycleOwner = this
     }
 
+    /**
+    * 按钮事件
+    */
     private val _buttonListener = View.OnClickListener {
-
         var numberString = String()
         when (it.id) {
             R.id.button0 -> numberString = "0"
@@ -88,8 +90,5 @@ class MainFragment : Fragment() {
 
         if (viewModel.scoreString.value == ".")
             viewModel.scoreString.value = "0."
-
-        Snackbar.make(it, viewModel.scoreString.value.toString(), Snackbar.LENGTH_LONG)
-            .setAction("Action", null).show()
     }
 }
