@@ -1,5 +1,7 @@
 package com.game.score.ui.main
 
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -57,8 +59,8 @@ class MainFragment : Fragment() {
     }
 
     /**
-    * 按钮事件
-    */
+     * 按钮事件
+     */
     private val _buttonListener = View.OnClickListener {
         var numberString = String()
         when (it.id) {
@@ -85,6 +87,17 @@ class MainFragment : Fragment() {
         } else {
             when (it.id) {
                 R.id.button_X -> viewModel.scoreString.value = ""
+                R.id.button_send -> {
+                    val batteryStatus: Intent? =
+                        IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter ->
+                            context?.registerReceiver(null, ifilter)
+                        }
+
+                    if (batteryStatus != null) {
+                        val level = batteryStatus.getIntExtra("level", 0)
+                        Toast.makeText(context, "剩余电量:$level%", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
 
