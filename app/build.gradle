@@ -15,10 +15,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        dataBinding{
-            //noinspection DataBindingWithoutKapt
-            enabled true
-        }
+
+    }
+
+    buildFeatures{
+        dataBinding = true
     }
 
     buildTypes {
