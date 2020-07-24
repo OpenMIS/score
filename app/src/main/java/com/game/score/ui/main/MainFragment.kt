@@ -91,6 +91,5 @@ class MainFragment : Fragment() {
 
         Snackbar.make(it, viewModel.scoreString.value.toString(), Snackbar.LENGTH_LONG)
             .setAction("Action", null).show()
-
     }
 }
