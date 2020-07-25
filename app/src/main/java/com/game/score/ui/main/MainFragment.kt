@@ -139,11 +139,12 @@ class MainFragment : Fragment() {
                 R.id.button_V -> {
                     val builder =
                         AlertDialog.Builder(it.context)
+                            .setTitle(R.string.alertDialog_title_confirm)
                             .setMessage(R.string.alertDialog_message_confirm)
                             .setPositiveButton(R.string.button_text_no, null) //监听下方button点击事件
                             .setNegativeButton(R.string.button_text_yes) { dialogInterface, i ->
 
-                                Toast.makeText(it.context, "aaa", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(it.context, "确认", Toast.LENGTH_SHORT).show()
 
                             }.setCancelable(true) //设置对话框是可取消的
 

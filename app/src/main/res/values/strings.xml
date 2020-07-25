@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">打分器</string>
 
-    <string name="alertDialog_message_confirm">是否确认成绩</string>
+    <string name="alertDialog_title_confirm">确认</string>
+    <string name="alertDialog_message_confirm">是否确认成绩？</string>
     <string name="button_text_yes">是</string>
     <string name="button_text_no">否</string>
 
