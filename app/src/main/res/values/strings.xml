@@ -13,9 +13,13 @@
     <string name="button8" translatable="false">8</string>
     <string name="button9" translatable="false">9</string>
     <string name="button0" translatable="false">0</string>
-    <string name="buttonV">检查\n确认\nV</string>
-    <string name="buttonX" translatable="false">🔙</string>
-    <string name="button_send">Send/发送</string>
+    <!--    <string name="buttonV">检查\n确认\nV</string>-->
+    <string name="buttonV">V</string>
+
+    <string name="imageButton_back_contentDescription" translatable="false">Back</string>
+    <!--    <string name="buttonX" translatable="false">🔙</string>-->
+    <!--    <string name="button_send">Send/发送</string>-->
+    <string name="button_send">S</string>
     <!-- 按钮上面的文本 end -->
 
     <!-- 进入设置页面的密码 end -->

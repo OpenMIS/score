@@ -49,7 +49,7 @@ class MainFragment : Fragment() {
         _binding.button8.setOnClickListener(_buttonListener)
         _binding.button9.setOnClickListener(_buttonListener)
         _binding.buttonDot.setOnClickListener(_buttonListener)
-        _binding.buttonX.setOnClickListener(_buttonListener)
+        _binding.imageButtonX.setOnClickListener(_buttonListener)
         _binding.buttonV.setOnClickListener(_buttonListener)
         _binding.buttonSend.setOnClickListener(_buttonListener)
         //endregion
@@ -116,7 +116,14 @@ class MainFragment : Fragment() {
                 _viewModel.scoreString.value = numberString
         } else {
             when (it.id) {
-                R.id.button_X -> _viewModel.scoreString.value = ""
+                R.id.imageButton_X -> {
+                    if (!_viewModel.scoreString.value.isNullOrEmpty()) {
+                        val temp = _viewModel.scoreString.value.toString()
+                        _viewModel.scoreString.value = temp.substring(
+                            0, temp.length - 2
+                        )
+                    }
+                }
                 R.id.button_send -> {
                     val batteryStatus: Intent? =
                         IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter ->

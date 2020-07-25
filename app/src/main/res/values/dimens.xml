@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_margin">16dp</dimen>
-    <dimen name="button_textSize">25sp</dimen>
+
+    <!-- 数字区按钮边距 -->
     <dimen name="button_layout_margin">3dp</dimen>
-    <dimen name="textView_textSize">25sp</dimen>
-    <dimen name="textView_big_textSize">30sp</dimen>
+
+    <!--字体大小 begin -->
+    <!-- 场次信息、运动员与队名、设备代码 字体大小 -->
+    <dimen name="textView_textSize">38sp</dimen>
+
+    <!-- 场次里的步骤 字体大小 -->
+    <dimen name="textView_big_textSize">45sp</dimen>
+
+    <!-- 打分的分数 字体大小 -->
+    <dimen name="textView_score_textSize">45sp</dimen>
+
+    <!-- 数字按钮 字体大小 -->
+    <dimen name="button_number_textSize">45sp</dimen>
+    <!-- 含文本按钮 字体大小 -->
+    <dimen name="button_text_textSize">40sp</dimen>
+
+    <!--字体大小 end -->
 </resources>
