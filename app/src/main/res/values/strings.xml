@@ -14,7 +14,7 @@
     <string name="button9" translatable="false">9</string>
     <string name="button0" translatable="false">0</string>
     <string name="buttonV">检查\n确认\nV</string>
-    <string name="buttonX" translatable="false">X</string>
+    <string name="buttonX" translatable="false">🔙</string>
     <string name="button_send">Send/发送</string>
     <!-- 按钮上面的文本 end -->
 
