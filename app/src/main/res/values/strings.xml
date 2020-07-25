@@ -1,31 +1,39 @@
 <resources>
-    <string name="app_name">Score</string>
-    <string name="buttonDot">.</string>
-    <string name="button1">1</string>
-    <string name="button2">2</string>
-    <string name="button3">3</string>
-    <string name="button4">4</string>
-    <string name="button5">5</string>
-    <string name="button6">6</string>
-    <string name="button7">7</string>
-    <string name="button8">8</string>
-    <string name="button9">9</string>
-    <string name="button0">0</string>
+    <string name="app_name">打分器</string>
+
+    <!-- 按钮上面的文本 begin -->
+    <string name="buttonDot" translatable="false">.</string>
+    <string name="button1" translatable="false">1</string>
+    <string name="button2" translatable="false">2</string>
+    <string name="button3" translatable="false">3</string>
+    <string name="button4" translatable="false">4</string>
+    <string name="button5" translatable="false">5</string>
+    <string name="button6" translatable="false">6</string>
+    <string name="button7" translatable="false">7</string>
+    <string name="button8" translatable="false">8</string>
+    <string name="button9" translatable="false">9</string>
+    <string name="button0" translatable="false">0</string>
     <string name="buttonV">检查\n确认\nV</string>
-    <string name="buttonX">X</string>
+    <string name="buttonX" translatable="false">X</string>
     <string name="button_send">Send/发送</string>
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
+    <!-- 按钮上面的文本 end -->
 
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
+    <!-- 进入设置页面的密码 end -->
+    <string name="password_for_enter_settings" translatable="false">adminliao</string>
 
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <!-- 设置页面 begin -->
+    <!-- 网络 begin -->
+    <string name="settings_network_header">网络</string>
+
+    <string name="settings_network_local_port">本地端口</string>
+    <string name="settings_network_server_host">服务端地址</string>
+    <string name="settings_network_server_port">服务端端口</string>
+    <!-- 网络 end -->
+
+    <!-- 客户端 begin -->
+    <string name="settings_client_header">客户端</string>
+
+    <string name="settings_client_id">客户端ID</string>
+    <!-- 客户端 end -->
+    <!-- 设置页面 end -->
 </resources>

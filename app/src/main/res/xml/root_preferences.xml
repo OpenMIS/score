@@ -4,7 +4,7 @@
 
     <PreferenceCategory
         android:text="Network"
-        android:title="Client"
+        android:title="@string/settings_network_header"
         tools:text="Network">
 
         <EditTextPreference
@@ -12,9 +12,9 @@
             android:key="edit_text_preference_1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="Local Port" />
+            android:title="@string/settings_network_local_port" />
         <EditTextPreference
-            android:title="Server Host"
+            android:title="@string/settings_network_server_host"
             app:key="signature"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
@@ -22,17 +22,17 @@
             android:key="edit_text_preference_1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="Server Port" />
+            android:title="@string/settings_network_local_port" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Client">
+    <PreferenceCategory android:title="@string/settings_client_header">
         <EditTextPreference
             android:defaultValue="Default value"
             android:key="edit_text_preference_1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="Client ID" />
+            android:title="@string/settings_client_id" />
     </PreferenceCategory>
 
 </PreferenceScreen>

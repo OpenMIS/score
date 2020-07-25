@@ -57,7 +57,7 @@ class MainFragment : Fragment() {
 
         return binding.root
     }
-
+    
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
