@@ -1,38 +1,38 @@
-<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory
-        android:text="Network"
-        android:title="@string/settings_network_header"
-        tools:text="Network">
+    <PreferenceCategory android:title="@string/settings_network_header">
 
         <EditTextPreference
-            android:defaultValue="Default value"
-            android:key="edit_text_preference_1"
+            android:defaultValue="8080"
+            android:key="@string/settings_network_local_port_key"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="@string/settings_network_local_port" />
-        <EditTextPreference
-            android:title="@string/settings_network_server_host"
-            app:key="signature"
+            android:title="@string/settings_network_local_port"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
-            android:defaultValue="Default value"
-            android:key="edit_text_preference_1"
+            android:defaultValue="192.168.1.7"
+            android:key="@string/settings_network_server_host_key"
+            android:title="@string/settings_network_server_host"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:defaultValue="8080"
+            android:key="@string/settings_network_local_port_key"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="@string/settings_network_local_port" />
+            android:title="@string/settings_network_local_port"
+            app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_client_header">
         <EditTextPreference
-            android:defaultValue="Default value"
-            android:key="edit_text_preference_1"
+            android:defaultValue="1"
+            android:key="@string/settings_client_id_key"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="@string/settings_client_id" />
+            android:title="@string/settings_client_id"
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
 </PreferenceScreen>

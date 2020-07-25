@@ -3,6 +3,7 @@ package com.game.score.ui.main
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.preference.PreferenceManager
 import com.game.score.R
 import com.game.score.databinding.MainFragmentBinding
 
@@ -135,6 +137,19 @@ class MainFragment : Fragment() {
                         val level = batteryStatus.getIntExtra("level", 0)
                         Toast.makeText(context, "剩余电量:$level%", Toast.LENGTH_SHORT).show()
                     }
+
+                    val pref = PreferenceManager.getDefaultSharedPreferences(it.context)
+
+                    val a1 = pref.getInt(getString(R.string.settings_network_local_port_key), 8080)
+                    val a2 =
+                        pref.getString(getString(R.string.settings_network_server_host_key), "")
+                    val a3 = pref.getInt(getString(R.string.settings_network_server_port_key), 8080)
+                    val a4 = pref.getInt(getString(R.string.settings_client_id_key), 1)
+
+                    Log.d("Setting", "settings_network_local_port_key " + a1)
+                    Log.d("Setting", "settings_network_server_host_key " + a2)
+                    Log.d("Setting", "settings_network_server_port_key " + a3)
+                    Log.d("Setting", "settings_client_id_key " + a4)
                 }
                 R.id.button_V -> {
                     val builder =

@@ -35,14 +35,18 @@
     <string name="settings_network_header">网络</string>
 
     <string name="settings_network_local_port">本地端口</string>
+    <string name="settings_network_local_port_key" translatable="false">network_local_port</string>
     <string name="settings_network_server_host">服务端地址</string>
+    <string name="settings_network_server_host_key" translatable="false">network_server_host</string>
     <string name="settings_network_server_port">服务端端口</string>
+    <string name="settings_network_server_port_key" translatable="false">network_server_port</string>
     <!-- 网络 end -->
 
     <!-- 客户端 begin -->
     <string name="settings_client_header">客户端</string>
 
     <string name="settings_client_id">客户端ID</string>
+    <string name="settings_client_id_key" translatable="false">client_id</string>
     <!-- 客户端 end -->
     <!-- 设置页面 end -->
 </resources>

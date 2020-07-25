@@ -32,7 +32,13 @@ class MainActivity : AppCompatActivity() {
      * @see .getOnBackPressedDispatcher
      */
     override fun onBackPressed() {
-        //取消使用“返回”键退出app
-        //super.onBackPressed()
+
+
+//        val controller = Navigation.findNavController(window.decorView)
+//        if (controller.currentDestination?.id == R.id.settingsFragment)
+        //val controller = Navigation.findNavController(window.decorView)
+        if (SettingsFragment.isDisplaying)
+
+            super.onBackPressed() //取消使用“返回”键退出app
     }
 }
