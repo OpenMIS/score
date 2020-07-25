@@ -1,7 +1,6 @@
 package com.game.score
 
 import android.os.Bundle
-import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -20,13 +19,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
     }
 
-    override fun onDisplayPreferenceDialog(preference: Preference?) {
-        super.onDisplayPreferenceDialog(preference)
+    override fun onStart() {
+        super.onStart()
         isDisplaying = true
     }
 
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
+    override fun onStop() {
+        super.onStop()
         isDisplaying = false
     }
 }

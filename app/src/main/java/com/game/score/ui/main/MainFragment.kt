@@ -1,5 +1,6 @@
 package com.game.score.ui.main
 
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
@@ -12,9 +13,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.preference.PreferenceManager
 import com.game.score.R
 import com.game.score.databinding.MainFragmentBinding
+
 
 class MainFragment : Fragment() {
 
@@ -138,18 +139,42 @@ class MainFragment : Fragment() {
                         Toast.makeText(context, "剩余电量:$level%", Toast.LENGTH_SHORT).show()
                     }
 
-                    val pref = PreferenceManager.getDefaultSharedPreferences(it.context)
 
-                    val a1 = pref.getInt(getString(R.string.settings_network_local_port_key), 8080)
+                    val pref = activity?.getSharedPreferences(
+                        activity?.packageName + "_preferences",
+                        Context.MODE_PRIVATE
+                    )
+
+//                    val preferences = activity?.getSharedPreferences(
+//                        SettingsFragment.SETTINGS_SHARED_PREFERENCES_FILE_NAME,
+//                        Context.MODE_PRIVATE
+//                    )
+
+                    val aa = getString(R.string.settings_network_local_port_key)
+                    val aa2 = pref?.getString(
+                        getString(R.string.settings_network_local_port_key),
+                        "111"
+                    )
+
+
+                    val a1 =
+                        pref?.getString(getString(R.string.settings_network_local_port_key), "8080")
+                            ?.toIntOrNull() ?: 8080
                     val a2 =
-                        pref.getString(getString(R.string.settings_network_server_host_key), "")
-                    val a3 = pref.getInt(getString(R.string.settings_network_server_port_key), 8080)
-                    val a4 = pref.getInt(getString(R.string.settings_client_id_key), 1)
+                        pref?.getString(getString(R.string.settings_network_server_host_key), "")
+                    val a3 =
+                        pref?.getString(
+                            getString(R.string.settings_network_server_port_key),
+                            "8080"
+                        )?.toIntOrNull() ?: 8080
+                    val a4 = pref?.getInt(getString(R.string.settings_client_id_key), 1)
 
                     Log.d("Setting", "settings_network_local_port_key " + a1)
                     Log.d("Setting", "settings_network_server_host_key " + a2)
                     Log.d("Setting", "settings_network_server_port_key " + a3)
                     Log.d("Setting", "settings_client_id_key " + a4)
+                    Log.d("Setting", "settings_client_id_key " + aa2)
+
                 }
                 R.id.button_V -> {
                     val builder =
