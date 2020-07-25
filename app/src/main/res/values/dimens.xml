@@ -15,7 +15,7 @@
     <!-- 打分的分数 字体大小 -->
     <dimen name="textView_score_textSize">45sp</dimen>
 
-    <!-- 数字按钮 字体大小 -->
+    <!-- 数字、字母按钮 字体大小 -->
     <dimen name="button_number_textSize">45sp</dimen>
     <!-- 含文本按钮 字体大小 -->
     <dimen name="button_text_textSize">40sp</dimen>
