@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">打分器</string>
 
+    <string name="alertDialog_message_confirm">是否确认成绩</string>
+    <string name="button_text_yes">是</string>
+    <string name="button_text_no">否</string>
+
     <!-- 按钮上面的文本 begin -->
     <string name="buttonDot" translatable="false">.</string>
     <string name="button1" translatable="false">1</string>
@@ -14,16 +18,16 @@
     <string name="button9" translatable="false">9</string>
     <string name="button0" translatable="false">0</string>
     <!--    <string name="buttonV">检查\n确认\nV</string>-->
-    <string name="buttonV">V</string>
+    <string name="buttonV" translatable="false">V</string>
 
     <string name="imageButton_back_contentDescription" translatable="false">Back</string>
     <!--    <string name="buttonX" translatable="false">🔙</string>-->
     <!--    <string name="button_send">Send/发送</string>-->
-    <string name="button_send">S</string>
+    <string name="button_send" translatable="false">S</string>
     <!-- 按钮上面的文本 end -->
 
     <!-- 进入设置页面的密码 end -->
-    <string name="password_for_enter_settings" translatable="false">adminliao</string>
+    <!--    <string name="password_for_enter_settings" translatable="false">adminliao</string>-->
 
     <!-- 设置页面 begin -->
     <!-- 网络 begin -->

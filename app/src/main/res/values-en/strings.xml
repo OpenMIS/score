@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Scoring</string>
+    <string name="alertDialog_message_confirm">Result confirm</string>
+    <string name="button_text_yes">Yes</string>
+    <string name="button_text_no">No</string>
     <string name="settings_network_server_port">Server Port</string>
     <string name="settings_network_server_host">Server Host</string>
     <string name="settings_network_local_port">Local Port</string>
     <string name="settings_network_header">Network</string>
     <string name="settings_client_header">Client</string>
     <string name="settings_client_id">Client ID</string>
-    <string name="button_send">Send</string>
-    <string name="buttonV">Check\nV</string>
+    <!--    <string name="button_send">Send</string>-->
+    <!--    <string name="buttonV">Check\nV</string>-->
 </resources>

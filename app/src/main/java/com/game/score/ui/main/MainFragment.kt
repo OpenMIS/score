@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -136,6 +137,18 @@ class MainFragment : Fragment() {
                     }
                 }
                 R.id.button_V -> {
+                    val builder =
+                        AlertDialog.Builder(it.context)
+                            .setMessage(R.string.alertDialog_message_confirm)
+                            .setPositiveButton(R.string.button_text_no, null) //监听下方button点击事件
+                            .setNegativeButton(R.string.button_text_yes) { dialogInterface, i ->
+
+                                Toast.makeText(it.context, "aaa", Toast.LENGTH_SHORT).show()
+
+                            }.setCancelable(true) //设置对话框是可取消的
+
+                    val dialog = builder.create()
+                    dialog.show()
                 }
             }
         }
