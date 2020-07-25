@@ -90,6 +90,7 @@
             android:layout_margin="@dimen/button_layout_margin"
             android:background="@drawable/button_border"
             android:text="@string/buttonV"
+            android:textColor="@color/colorSubmit"
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
@@ -103,6 +104,7 @@
             android:layout_margin="@dimen/button_layout_margin"
             android:background="@drawable/button_border"
             android:text="@string/button_send"
+            android:textColor="@color/colorSubmit"
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -189,14 +191,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.10" />
+            app:layout_constraintGuide_percent="0.08" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.20" />
+            app:layout_constraintGuide_percent="0.16" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
@@ -326,6 +328,7 @@
             android:layout_marginTop="3dp"
             android:layout_marginEnd="5dp"
             android:text="@{data.scoreString}"
+            android:textColor="@color/colorScore"
             android:textSize="@dimen/textView_score_textSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline10"

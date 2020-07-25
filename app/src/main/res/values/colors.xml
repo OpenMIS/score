@@ -4,7 +4,10 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <!-- 提交按钮的颜色 -->
+    <!-- 分数 -->
+    <color name="colorScore">#FF0000</color>
+
+    <!-- 提交按钮 -->
     <color name="colorSubmit">#FF0000</color>
 
     <!--
@@ -23,6 +26,8 @@
     葛巾紫    #E9EBFE    RGB(233, 235, 254)
     极光灰    #EAEAEF    RGB(234, 234, 239)
     -->
+    <!-- 立体按钮 begin -->
     <color name="colorAuroraGrey">#EAEAEF</color>
     <color name="colorButton2">#9C9CBF</color>
+    <!-- 立体按钮 end -->
 </resources>

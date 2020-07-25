@@ -120,7 +120,7 @@ class MainFragment : Fragment() {
                     if (!_viewModel.scoreString.value.isNullOrEmpty()) {
                         val temp = _viewModel.scoreString.value.toString()
                         _viewModel.scoreString.value = temp.substring(
-                            0, temp.length - 2
+                            0, temp.length - 1
                         )
                     }
                 }
