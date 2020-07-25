@@ -3,7 +3,6 @@ package com.game.score.ui.main
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.game.score.R
 import com.game.score.databinding.MainFragmentBinding
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.main_fragment.view.*
 
 class MainFragment : Fragment() {
 
@@ -22,54 +19,67 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
-    private lateinit var binding: MainFragmentBinding
+    //region 字段
+    /**
+     * 视图模型
+     */
+    private lateinit var _viewModel: MainViewModel
+
+    /**
+     * 数据绑定
+     */
+    private lateinit var _binding: MainFragmentBinding
+    //endregion
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = MainFragmentBinding.inflate(inflater, container, false)
+        _binding = MainFragmentBinding.inflate(inflater, container, false)
 
         //region 挂接按钮事件
-        binding.button0.setOnClickListener(_buttonListener)
-        binding.button1.setOnClickListener(_buttonListener)
-        binding.button2.setOnClickListener(_buttonListener)
-        binding.button3.setOnClickListener(_buttonListener)
-        binding.button4.setOnClickListener(_buttonListener)
-        binding.button5.setOnClickListener(_buttonListener)
-        binding.button6.setOnClickListener(_buttonListener)
-        binding.button7.setOnClickListener(_buttonListener)
-        binding.button8.setOnClickListener(_buttonListener)
-        binding.button9.setOnClickListener(_buttonListener)
-        binding.buttonDot.setOnClickListener(_buttonListener)
-        binding.buttonX.setOnClickListener(_buttonListener)
-        binding.buttonV.setOnClickListener(_buttonListener)
-        binding.buttonSend.setOnClickListener(_buttonListener)
+        _binding.button0.setOnClickListener(_buttonListener)
+        _binding.button1.setOnClickListener(_buttonListener)
+        _binding.button2.setOnClickListener(_buttonListener)
+        _binding.button3.setOnClickListener(_buttonListener)
+        _binding.button4.setOnClickListener(_buttonListener)
+        _binding.button5.setOnClickListener(_buttonListener)
+        _binding.button6.setOnClickListener(_buttonListener)
+        _binding.button7.setOnClickListener(_buttonListener)
+        _binding.button8.setOnClickListener(_buttonListener)
+        _binding.button9.setOnClickListener(_buttonListener)
+        _binding.buttonDot.setOnClickListener(_buttonListener)
+        _binding.buttonX.setOnClickListener(_buttonListener)
+        _binding.buttonV.setOnClickListener(_buttonListener)
+        _binding.buttonSend.setOnClickListener(_buttonListener)
         //endregion
 
-        binding.textViewDeviceCode.setOnLongClickListener {
+        //region 长按“设备代码”打开“设置”页面
+        _binding.textViewDeviceCode.setOnLongClickListener {
             val controller = Navigation.findNavController(it)
             controller.navigate(R.id.settingsFragment)
 
             return@setOnLongClickListener true
         }
+        //endregion
 
-        return binding.root
+        return _binding.root
     }
-    
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        // TODO: Use the ViewModel
-        binding.data = viewModel
-        binding.lifecycleOwner = this
+
+        //region 数据版本与数据模型关联
+        _viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        _binding.data = _viewModel
+        _binding.lifecycleOwner = this
+        //endregion
 
         init()
     }
 
     private fun init() {
-        with(viewModel){
+        with(_viewModel) {
             //临时测试数据
             gameMatch.value = "盛装舞步个人赛资格赛"
             athleteNameAndTeamName.value = "贾海涛(浙江队)"
@@ -98,15 +108,15 @@ class MainFragment : Fragment() {
         }
 
         if (!numberString.isBlank()) {
-            if (viewModel.scoreString.value.isNullOrBlank() ||
-                viewModel.scoreString.value.toString().length <= 3
+            if (_viewModel.scoreString.value.isNullOrBlank() ||
+                _viewModel.scoreString.value.toString().length <= 3
             )
-                viewModel.scoreString.value += numberString
+                _viewModel.scoreString.value += numberString
             else
-                viewModel.scoreString.value = numberString
+                _viewModel.scoreString.value = numberString
         } else {
             when (it.id) {
-                R.id.button_X -> viewModel.scoreString.value = ""
+                R.id.button_X -> _viewModel.scoreString.value = ""
                 R.id.button_send -> {
                     val batteryStatus: Intent? =
                         IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter ->
@@ -123,7 +133,7 @@ class MainFragment : Fragment() {
             }
         }
 
-        if (viewModel.scoreString.value == ".")
-            viewModel.scoreString.value = "0."
+        if (_viewModel.scoreString.value == ".")
+            _viewModel.scoreString.value = "0."
     }
 }

@@ -1,13 +1,13 @@
 package com.game.score.ui.main
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.game.score.R
 import com.game.score.ui.main.dummy.DummyContent
 
@@ -16,7 +16,9 @@ import com.game.score.ui.main.dummy.DummyContent
  */
 class ScoreFragment : Fragment() {
 
+    //region 字段
     private var columnCount = 3
+    //endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

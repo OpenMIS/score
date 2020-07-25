@@ -1,17 +1,24 @@
 package com.game.score
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
-import com.game.score.ui.main.MainFragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.game.score.databinding.MainActivityBinding
 
 class MainActivity : AppCompatActivity() {
 
+    //region 字段
+    /**
+     * 数据绑定
+     */
+    private lateinit var _binding: MainActivityBinding
+    //endregion
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+
+        //使用数据绑定
+        _binding = DataBindingUtil.setContentView(this, R.layout.main_activity)
 
         supportActionBar?.hide() //隐藏头部动作栏
     }
