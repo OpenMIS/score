@@ -23,18 +23,20 @@ class ScoreItemRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.order.toString()
-        holder.contentView.text = item.name
+        holder.orderView.text = item.order.toString()
+        holder.nameView.text = item.name
+        holder.scoreView.text = item.score.toString()
     }
 
     override fun getItemCount(): Int = values.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val idView: TextView = view.findViewById(R.id.item_scoreModel_order)
-        val contentView: TextView = view.findViewById(R.id.item_scoreModel_name)
+        val orderView: TextView = view.findViewById(R.id.item_scoreModel_order)
+        val nameView: TextView = view.findViewById(R.id.item_scoreModel_name)
+        val scoreView: TextView = view.findViewById(R.id.item_scoreModel_score)
 
         override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
+            return super.toString() + " '" + nameView.text + "'"
         }
     }
 }
