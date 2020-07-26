@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -90,7 +91,7 @@ class MainFragment : Fragment() {
             gameMatch.value = "盛装舞步个人赛资格赛"
             athleteNameAndTeamName.value = "贾海涛(浙江队)"
             deviceCode.value = "E"
-            order.value = 1
+            order.value = 20
             matchStep.value = "立定敬礼"
         }
     }
@@ -116,7 +117,7 @@ class MainFragment : Fragment() {
 
         if (!numberString.isBlank()) {
             if (_viewModel.scoreString.value.isNullOrBlank() ||
-                _viewModel.scoreString.value.toString().length <= 3
+                _viewModel.scoreString.value.toString().length <= 5
             )
                 _viewModel.scoreString.value += numberString
             else
@@ -166,10 +167,44 @@ class MainFragment : Fragment() {
                     Log.d("Setting", "settings_network_server_port_key " + a3)
                     Log.d("Setting", "settings_client_id_key " + a4)
                     //endregion
-
-                    if (!_temp)
+                    
+                    if (!_temp) {
                         _binding.textViewMessage.text = "发送消息失败"
-                    else _binding.textViewMessage.text = ""
+                        _viewModel.matchStep.value = "后肢旋转（右） (2)"
+
+                        _binding.textViewOrder.setTextSize(
+                            TypedValue.COMPLEX_UNIT_PX,
+                            resources.getDimension(R.dimen.textView_row3_small_textSize)
+                        )
+                        _binding.textViewMatchStep.setTextSize(
+                            TypedValue.COMPLEX_UNIT_PX,
+                            resources.getDimension(R.dimen.textView_row3_small_textSize)
+                        )
+
+                        _binding.textViewScore.setTextSize(
+                            TypedValue.COMPLEX_UNIT_PX,
+                            resources.getDimension(R.dimen.textView_score_small_textSize)
+                        )
+
+                    } else {
+                        _viewModel.matchStep.value = "7个2步一换"
+                        _binding.textViewOrder.setTextSize(
+                            TypedValue.COMPLEX_UNIT_PX,
+                            resources.getDimension(R.dimen.textView_row3_big_textSize)
+                        )
+
+                        _binding.textViewMatchStep.setTextSize(
+                            TypedValue.COMPLEX_UNIT_PX,
+                            resources.getDimension(R.dimen.textView_row3_big_textSize)
+                        )
+
+                        _binding.textViewScore.setTextSize(
+                            TypedValue.COMPLEX_UNIT_PX,
+                            resources.getDimension(R.dimen.textView_score_big_textSize)
+                        )
+
+                        _binding.textViewMessage.text = ""
+                    }
                     _temp = !_temp
                 }
                 R.id.button_V -> {

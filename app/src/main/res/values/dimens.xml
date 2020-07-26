@@ -10,10 +10,12 @@
     <dimen name="textView_textSize">30sp</dimen>
 
     <!-- 场次里的步骤 字体大小 -->
-    <dimen name="textView_big_textSize">45sp</dimen>
+    <dimen name="textView_row3_small_textSize">30sp</dimen>
+    <dimen name="textView_row3_big_textSize">40sp</dimen>
 
     <!-- 打分的分数 字体大小 -->
-    <dimen name="textView_score_textSize">45sp</dimen>
+    <dimen name="textView_score_small_textSize">30sp</dimen>
+    <dimen name="textView_score_big_textSize">40sp</dimen>
 
     <!-- 数字、字母按钮 字体大小 -->
     <dimen name="button_number_textSize">45sp</dimen>
