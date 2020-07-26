@@ -7,6 +7,9 @@
     <!-- 分数 -->
     <color name="colorScore">#FF0000</color>
 
+    <!-- 消息文本 - 错误 -->
+    <color name="colorMessageError">#FF0000</color>
+
     <!-- 提交按钮 -->
     <color name="colorSubmit">#FF0000</color>
 

@@ -20,8 +20,11 @@
     <!-- 含文本按钮 字体大小 -->
     <dimen name="button_text_textSize">40sp</dimen>
 
+    <!-- 消息文本 字体大小 -->
+    <dimen name="textView_message_textSize">16sp</dimen>
+
     <!-- 分数列表里的各项 字体大小 -->
-    <dimen name="item_textView_textSize">25sp</dimen>
+    <dimen name="textView_item_textSize">25sp</dimen>
 
     <!--字体大小 end -->
 </resources>

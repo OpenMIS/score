@@ -29,6 +29,8 @@ class MainFragment : Fragment() {
      */
     private lateinit var _viewModel: MainViewModel
 
+    private var _temp = false
+
     /**
      * 数据绑定
      */
@@ -165,6 +167,10 @@ class MainFragment : Fragment() {
                     Log.d("Setting", "settings_client_id_key " + a4)
                     //endregion
 
+                    if (!_temp)
+                        _binding.textViewMessage.text = "发送消息失败"
+                    else _binding.textViewMessage.text = ""
+                    _temp = !_temp
                 }
                 R.id.button_V -> {
                     val builder =
