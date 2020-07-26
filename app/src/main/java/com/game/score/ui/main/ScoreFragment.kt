@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.R
-import com.game.score.ui.main.dummy.DummyContent
+import com.game.score.ui.main.dummy.ScoreContent
 
 /**
  * A fragment representing a list of Items.
@@ -17,7 +17,7 @@ import com.game.score.ui.main.dummy.DummyContent
 class ScoreFragment : Fragment() {
 
     //region 字段
-    private var columnCount = 3
+    private var columnCount = 1
     //endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +41,7 @@ class ScoreFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = ScoreItemRecyclerViewAdapter(DummyContent.ITEMS)
+                adapter = ScoreItemRecyclerViewAdapter(ScoreContent.ITEMS)
             }
         }
         return view
@@ -49,10 +49,8 @@ class ScoreFragment : Fragment() {
 
     companion object {
 
-        // TODO: Customize parameter argument names
         const val ARG_COLUMN_COUNT = "column-count"
 
-        // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
             ScoreFragment().apply {

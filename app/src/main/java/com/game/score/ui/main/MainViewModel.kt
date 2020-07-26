@@ -28,9 +28,16 @@ class MainViewModel : ViewModel() {
     val deviceCode = MutableLiveData<String>(" ") //E、C 等单个字符
 
     /**
+     * 场次里的步骤的顺序。
+     *
+     * 比如：1
+     */
+    val order = MutableLiveData<Int>()
+
+    /**
      * 场次里的步骤。
      *
-     * 比如：1 立定敬礼
+     * 比如：立定敬礼
      */
     val matchStep = MutableLiveData<String>("")
 

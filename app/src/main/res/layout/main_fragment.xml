@@ -201,6 +201,13 @@
             app:layout_constraintGuide_percent="0.16" />
 
         <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -315,11 +322,12 @@
             android:layout_margin="3dp"
             android:text="@{data.matchStep}"
             android:textSize="@dimen/textView_big_textSize"
+            app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_order"
             app:layout_constraintTop_toTopOf="@+id/guideline10"
-            tools:text="1 立定敬礼" />
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="立定敬礼" />
 
         <TextView
             android:id="@+id/textView_score"
@@ -330,6 +338,7 @@
             android:text="@{data.scoreString}"
             android:textColor="@color/colorScore"
             android:textSize="@dimen/textView_score_textSize"
+            app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline10"
             tools:text="9.2" />
@@ -346,6 +355,28 @@
             app:layout_constraintStart_toStartOf="@+id/guideline12"
             app:layout_constraintTop_toTopOf="@+id/guideline4"
             app:srcCompat="@drawable/ic_baseline_backspace_24" />
+
+        <fragment
+            android:id="@+id/fragment2"
+            android:name="com.game.score.ui.main.ScoreFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline9"
+            tools:ignore="FragmentTagUsage" />
+
+        <TextView
+            android:id="@+id/textView_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.order.toString()}"
+            android:textSize="@dimen/textView_big_textSize"
+            app:layout_constraintBottom_toTopOf="@+id/guideline9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline10"
+            tools:text="1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
