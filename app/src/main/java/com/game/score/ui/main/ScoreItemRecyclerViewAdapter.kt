@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.R
 import com.game.score.ScoreModel
@@ -13,7 +15,16 @@ import com.game.score.ScoreModel
  */
 class ScoreItemRecyclerViewAdapter(
     private val values: List<ScoreModel>
-) : RecyclerView.Adapter<ScoreItemRecyclerViewAdapter.ViewHolder>() {
+) : ListAdapter<ScoreModel, ScoreItemRecyclerViewAdapter.ViewHolder>(DiffCallback) {
+    companion object DiffCallback : DiffUtil.ItemCallback<ScoreModel>() {
+        override fun areItemsTheSame(oldItem: ScoreModel, newItem: ScoreModel): Boolean {
+            return oldItem.order == newItem.order
+        }
+
+        override fun areContentsTheSame(oldItem: ScoreModel, newItem: ScoreModel): Boolean {
+            return oldItem == newItem
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
