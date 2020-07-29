@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="scoreModel"
+            name="score"
             type="com.game.score.models.Score" />
 
         <variable
@@ -18,50 +18,51 @@
         android:id="@+id/item_score_constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> clickListener.onClick(scoreModel)}"
+        android:onClick="@{() -> clickListener.onClick(score)}"
         tools:context=".ui.main.ScoreListFragment">
-        <!--        android:text="@{String.valueOf(scoreModel.playOrder)}"-->
+
         <TextView
-            android:id="@+id/item_scoreModel_order"
+            android:id="@+id/item_score_scoreID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:textAppearance="?attr/textAppearanceListItem"
+            android:text="@{score.scoreID == `F_TotalScore` ? `` :  score.scoreID.substring(2)}"
             android:textSize="@dimen/textView_item_textSize"
 
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/item_scoreModel_name"
+            app:layout_constraintEnd_toStartOf="@+id/item_score_scoreName"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="18" />
-        <!--        android:text="@{scoreModel.name}"-->
+
         <TextView
-            android:id="@+id/item_scoreModel_name"
+            android:id="@+id/item_score_scoreName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textSize="@dimen/textView_item_textSize"
-
-            app:layout_constraintBaseline_toBaselineOf="@+id/item_scoreModel_order"
+            android:text="@{score.scoreName}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/item_score_scoreID"
             app:layout_constraintBottom_toTopOf="@+id/guideline13"
-            app:layout_constraintEnd_toStartOf="@+id/item_scoreModel_score"
+            app:layout_constraintEnd_toStartOf="@+id/item_score_scoreValue"
             app:layout_constraintStart_toStartOf="@+id/guideline14"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="后肢旋转（左） (2)" />
-        <!--        android:text="@{scoreModel.score.toString()}"-->
+
         <TextView
-            android:id="@+id/item_scoreModel_score"
+            android:id="@+id/item_score_scoreValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="3dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textSize="@dimen/textView_item_textSize"
-
-            app:layout_constraintBaseline_toBaselineOf="@+id/item_scoreModel_name"
+            android:text="@{score.scoreValue}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/item_score_scoreName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/item_scoreModel_name"
+            app:layout_constraintStart_toEndOf="@+id/item_score_scoreName"
             tools:text="8.1" />
 
         <androidx.constraintlayout.widget.Guideline

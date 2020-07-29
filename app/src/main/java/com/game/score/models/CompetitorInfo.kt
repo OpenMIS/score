@@ -1,24 +1,24 @@
 package com.game.score.models
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 
-//@JacksonXmlRootElement(localName = "CompetitorInfo")
-//@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonIgnoreProperties(value = ["MessageType"])
 data class CompetitorInfo(
 
-    //val messageType: String,
-    val event: String,
+    val Event: String,
 
-    val phase: String,
+    val Phase: String,
 
-    val competitorName: String,
+    val CompetitorName: String,
 
-    val competitorID: String,
+    val CompetitorID: String,
 
-    val judgeName: String,
+    /**
+     * 裁判名称。
+     *
+     * 马术比如：E、M、C
+     */
+    val JudgeName: String,
 
     @JacksonXmlProperty(localName = "Score")
-    val scores: List<Score>
+    val Scores: List<Score>
 )

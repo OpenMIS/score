@@ -27,7 +27,7 @@ class MainViewModel : ViewModel() {
      *
      * 【注意】此处默认必须为空格，否则在初始化时，无法长按进入“设置”页面。
      */
-    val deviceCode = MutableLiveData<String>(" ") //E、C 等单个字符
+    val deviceCode = MutableLiveData<String>(" ")
 
 
     /**

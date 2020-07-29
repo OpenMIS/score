@@ -16,7 +16,7 @@ class ScoreListAdapter(
 ) : ListAdapter<Score, ScoreListAdapter.ViewHolder>(DiffCallback) {
     companion object DiffCallback : DiffUtil.ItemCallback<Score>() {
         override fun areItemsTheSame(oldItem: Score, newItem: Score): Boolean {
-            return oldItem.playOrder == newItem.playOrder
+            return oldItem.ScoreID == newItem.ScoreID
         }
 
         override fun areContentsTheSame(oldItem: Score, newItem: Score): Boolean {
@@ -33,7 +33,7 @@ class ScoreListAdapter(
     class ViewHolder(private var _binding: FragmentScoreItemBinding) :
         RecyclerView.ViewHolder(_binding.root) {
         fun bind(listener: ScoreItemClickListener, score: Score) {
-            _binding.scoreModel = score
+            _binding.score = score
             _binding.clickListener = listener
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
