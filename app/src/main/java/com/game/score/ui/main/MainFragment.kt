@@ -29,8 +29,6 @@ class MainFragment : Fragment() {
      * 数据绑定
      */
     private lateinit var _binding: FragmentMainBinding
-
-    private var _temp = false
     //endregion
 
     override fun onCreateView(
@@ -87,6 +85,9 @@ class MainFragment : Fragment() {
      * 按钮事件
      */
     private val _buttonListener = View.OnClickListener {
+        val recyclerView = it.rootView.findViewById<RecyclerView>(R.id.score_list)
+        val scoreListAdapter = recyclerView.adapter as ScoreListAdapter
+
         var numberString = String()
         when (it.id) {
             R.id.button0 -> numberString = "0"
@@ -160,12 +161,21 @@ class MainFragment : Fragment() {
                     Log.d("Setting", "settings_client_id_key " + a4)
                     //endregion
 
-                    if (!_temp) {
-                        _binding.textViewMessage.text = "发送消息失败"
-                    } else {
-                        _binding.textViewMessage.text = ""
+                    //region 载入并定位到下一条记录
+                    if (_viewModel.scores.value != null &&
+                        _viewModel.currentScoreIndex.value != null &&
+                        _viewModel.currentScoreIndex.value!! < _viewModel.scores.value!!.count() - 1
+                    ) {
+                        val nextIndex = _viewModel.currentScoreIndex.value!! + 1
+                        val nextScore = _viewModel.scores.value?.get(nextIndex)
+                        if (nextScore != null && nextScore.order.isNotEmpty()) {
+                            _viewModel.currentScoreIndex.value = nextIndex
+                            _viewModel.currentScore.value = _viewModel.scores.value?.get(nextIndex)
+
+                            recyclerView.scrollToPosition(nextIndex)
+                        }
                     }
-                    _temp = !_temp
+                    //endregion
                 }
                 R.id.button_V -> {
                     val builder =
@@ -196,10 +206,7 @@ class MainFragment : Fragment() {
             _viewModel.currentScore.value!!
         )
 
-        //_viewModel.scores.postValue(_viewModel.scores.value)
-        val scoreList = it.rootView.findViewById<RecyclerView>(R.id.score_list)
-//        (scoreList.adapter as ScoreListAdapter).submitList(_viewModel.scores.value)
-        (scoreList.adapter as ScoreListAdapter).notifyItemChanged(_viewModel.currentScoreIndex.value!!)
+        scoreListAdapter.notifyItemChanged(_viewModel.currentScoreIndex.value!!)
         //endregion
     }
 }
