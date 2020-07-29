@@ -13,9 +13,9 @@ class CompetitorInfoUnitTest {
     private val mapper = XmlMapper(JacksonXmlModule().apply {
         setDefaultUseWrapper(false)
     }).registerKotlinModule()
-        .configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
-        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-        .configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true)
+        .configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true) //映射时不区分大小写
+        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false) //忽略未知的XML元素或属性
+        .configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true) //忽略根
 
     @Test
     fun test() {
