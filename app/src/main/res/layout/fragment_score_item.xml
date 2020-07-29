@@ -58,7 +58,7 @@
             android:layout_marginEnd="3dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textSize="@dimen/textView_item_textSize"
-            android:text="@{String.valueOf(scoreModel.score)}"
+            android:text="@{scoreModel.score.toString()}"
             app:layout_constraintBaseline_toBaselineOf="@+id/item_scoreModel_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/item_scoreModel_name"

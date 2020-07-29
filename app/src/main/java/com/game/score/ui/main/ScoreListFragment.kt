@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.game.score.databinding.FragmentScoreListBinding
 
@@ -52,8 +53,15 @@ class ScoreListFragment : Fragment() {
         })
 
         with(_binding.list) {
-            layoutManager = LinearLayoutManager(context)
+            val linearLayoutManager = LinearLayoutManager(context)
+
+            layoutManager = linearLayoutManager
             adapter = _adapter
+
+            //加入分隔线
+            addItemDecoration(
+                DividerItemDecoration(context, linearLayoutManager.orientation)
+            )
         }
         // endregion
 
