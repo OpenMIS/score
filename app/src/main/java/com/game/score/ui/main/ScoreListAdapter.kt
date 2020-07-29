@@ -5,21 +5,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.game.score.ScoreModel
 import com.game.score.databinding.FragmentScoreItemBinding
+import com.game.score.models.Score
 
 /**
- * [RecyclerView.Adapter] that can display a [ScoreModel].
+ * [RecyclerView.Adapter] that can display a [Score].
  */
 class ScoreListAdapter(
     private val _clickListener: ScoreItemClickListener
-) : ListAdapter<ScoreModel, ScoreListAdapter.ViewHolder>(DiffCallback) {
-    companion object DiffCallback : DiffUtil.ItemCallback<ScoreModel>() {
-        override fun areItemsTheSame(oldItem: ScoreModel, newItem: ScoreModel): Boolean {
-            return oldItem.order == newItem.order
+) : ListAdapter<Score, ScoreListAdapter.ViewHolder>(DiffCallback) {
+    companion object DiffCallback : DiffUtil.ItemCallback<Score>() {
+        override fun areItemsTheSame(oldItem: Score, newItem: Score): Boolean {
+            return oldItem.playOrder == newItem.playOrder
         }
 
-        override fun areContentsTheSame(oldItem: ScoreModel, newItem: ScoreModel): Boolean {
+        override fun areContentsTheSame(oldItem: Score, newItem: Score): Boolean {
             return oldItem == newItem
         }
     }
@@ -32,8 +32,8 @@ class ScoreListAdapter(
 
     class ViewHolder(private var _binding: FragmentScoreItemBinding) :
         RecyclerView.ViewHolder(_binding.root) {
-        fun bind(listener: ScoreItemClickListener, scoreModel: ScoreModel) {
-            _binding.scoreModel = scoreModel
+        fun bind(listener: ScoreItemClickListener, score: Score) {
+            _binding.scoreModel = score
             _binding.clickListener = listener
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
@@ -50,6 +50,6 @@ class ScoreListAdapter(
     }
 }
 
-class ScoreItemClickListener(val clickListener: (scoreModel: ScoreModel) -> Unit) {
-    fun onClick(scoreModel: ScoreModel) = clickListener(scoreModel)
+class ScoreItemClickListener(val clickListener: (score: Score) -> Unit) {
+    fun onClick(score: Score) = clickListener(score)
 }

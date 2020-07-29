@@ -7,7 +7,7 @@
 
         <variable
             name="scoreModel"
-            type="com.game.score.ScoreModel" />
+            type="com.game.score.models.Score" />
 
         <variable
             name="clickListener"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:onClick="@{() -> clickListener.onClick(scoreModel)}"
         tools:context=".ui.main.ScoreListFragment">
-
+        <!--        android:text="@{String.valueOf(scoreModel.playOrder)}"-->
         <TextView
             android:id="@+id/item_scoreModel_order"
             android:layout_width="wrap_content"
@@ -28,14 +28,14 @@
             android:layout_marginStart="3dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textSize="@dimen/textView_item_textSize"
-            android:text="@{String.valueOf(scoreModel.order)}"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/item_scoreModel_name"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="18" />
-
+        <!--        android:text="@{scoreModel.name}"-->
         <TextView
             android:id="@+id/item_scoreModel_name"
             android:layout_width="0dp"
@@ -43,14 +43,14 @@
             android:layout_marginBottom="3dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textSize="@dimen/textView_item_textSize"
-            android:text="@{scoreModel.name}"
+
             app:layout_constraintBaseline_toBaselineOf="@+id/item_scoreModel_order"
             app:layout_constraintBottom_toTopOf="@+id/guideline13"
             app:layout_constraintEnd_toStartOf="@+id/item_scoreModel_score"
             app:layout_constraintStart_toStartOf="@+id/guideline14"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="后肢旋转（左） (2)" />
-
+        <!--        android:text="@{scoreModel.score.toString()}"-->
         <TextView
             android:id="@+id/item_scoreModel_score"
             android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
             android:layout_marginEnd="3dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textSize="@dimen/textView_item_textSize"
-            android:text="@{scoreModel.score.toString()}"
+
             app:layout_constraintBaseline_toBaselineOf="@+id/item_scoreModel_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/item_scoreModel_name"

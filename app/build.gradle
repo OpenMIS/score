@@ -20,6 +20,7 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        multiDexEnabled true
     }
 
     buildFeatures {
@@ -66,4 +67,15 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+
+    //Convert Object to/from XML File (XML String) by Jackson
+    /*
+    参考：
+    Kotlin – Convert Object to/from XML File (XML String) by Jackson https://grokonez.com/kotlin/kotlin-convert-kotlin-object-xml-file-xml-string-jackson
+    Kotlin – Convert Object to/from JSON with Jackson 2.x https://grokonez.com/kotlin/kotlin-convert-object-tofrom-json-jackson-2-x
+    */
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.4'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.11.0'
 }

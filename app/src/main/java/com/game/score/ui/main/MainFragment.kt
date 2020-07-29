@@ -78,7 +78,7 @@ class MainFragment : Fragment() {
             gameMatch.value = "盛装舞步个人赛资格赛"
             athleteNameAndTeamName.value = "贾海涛(浙江队)"
             deviceCode.value = "E"
-            order.value = 20
+            //order.value = 20
             matchStep.value = "立定敬礼"
         }
     }

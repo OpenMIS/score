@@ -2,7 +2,7 @@ package com.game.score.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.game.score.ScoreModel
+import com.game.score.models.Score
 import com.game.score.ui.main.dummy.ScoreContent
 
 class MainViewModel : ViewModel() {
@@ -29,12 +29,6 @@ class MainViewModel : ViewModel() {
      */
     val deviceCode = MutableLiveData<String>(" ") //E、C 等单个字符
 
-    /**
-     * 场次里的步骤的顺序。
-     *
-     * 比如：1
-     */
-    val order = MutableLiveData<Int>()
 
     /**
      * 场次里的步骤。
@@ -54,11 +48,11 @@ class MainViewModel : ViewModel() {
      * 分数列表
      *
      */
-    val scoreModels = MutableLiveData<MutableList<ScoreModel>>(ScoreContent.ITEMS)
+    val scores = MutableLiveData<MutableList<Score>>(ScoreContent.ITEMS)
 
     /**
-     * 分数列表
+     * 当前分数
      *
      */
-    val currentScoreModel = MutableLiveData<ScoreModel>()
+    val currentScore = MutableLiveData<Score>()
 }
