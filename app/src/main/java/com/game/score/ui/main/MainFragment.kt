@@ -45,20 +45,13 @@ class MainFragment : Fragment() {
         _binding = MainFragmentBinding.inflate(inflater, container, false)
 
         //region 挂接按钮事件
-        _binding.button0.setOnClickListener(_buttonListener)
-        _binding.button1.setOnClickListener(_buttonListener)
-        _binding.button2.setOnClickListener(_buttonListener)
-        _binding.button3.setOnClickListener(_buttonListener)
-        _binding.button4.setOnClickListener(_buttonListener)
-        _binding.button5.setOnClickListener(_buttonListener)
-        _binding.button6.setOnClickListener(_buttonListener)
-        _binding.button7.setOnClickListener(_buttonListener)
-        _binding.button8.setOnClickListener(_buttonListener)
-        _binding.button9.setOnClickListener(_buttonListener)
-        _binding.buttonDot.setOnClickListener(_buttonListener)
-        _binding.imageButtonX.setOnClickListener(_buttonListener)
-        _binding.buttonV.setOnClickListener(_buttonListener)
-        _binding.buttonSend.setOnClickListener(_buttonListener)
+        for (button in listOf(
+            _binding.button0, _binding.button1, _binding.button2, _binding.button3,
+            _binding.button4, _binding.button5, _binding.button6, _binding.button7,
+            _binding.button8, _binding.button9, _binding.buttonDot,
+            _binding.imageButtonX, _binding.buttonV, _binding.buttonSend
+        ))
+            button.setOnClickListener(_buttonListener)
         //endregion
 
         //region 长按“设备代码”打开“设置”页面
@@ -76,7 +69,7 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        //region 数据版本与数据模型关联
+        //region layout里的数据与数据模型关联
         _viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         _binding.data = _viewModel
         _binding.lifecycleOwner = this
@@ -115,12 +108,17 @@ class MainFragment : Fragment() {
             R.id.button_dot -> numberString = "."
         }
 
+        val scoreStringIsNullOrBlank = _viewModel.scoreString.value.isNullOrBlank()
         if (!numberString.isBlank()) {
-            if (_viewModel.scoreString.value.isNullOrBlank() ||
+            if (scoreStringIsNullOrBlank ||
                 _viewModel.scoreString.value.toString().length <= 5
-            )
-                _viewModel.scoreString.value += numberString
-            else
+            ) {
+                if (scoreStringIsNullOrBlank || it.id != R.id.button_dot ||
+                    //之前的字符串没有包含.字符
+                    !_viewModel.scoreString.value!!.contains('.')
+                )
+                    _viewModel.scoreString.value += numberString
+            } else
                 _viewModel.scoreString.value = numberString
         } else {
             when (it.id) {
@@ -167,7 +165,7 @@ class MainFragment : Fragment() {
                     Log.d("Setting", "settings_network_server_port_key " + a3)
                     Log.d("Setting", "settings_client_id_key " + a4)
                     //endregion
-                    
+
                     if (!_temp) {
                         _binding.textViewMessage.text = "发送消息失败"
                         _viewModel.matchStep.value = "后肢旋转（右） (2)"
