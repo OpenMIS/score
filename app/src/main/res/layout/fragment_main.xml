@@ -371,7 +371,7 @@
             app:srcCompat="@drawable/ic_baseline_backspace_24" />
 
         <fragment
-            android:id="@+id/fragment2"
+            android:id="@+id/fragment_score_list"
             android:name="com.game.score.ui.main.ScoreListFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"

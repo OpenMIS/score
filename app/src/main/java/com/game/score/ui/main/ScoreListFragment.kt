@@ -55,7 +55,7 @@ class ScoreListFragment : Fragment() {
             }
         })
 
-        with(_binding.list) {
+        with(_binding.scoreList) {
             val linearLayoutManager = LinearLayoutManager(context)
 
             layoutManager = linearLayoutManager

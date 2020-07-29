@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView
 import com.game.score.R
 import com.game.score.databinding.FragmentMainBinding
 
@@ -195,7 +196,10 @@ class MainFragment : Fragment() {
             _viewModel.currentScore.value!!
         )
 
-        _viewModel.scores.postValue(_viewModel.scores.value)
+        //_viewModel.scores.postValue(_viewModel.scores.value)
+        val scoreList = it.rootView.findViewById<RecyclerView>(R.id.score_list)
+//        (scoreList.adapter as ScoreListAdapter).submitList(_viewModel.scores.value)
+        (scoreList.adapter as ScoreListAdapter).notifyItemChanged(_viewModel.currentScoreIndex.value!!)
         //endregion
     }
 }
