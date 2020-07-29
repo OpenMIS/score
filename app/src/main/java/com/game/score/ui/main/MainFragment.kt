@@ -217,7 +217,9 @@ class MainFragment : Fragment() {
             _viewModel.currentScore.value!!
         )
 
-        scoreListAdapter.notifyItemChanged(_viewModel.currentScoreIndex.value!!)
+        //【注意】此处需要通知刷新全部，这样选择行的样式才有效果。
+        //scoreListAdapter.notifyItemChanged(_viewModel.currentScoreIndex.value!!)
+        scoreListAdapter.notifyDataSetChanged()
         //endregion
     }
 }

@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{() -> clickListener.onClick(score, scoreIndex)}"
+        android:background="@drawable/list_item"
         tools:context=".ui.main.ScoreListFragment">
 
         <TextView

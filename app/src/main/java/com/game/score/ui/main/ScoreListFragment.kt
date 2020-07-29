@@ -48,10 +48,13 @@ class ScoreListFragment : Fragment() {
         //endregion
 
         // region 设置适配器
-        _adapter = ScoreListAdapter(ScoreItemClickListener { score, position ->
+        _adapter = ScoreListAdapter(_viewModel, ScoreItemClickListener { score, position ->
             if (!score.order.isBlank()) {
                 _viewModel.currentScore.value = score
                 _viewModel.currentScoreIndex.value = position
+
+                //【注意】此处需要通知刷新全部，这样选择行的样式才有效果。
+                _adapter.notifyDataSetChanged()
             }
         })
 

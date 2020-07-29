@@ -32,6 +32,8 @@
     葛巾紫    #E9EBFE    RGB(233, 235, 254)
     极光灰    #EAEAEF    RGB(234, 234, 239)
     -->
+    <color name="colorSelectItem">#DCE2F1</color>
+
     <!-- 立体按钮 begin -->
     <color name="colorAuroraGrey">#EAEAEF</color>
     <color name="colorButton2">#9C9CBF</color>

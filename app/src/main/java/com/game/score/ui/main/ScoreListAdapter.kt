@@ -12,6 +12,7 @@ import com.game.score.models.Score
  * [RecyclerView.Adapter] that can display a [Score].
  */
 class ScoreListAdapter(
+    private val _viewModel: MainViewModel,
     private val _clickListener: ScoreItemClickListener
 ) : ListAdapter<Score, ScoreListAdapter.ViewHolder>(DiffCallback) {
     companion object DiffCallback : DiffUtil.ItemCallback<Score>() {
@@ -28,11 +29,16 @@ class ScoreListAdapter(
         ViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(_clickListener, getItem(position), position)
+        holder.bind(_viewModel, _clickListener, getItem(position), position)
 
     class ViewHolder(private var _binding: FragmentScoreItemBinding) :
         RecyclerView.ViewHolder(_binding.root) {
-        fun bind(listener: ScoreItemClickListener, score: Score, position: Int) {
+        fun bind(
+            viewModel: MainViewModel,
+            listener: ScoreItemClickListener,
+            score: Score,
+            position: Int
+        ) {
             _binding.score = score
             _binding.scoreIndex = position
             _binding.clickListener = listener
@@ -40,6 +46,7 @@ class ScoreListAdapter(
                 _binding.itemScoreScoreValue.error = score.ScoreErrorMessage
             else _binding.itemScoreScoreValue.error = null
 
+            _binding.root.isSelected = viewModel.currentScoreIndex.value == position
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
             _binding.executePendingBindings()
