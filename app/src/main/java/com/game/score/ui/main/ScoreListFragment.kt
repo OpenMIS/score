@@ -41,12 +41,7 @@ class ScoreListFragment : Fragment() {
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         _binding.lifecycleOwner = this
 
-        //_viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-//        val a = activity?.viewModelStore?.takeIf {
-//            return true
-//        }
-
-//        _viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        //使用MainActivity创建的MainViewModel实例
         _viewModel = ViewModelProvider(activity as FragmentActivity)
             .get<MainViewModel>(MainViewModel::class.java)
         Log.d("1111", "onCreateView: " + _viewModel.hashCode())

@@ -43,7 +43,6 @@ class MainFragment : Fragment() {
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         _binding.lifecycleOwner = this
 
-        _viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         _viewModel = ViewModelProvider(activity as FragmentActivity)
             .get<MainViewModel>(MainViewModel::class.java)
         Log.d("2222", "onCreateView: " + _viewModel.hashCode())
