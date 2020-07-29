@@ -29,7 +29,6 @@ class MainViewModel : ViewModel() {
      */
     val deviceCode = MutableLiveData<String>(" ")
 
-
     /**
      * 场次里的步骤。
      *
@@ -38,17 +37,16 @@ class MainViewModel : ViewModel() {
     val matchStep = MutableLiveData<String>("")
 
     /**
-     * 打分。
-     *
-     * 分数字符串。
-     */
-    val scoreString = MutableLiveData<String>("")
-
-    /**
      * 分数列表
      *
      */
     val scores = MutableLiveData<MutableList<Score>>(ScoreContent.ITEMS)
+
+    /**
+     * 当前分数 在 分数列表里的索引
+     *
+     */
+    val currentScoreIndex = MutableLiveData<Int>()
 
     /**
      * 当前分数

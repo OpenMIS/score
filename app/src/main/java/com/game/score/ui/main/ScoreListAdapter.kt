@@ -28,12 +28,13 @@ class ScoreListAdapter(
         ViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(_clickListener, getItem(position))
+        holder.bind(_clickListener, getItem(position), position)
 
     class ViewHolder(private var _binding: FragmentScoreItemBinding) :
         RecyclerView.ViewHolder(_binding.root) {
-        fun bind(listener: ScoreItemClickListener, score: Score) {
+        fun bind(listener: ScoreItemClickListener, score: Score, position: Int) {
             _binding.score = score
+            _binding.scoreIndex = position
             _binding.clickListener = listener
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
@@ -50,6 +51,6 @@ class ScoreListAdapter(
     }
 }
 
-class ScoreItemClickListener(val clickListener: (score: Score) -> Unit) {
-    fun onClick(score: Score) = clickListener(score)
+class ScoreItemClickListener(val clickListener: (score: Score, position: Int) -> Unit) {
+    fun onClick(score: Score, position: Int) = clickListener(score, position)
 }

@@ -326,14 +326,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline11"
             tools:text="E" />
-
+        <!--        android:textSize="@{viewModel.currentScore.scoreName.length() >= 8?-->
+        <!--        @dimen/textView_row3_small_textSize:@dimen/textView_row3_big_textSize}"-->
+        <!--        android:textSize="@{viewModel.currentScore.scoreName.length() >= Integer.valueOf( @string/score_name_big_size)?@dimen/textView_row3_small_textSize:@dimen/textView_row3_big_textSize}"-->
         <TextView
             android:id="@+id/textView_matchStep"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:text="@{viewModel.matchStep}"
-            android:textSize="@dimen/textView_row3_big_textSize"
+            android:text="@{viewModel.currentScore.scoreName}"
+            android:textSize="@{viewModel.currentScore.scoreName.length() >= Integer.valueOf(@integer/score_name_big_size)?@dimen/textView_row3_small_textSize:@dimen/textView_row3_big_textSize}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView_order"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
@@ -341,7 +343,8 @@
             app:layout_constraintTop_toTopOf="@+id/guideline10"
             app:layout_constraintVertical_bias="1.0"
             tools:text="立定敬礼" />
-
+        <!--        android:textSize="@{viewModel.currentScore.scoreName.length() >= @integer/score_name_big_size?-->
+        <!--        @dimen/textView_score_small_textSize:@dimen/textView_score_big_textSize}"-->
         <TextView
             android:id="@+id/textView_score"
             android:layout_width="wrap_content"
@@ -350,7 +353,7 @@
             android:layout_marginEnd="5dp"
             android:text="@{viewModel.currentScore.scoreValue}"
             android:textColor="@color/colorScore"
-            android:textSize="@dimen/textView_score_big_textSize"
+            android:textSize="@{@dimen/textView_score_big_textSize}"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline10"
@@ -379,14 +382,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline15"
             tools:ignore="FragmentTagUsage" />
-
-        <!--        android:text="@{viewModel.currentScore.toString()}"-->
+        <!--        android:textSize="@{viewModel.currentScore.scoreName.length() >= @integer/score_name_big_size?-->
+        <!--        @dimen/textView_row3_small_textSize:@dimen/textView_row3_big_textSize}"-->
         <TextView
             android:id="@+id/textView_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:textSize="@dimen/textView_row3_big_textSize"
+            android:text="@{viewModel.currentScore.order}"
+            android:textSize="@{@dimen/textView_row3_big_textSize}"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline10"

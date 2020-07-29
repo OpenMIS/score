@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 分数名称的长度大于等于此值，则需要使用小号字体。 -->
+    <integer name="score_name_big_size">9</integer>
+</resources>

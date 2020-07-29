@@ -10,6 +10,10 @@
             type="com.game.score.models.Score" />
 
         <variable
+            name="scoreIndex"
+            type="Integer" />
+
+        <variable
             name="clickListener"
             type="com.game.score.ui.main.ScoreItemClickListener" />
     </data>
@@ -18,7 +22,7 @@
         android:id="@+id/item_score_constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> clickListener.onClick(score)}"
+        android:onClick="@{() -> clickListener.onClick(score, scoreIndex)}"
         tools:context=".ui.main.ScoreListFragment">
 
         <TextView
@@ -27,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:textAppearance="?attr/textAppearanceListItem"
-            android:text="@{score.scoreID == `F_TotalScore` ? `` :  score.scoreID.substring(2)}"
+            android:text="@{score.order}"
             android:textSize="@dimen/textView_item_textSize"
 
             app:layout_constraintBottom_toBottomOf="parent"

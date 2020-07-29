@@ -78,8 +78,8 @@ class MainFragment : Fragment() {
             gameMatch.value = "盛装舞步个人赛资格赛"
             athleteNameAndTeamName.value = "贾海涛(浙江队)"
             deviceCode.value = "E"
-            //order.value = 20
-            matchStep.value = "立定敬礼"
+            currentScoreIndex.value = 0
+            currentScore.value = scores.value?.get(currentScoreIndex.value!!)
         }
     }
 
@@ -102,25 +102,25 @@ class MainFragment : Fragment() {
             R.id.button_dot -> numberString = "."
         }
 
-        val scoreStringIsNullOrBlank = _viewModel.scoreString.value.isNullOrBlank()
+        val scoreValue = _viewModel.currentScore.value?.ScoreValue
+        val scoreValueIsNullOrBlank = scoreValue.isNullOrBlank()
         if (!numberString.isBlank()) {
-            if (scoreStringIsNullOrBlank ||
-                _viewModel.scoreString.value.toString().length <= 5
+            if (scoreValueIsNullOrBlank ||
+                scoreValue.toString().length <= 5
             ) {
-                if (scoreStringIsNullOrBlank || it.id != R.id.button_dot ||
+                if (scoreValueIsNullOrBlank || it.id != R.id.button_dot ||
                     //之前的字符串没有包含.字符
-                    !_viewModel.scoreString.value!!.contains('.')
+                    !scoreValue!!.contains('.')
                 )
-                    _viewModel.scoreString.value += numberString
+                    _viewModel.currentScore.value!!.ScoreValue += numberString
             } else
-                _viewModel.scoreString.value = numberString
+                _viewModel.currentScore.value!!.ScoreValue = numberString
         } else {
             when (it.id) {
                 R.id.imageButton_X -> {
-                    if (!_viewModel.scoreString.value.isNullOrEmpty()) {
-                        val temp = _viewModel.scoreString.value.toString()
-                        _viewModel.scoreString.value = temp.substring(
-                            0, temp.length - 1
+                    if (!scoreValue.isNullOrEmpty()) {
+                        _viewModel.currentScore.value!!.ScoreValue = scoreValue.substring(
+                            0, scoreValue.length - 1
                         )
                     }
                 }
@@ -217,7 +217,18 @@ class MainFragment : Fragment() {
             }
         }
 
-        if (_viewModel.scoreString.value == ".")
-            _viewModel.scoreString.value = "0."
+        if (_viewModel.currentScore.value?.ScoreValue == ".")
+            _viewModel.currentScore.value!!.ScoreValue = "0."
+
+        //region 触发界面更新
+        _viewModel.currentScore.postValue(_viewModel.currentScore.value)
+
+        _viewModel.scores.value?.set(
+            _viewModel.currentScoreIndex.value!!,
+            _viewModel.currentScore.value!!
+        )
+
+        _viewModel.scores.postValue(_viewModel.scores.value)
+        //endregion
     }
 }

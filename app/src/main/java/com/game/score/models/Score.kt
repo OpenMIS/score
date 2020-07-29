@@ -24,7 +24,7 @@ data class Score(
      *
      * 空字符串表示还未打分。
      */
-    val ScoreValue: String,
+    var ScoreValue: String,
 
     /**
      * 错误信息。
