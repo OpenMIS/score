@@ -12,37 +12,43 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.game.score.R
-import com.game.score.databinding.MainFragmentBinding
-
+import com.game.score.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
     //region 字段
     /**
      * 视图模型
      */
     private lateinit var _viewModel: MainViewModel
 
-    private var _temp = false
-
     /**
      * 数据绑定
      */
-    private lateinit var _binding: MainFragmentBinding
+    private lateinit var _binding: FragmentMainBinding
+
+    private var _temp = false
     //endregion
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = MainFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
+
+        //region layout里的数据与数据模型关联
+        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+        _binding.lifecycleOwner = this
+
+        _viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        _viewModel = ViewModelProvider(activity as FragmentActivity)
+            .get<MainViewModel>(MainViewModel::class.java)
+        Log.d("2222", "onCreateView: " + _viewModel.hashCode())
+        _binding.viewModel = _viewModel
+        //endregion
 
         //region 挂接按钮事件
         for (button in listOf(
@@ -63,19 +69,8 @@ class MainFragment : Fragment() {
         }
         //endregion
 
-        return _binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        //region layout里的数据与数据模型关联
-        _viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        _binding.data = _viewModel
-        _binding.lifecycleOwner = this
-        //endregion
-
         init()
+        return _binding.root
     }
 
     private fun init() {

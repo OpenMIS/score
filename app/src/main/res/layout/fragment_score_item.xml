@@ -5,12 +5,21 @@
 
     <data>
 
+        <variable
+            name="scoreModel"
+            type="com.game.score.ScoreModel" />
+
+        <variable
+            name="clickListener"
+            type="com.game.score.ui.main.ScoreItemClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_score_constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(scoreModel)}"
+        tools:context=".ui.main.ScoreListFragment">
 
         <TextView
             android:id="@+id/item_scoreModel_order"
@@ -19,6 +28,7 @@
             android:layout_marginStart="3dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textSize="@dimen/textView_item_textSize"
+            android:text="@{String.valueOf(scoreModel.order)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/item_scoreModel_name"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -33,6 +43,7 @@
             android:layout_marginBottom="3dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textSize="@dimen/textView_item_textSize"
+            android:text="@{scoreModel.name}"
             app:layout_constraintBaseline_toBaselineOf="@+id/item_scoreModel_order"
             app:layout_constraintBottom_toTopOf="@+id/guideline13"
             app:layout_constraintEnd_toStartOf="@+id/item_scoreModel_score"
@@ -47,6 +58,7 @@
             android:layout_marginEnd="3dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textSize="@dimen/textView_item_textSize"
+            android:text="@{String.valueOf(scoreModel.score)}"
             app:layout_constraintBaseline_toBaselineOf="@+id/item_scoreModel_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/item_scoreModel_name"

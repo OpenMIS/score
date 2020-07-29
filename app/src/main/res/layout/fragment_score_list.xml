@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
-    android:name="com.game.score.ui.main.ScoreFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    android:background="@android:drawable/editbox_background"
-    app:layoutManager="LinearLayoutManager"
-    tools:context=".ui.main.ScoreFragment"
-    tools:listitem="@layout/fragment_score" />
+    tools:context=".ui.main.ScoreListFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.game.score.ui.main.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:name="com.game.score.ui.main.ScoreFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:drawable/editbox_background"
+            app:layoutManager="LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:listData="@{viewModel.scoreModels}"
+            tools:listitem="@layout/fragment_score_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

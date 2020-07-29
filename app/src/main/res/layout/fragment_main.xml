@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="data"
+            name="viewModel"
             type="com.game.score.ui.main.MainViewModel" />
     </data>
 
@@ -293,7 +293,7 @@
             android:layout_height="0dp"
             android:layout_margin="3dp"
             android:background="@android:drawable/editbox_background_normal"
-            android:text="@{data.gameMatch}"
+            android:text="@{viewModel.gameMatch}"
             android:textSize="@dimen/textView_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
@@ -307,7 +307,7 @@
             android:layout_height="0dp"
             android:layout_margin="3dp"
             android:background="@android:drawable/editbox_background_normal"
-            android:text="@{data.athleteNameAndTeamName}"
+            android:text="@{viewModel.athleteNameAndTeamName}"
             android:textSize="@dimen/textView_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline10"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
@@ -320,7 +320,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:text="@{data.deviceCode}"
+            android:text="@{viewModel.deviceCode}"
             android:textSize="@dimen/textView_textSize"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView_athleteNameAndTeamName"
             app:layout_constraintEnd_toEndOf="parent"
@@ -332,7 +332,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:text="@{data.matchStep}"
+            android:text="@{viewModel.matchStep}"
             android:textSize="@dimen/textView_row3_big_textSize"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView_order"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
@@ -348,7 +348,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="5dp"
-            android:text="@{data.scoreString}"
+            android:text="@{viewModel.scoreString}"
             android:textColor="@color/colorScore"
             android:textSize="@dimen/textView_score_big_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
@@ -371,7 +371,7 @@
 
         <fragment
             android:id="@+id/fragment2"
-            android:name="com.game.score.ui.main.ScoreFragment"
+            android:name="com.game.score.ui.main.ScoreListFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
@@ -384,7 +384,7 @@
             android:id="@+id/textView_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{data.order.toString()}"
+            android:text="@{viewModel.order.toString()}"
             android:textSize="@dimen/textView_row3_big_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintStart_toStartOf="parent"

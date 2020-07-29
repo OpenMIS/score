@@ -11,7 +11,7 @@
         android:label="MainFragment" />
     <fragment
         android:id="@+id/scoreFragment"
-        android:name="com.game.score.ui.main.ScoreFragment"
+        android:name="com.game.score.ui.main.ScoreListFragment"
         android:label="fragment_score_list"
         tools:layout="@layout/fragment_score_list" />
     <fragment

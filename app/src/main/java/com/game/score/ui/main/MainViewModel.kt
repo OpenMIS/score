@@ -3,6 +3,7 @@ package com.game.score.ui.main
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.game.score.ScoreModel
+import com.game.score.ui.main.dummy.ScoreContent
 
 class MainViewModel : ViewModel() {
     /**
@@ -50,9 +51,14 @@ class MainViewModel : ViewModel() {
     val scoreString = MutableLiveData<String>("")
 
     /**
-     * 打分。
+     * 分数列表
      *
-     * 分数字符串。
      */
-    val score = MutableLiveData<List<ScoreModel>>()
+    val scoreModels = MutableLiveData<MutableList<ScoreModel>>(ScoreContent.ITEMS)
+
+    /**
+     * 分数列表
+     *
+     */
+    val currentScoreModel = MutableLiveData<ScoreModel>()
 }

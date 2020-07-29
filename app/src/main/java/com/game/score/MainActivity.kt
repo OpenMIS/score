@@ -3,7 +3,9 @@ package com.game.score
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.game.score.databinding.MainActivityBinding
+import androidx.lifecycle.ViewModelProvider
+import com.game.score.databinding.ActivityMainBinding
+import com.game.score.ui.main.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,14 +13,17 @@ class MainActivity : AppCompatActivity() {
     /**
      * 数据绑定
      */
-    private lateinit var _binding: MainActivityBinding
+    private lateinit var _binding: ActivityMainBinding
     //endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         //使用数据绑定
-        _binding = DataBindingUtil.setContentView(this, R.layout.main_activity)
+        _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        //创建视图模型
+        ViewModelProvider(this)[MainViewModel::class.java]
 
         supportActionBar?.hide() //隐藏头部动作栏
     }
