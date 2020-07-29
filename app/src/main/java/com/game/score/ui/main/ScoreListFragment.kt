@@ -1,7 +1,6 @@
 package com.game.score.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +43,6 @@ class ScoreListFragment : Fragment() {
         //使用MainActivity创建的MainViewModel实例
         _viewModel = ViewModelProvider(activity as FragmentActivity)
             .get<MainViewModel>(MainViewModel::class.java)
-        Log.d("1111", "onCreateView: " + _viewModel.hashCode())
         _binding.viewModel = _viewModel
         //endregion
 

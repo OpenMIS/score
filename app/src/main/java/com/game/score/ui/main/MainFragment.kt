@@ -43,9 +43,9 @@ class MainFragment : Fragment() {
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         _binding.lifecycleOwner = this
 
+        //使用MainActivity创建的MainViewModel实例
         _viewModel = ViewModelProvider(activity as FragmentActivity)
             .get<MainViewModel>(MainViewModel::class.java)
-        Log.d("2222", "onCreateView: " + _viewModel.hashCode())
         _binding.viewModel = _viewModel
         //endregion
 
