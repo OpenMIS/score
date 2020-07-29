@@ -7,23 +7,18 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
  * 数据模型 - 分数
  */
 //@XmlRootElement(name = "CompetitorInfo")
-@JacksonXmlRootElement(localName = "CompetitorInfo2")
+@JacksonXmlRootElement(localName = "CompetitorInfo")
 data class CompetitorInfo(
-    @JacksonXmlProperty(isAttribute = false)
-    val Event: String,
+    val event: String,
 
-    @JacksonXmlProperty(isAttribute = true)
-    val Phase: String,
+    val phase: String,
 
-    @JacksonXmlProperty(isAttribute = true)
-    val CompetitorName: String,
+    val competitorName: String,
 
-    @JacksonXmlProperty(isAttribute = true)
-    val CompetitorID: String,
+    val competitorID: String,
 
-    @JacksonXmlProperty(isAttribute = true)
-    val JudgeName: String//,
+    val judgeName: String,
 
-//    @JacksonXmlElementWrapper(useWrapping = false)
-//    val Score: List<Score>
+    @JacksonXmlProperty(localName = "Score")
+    val scores: List<Score>
 )

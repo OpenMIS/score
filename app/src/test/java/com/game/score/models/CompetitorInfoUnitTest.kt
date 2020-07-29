@@ -1,5 +1,8 @@
 package com.game.score.models
 
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.MapperFeature
+import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.junit.Test
@@ -7,9 +10,15 @@ import java.io.File
 import java.nio.file.Paths
 
 class CompetitorInfoUnitTest {
+    private val mapper = XmlMapper(JacksonXmlModule().apply {
+        setDefaultUseWrapper(false)
+    }).registerKotlinModule()
+        .configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
+        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+        .configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true)
+
     @Test
     fun test() {
-        val mapper = XmlMapper().registerKotlinModule()
         val xmlFile = Paths.get(System.getProperty("user.dir"), """sampledata\CompetitorInfo.xml""")
 
         val node = mapper.readValue(File(xmlFile.toString()), CompetitorInfo::class.java)

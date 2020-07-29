@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><!--<Body MessageType="CompetitorInfo">-->
-<CompetitorInfo CompetitorID="" CompetitorName="" Event="盛装舞步个人赛资格赛" JudgeName="" Phase="">
-    <!--    <Score ScoreID="1" ScoreName="快步" ScoreValue="2" ScoreErrorMessage="4" ScoreStatus="" />-->
-    <!--    <Score ScoreID="2" ScoreName="快步2" ScoreValue="3" ScoreErrorMessage="5" ScoreStatus="" />-->
-</CompetitorInfo><!--</Body>-->
+<?xml version="1.0" encoding="UTF-8"?>
+<Body>
+    <CompetitorInfo CompetitorID="" CompetitorName="" Event="盛装舞步个人赛资格赛" JudgeName="" Phase="">
+        <Score ScoreErrorMessage="" ScoreID="1" ScoreName="快步" ScoreStatus="" ScoreValue="2" />
+        <Score ScoreErrorMessage="" ScoreID="2" ScoreName="快步2" ScoreStatus="" ScoreValue="3" />
+    </CompetitorInfo>
+</Body><!--    MessageType="CompetitorInfo"-->
