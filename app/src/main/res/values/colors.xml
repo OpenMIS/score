@@ -4,8 +4,11 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
+    <!-- 成绩名称 -->
+    <color name="colorScoreName">#0000FF</color>
+
     <!-- 分数 -->
-    <color name="colorScore">#FF0000</color>
+    <color name="colorScoreValue">#FF0000</color>
 
     <!-- 消息文本 - 错误 -->
     <color name="colorMessageError">#FF0000</color>
