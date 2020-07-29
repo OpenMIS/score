@@ -39,4 +39,11 @@ data class Score(
      * 比如： 空字符串、Done、Error
      */
     val ScoreStatus: String
-)
+) {
+    val order: String
+        get() =
+            when (ScoreID) {
+                "F_TotalScore", "F_Status" -> ""
+                else -> ScoreID.substring(2)
+            }
+}
