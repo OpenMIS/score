@@ -399,6 +399,7 @@
             android:layout_marginStart="3dp"
             android:textColor="@color/colorMessageError"
             android:textSize="@dimen/textView_message_textSize"
+            android:text="@{viewModel.currentScore.scoreErrorMessage}"
             app:layout_constraintBottom_toTopOf="@+id/guideline15"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline9"

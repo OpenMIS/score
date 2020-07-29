@@ -31,9 +31,9 @@ object ScoreContent {
             Score(
                 "F_4",
                 "斜横步（左） (2)",
-                "9",
-                "",
-                ""
+                "11",
+                "Score out of Range",
+                "Error"
             )
         )
         ITEMS.add(
@@ -179,8 +179,8 @@ object ScoreContent {
                 "F_23",
                 "伸长快步",
                 "",
-                "",
-                ""
+                "Please Enter Score",
+                "Error"
             )
         )
         ITEMS.add(

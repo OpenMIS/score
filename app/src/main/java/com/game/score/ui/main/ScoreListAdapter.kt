@@ -36,6 +36,10 @@ class ScoreListAdapter(
             _binding.score = score
             _binding.scoreIndex = position
             _binding.clickListener = listener
+            if (!score.ScoreErrorMessage.isBlank())
+                _binding.itemScoreScoreValue.error = score.ScoreErrorMessage
+            else _binding.itemScoreScoreValue.error = null
+
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
             _binding.executePendingBindings()
