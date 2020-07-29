@@ -14,9 +14,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.R
 import com.game.score.databinding.FragmentMainBinding
+
 
 class MainFragment : Fragment() {
     //region 字段
@@ -172,7 +174,16 @@ class MainFragment : Fragment() {
                             _viewModel.currentScoreIndex.value = nextIndex
                             _viewModel.currentScore.value = _viewModel.scores.value?.get(nextIndex)
 
-                            recyclerView.scrollToPosition(nextIndex)
+                            //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
+                            (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
+                                nextIndex,
+                                0
+                            )
+
+                            /*smoothScrollToPosition(position)和scrollToPosition(position)效果基本相似，
+                            也是把你想显示的项显示出来，只要那一项现在看得到了，那它就罢工了，
+                            不同的是smoothScrollToPosition是平滑到你想显示的项，而scrollToPosition是直接定位显示！*/
+                            //recyclerView.smoothScrollToPosition(nextIndex)
                         }
                     }
                     //endregion
