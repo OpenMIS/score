@@ -19,7 +19,10 @@ class CompetitorInfoUnitTest {
 
     @Test
     fun test() {
-        val xmlFile = Paths.get(System.getProperty("user.dir"), """sampledata\CompetitorInfo.xml""")
+        val xmlFile = Paths.get(
+            System.getProperty("user.dir"),
+            """sampledata\xml\modify\CompetitorInfo.xml"""
+        )
 
         val node = mapper.readValue(File(xmlFile.toString()), CompetitorInfo::class.java)
 
