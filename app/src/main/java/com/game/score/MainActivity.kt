@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.game.score.core.GameSettingsUtil
 import com.game.score.databinding.ActivityMainBinding
 import com.game.score.ui.main.MainViewModel
 
@@ -37,7 +38,10 @@ class MainActivity : AppCompatActivity() {
      * @see .getOnBackPressedDispatcher
      */
     override fun onBackPressed() {
-        if (SettingsFragment.isDisplaying)
+        if (SettingsFragment.isDisplaying) {
             super.onBackPressed() //仅“设置”页面可以使用“返回”键，主页面不能使用“返回”退出app。
+            //载入设置
+            GameSettingsUtil.loadSettings(this)
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.game.score
 
 import android.os.Bundle
+import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -27,5 +28,15 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onStop() {
         super.onStop()
         isDisplaying = false
+    }
+
+    override fun onPreferenceTreeClick(preference: Preference?): Boolean {
+
+        val result = super.onPreferenceTreeClick(preference)
+
+        //载入设置
+        //activity?.let { GameSettingsUtil.loadSettings(it) }
+
+        return result
     }
 }
