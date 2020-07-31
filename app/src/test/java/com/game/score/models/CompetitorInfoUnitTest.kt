@@ -24,7 +24,11 @@ class CompetitorInfoUnitTest {
             """sampledata\xml\modify\CompetitorInfo.xml"""
         )
 
-        val node = mapper.readValue(File(xmlFile.toString()), CompetitorInfo::class.java)
+        //val node = mapper.readValue(File(xmlFile.toString()), CompetitorInfo::class.java)
+
+        val class1 = Class.forName("com.game.score.models.xml.CompetitorInfo")
+        //动态类型
+        val node = mapper.readValue(File(xmlFile.toString()), class1) as CompetitorInfo
 
         println(node)
     }
