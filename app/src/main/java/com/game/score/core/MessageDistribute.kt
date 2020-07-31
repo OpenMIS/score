@@ -46,7 +46,6 @@ $messageModel
         _handler.sendMessage(Message().apply { obj = messageModel })
     }
 
-
     companion object {
         /**
          * 实例（单件）
