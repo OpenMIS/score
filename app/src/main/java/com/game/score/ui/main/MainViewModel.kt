@@ -8,11 +8,6 @@ import com.game.score.models.xml.receive.CompetitorInfo
 import com.game.score.models.xml.receive.ScoreResponse
 
 class MainViewModel : GameMessageHandler, ViewModel() {
-//    class ScoreItemClickListener(val clickListener: (score: CompetitorInfo.CompetitorInfoClass.Score, position: Int) -> Unit) {
-//        fun onClick(score: CompetitorInfo.CompetitorInfoClass.Score, position: Int) =
-//            clickListener(score, position)
-//    }
-
     /**
      * 分数列表改变
      */
@@ -65,7 +60,7 @@ class MainViewModel : GameMessageHandler, ViewModel() {
      *
      */
     val currentScore = MutableLiveData<CompetitorInfo.CompetitorInfoClass.Score>()
-
+    val changeTimes = MutableLiveData(0)
     //region 处理消息
     /**
      * 处理消息
@@ -106,8 +101,10 @@ class MainViewModel : GameMessageHandler, ViewModel() {
                     }
                 }
 
-                if (change && scoreListChangeListener != null)
+                if (change && scoreListChangeListener != null) {
+                    //changeTimes.value = changeTimes.value!! + 1
                     scoreListChangeListener!!.invoke(this)
+                }
             }
             //endregion
         }
