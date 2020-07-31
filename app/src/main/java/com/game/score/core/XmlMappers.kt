@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.type.TypeFactory
 import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 
@@ -25,6 +26,8 @@ class XmlMappers {
          * 用于发送消息处理的XmlMapper
          */
         val send =
-            XmlMapper().setAnnotationIntrospector(JaxbAnnotationIntrospector(TypeFactory.defaultInstance())) //希望的结果
+            XmlMapper()
+                .configure(ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true)
+                .setAnnotationIntrospector(JaxbAnnotationIntrospector(TypeFactory.defaultInstance())) //希望的结果
     }
 }
