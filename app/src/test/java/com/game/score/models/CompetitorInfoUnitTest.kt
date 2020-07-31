@@ -1,14 +1,15 @@
 package com.game.score.models
 
+import com.fasterxml.jackson.databind.type.TypeFactory
+import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
-import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule
+import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector
 import com.game.score.core.GameMessageUtil
 import com.game.score.core.XmlMappers
 import com.game.score.models.xml.receive.CompetitorInfo
 import org.junit.Test
 import java.io.File
 import java.nio.file.Paths
-
 
 class CompetitorInfoUnitTest {
     @Test
@@ -32,12 +33,16 @@ class CompetitorInfoUnitTest {
 //            val xml: String = receive.writeValueAsString(node)
 //            println(xml)
 
-            val mapper = XmlMapper()
-                //与下句registerModule(JaxbAnnotationModule())等效
-                //.setAnnotationIntrospector(JaxbAnnotationIntrospector.nopInstance())
-                .registerModule(JaxbAnnotationModule())
 
-            val xml: String = mapper.writeValueAsString(node)
+            val mapper = XmlMapper(JacksonXmlModule().apply { setDefaultUseWrapper(true) })
+                //与下句registerModule(JaxbAnnotationModule())等效
+                //此句无法到达使用Jaxb注解的效果
+
+                //.setAnnotationIntrospector(JaxbAnnotationIntrospector()) //希望的结果
+                .setAnnotationIntrospector(JaxbAnnotationIntrospector(TypeFactory.defaultInstance())) //希望的结果
+//                .registerModule(JaxbAnnotationModule())
+
+            val xml: String = send.writeValueAsString(node)
             println(xml)
         }
     }
