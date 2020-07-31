@@ -1,5 +1,10 @@
 package com.game.score.models.xml.send.scoreList
 
+import javax.xml.bind.annotation.XmlAccessType
+import javax.xml.bind.annotation.XmlAccessorType
+import javax.xml.bind.annotation.XmlAttribute
+
+@XmlAccessorType(XmlAccessType.FIELD)
 data class Score(
     /**
      * 分数标识。
@@ -10,6 +15,7 @@ data class Score(
      *
      * F_Status表示validate（已经确认成绩）
      */
+    @XmlAttribute
     val ScoreID: String,
 
     /**

@@ -25,7 +25,7 @@ class GameMessageUtil {
          * 转换到原始消息
          */
         @JvmStatic
-        fun convertTo(gameMessage: GameMessage): String {
+        fun toOriginalXml(gameMessage: GameMessage): String {
             val messageTypeString = """MessageType="${gameMessage.messageType}""""
 
             return gameMessage.messageContent.replace(
@@ -33,5 +33,27 @@ class GameMessageUtil {
                 "$1$messageTypeString$2"
             )
         }
+
+        /**
+         * 转换到原始消息
+         */
+        @JvmStatic
+        fun toOriginalXml(messageModel: Object): String {
+            with(XmlMappers) {
+                val messageType = messageModel.`class`.name
+
+                val xmlFragment: String = send.writeValueAsString(messageModel)
+
+                return """<?xml version="1.0" encoding="UTF-8"?>
+<Body MessageType ="$messageType">
+$xmlFragment
+</Body>
+ """.trimIndent()
+            }
+        }
     }
 }
+
+
+fun GameMessage.toOriginalXml(): String =
+    GameMessageUtil.toOriginalXml(this)

@@ -19,7 +19,7 @@ class GameMessageUtilUnitTest {
 
         println(testResult)
 
-        val original = GameMessageUtil.convertTo(testResult)
+        val original = GameMessageUtil.toOriginalXml(testResult)
 
         Assert.assertEquals(content, original)
     }

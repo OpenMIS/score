@@ -1,9 +1,5 @@
 package com.game.score.models
 
-import com.fasterxml.jackson.databind.type.TypeFactory
-import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
-import com.fasterxml.jackson.dataformat.xml.XmlMapper
-import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector
 import com.game.score.core.GameMessageUtil
 import com.game.score.core.XmlMappers
 import com.game.score.models.xml.receive.CompetitorInfo
@@ -30,17 +26,8 @@ class CompetitorInfoUnitTest {
             val node = receive.readValue(gameMessage.messageContent, class1) as CompetitorInfo
 
             println(node)
-//            val xml: String = receive.writeValueAsString(node)
-//            println(xml)
 
-
-            val mapper = XmlMapper(JacksonXmlModule().apply { setDefaultUseWrapper(true) })
-                //与下句registerModule(JaxbAnnotationModule())等效
-                //此句无法到达使用Jaxb注解的效果
-
-                //.setAnnotationIntrospector(JaxbAnnotationIntrospector()) //希望的结果
-                .setAnnotationIntrospector(JaxbAnnotationIntrospector(TypeFactory.defaultInstance())) //希望的结果
-//                .registerModule(JaxbAnnotationModule())
+            println("从对象生成的XML：")
 
             val xml: String = send.writeValueAsString(node)
             println(xml)
