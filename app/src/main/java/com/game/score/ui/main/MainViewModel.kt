@@ -1,11 +1,13 @@
 package com.game.score.ui.main
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.game.score.core.GameMessageHandler
 import com.game.score.models.xml.receive.competitorInfo.Score
 import com.game.score.ui.main.dummy.ScoreContent
 
-class MainViewModel : ViewModel() {
+class MainViewModel : GameMessageHandler, ViewModel() {
     /**
      * 场次信息。
      *
@@ -53,4 +55,11 @@ class MainViewModel : ViewModel() {
      *
      */
     val currentScore = MutableLiveData<Score>()
+
+    /**
+     * 处理消息
+     */
+    override fun Handle(messageModel: Any) {
+        Log.d("TAG", "Handle: " + messageModel.javaClass.simpleName)
+    }
 }

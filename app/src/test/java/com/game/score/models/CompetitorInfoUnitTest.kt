@@ -29,7 +29,7 @@ class CompetitorInfoUnitTest {
 
             println("从对象生成的XML：")
 
-            val xml: String = send.writeValueAsString(node)
+            val xml: String = GameMessageUtil.toOriginalXml(node)
             println(xml)
         }
     }

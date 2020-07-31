@@ -38,9 +38,9 @@ class GameMessageUtil {
          * 转换到原始消息
          */
         @JvmStatic
-        fun toOriginalXml(messageModel: Object): String {
+        fun toOriginalXml(messageModel: Any): String {
             with(XmlMappers) {
-                val messageType = messageModel.`class`.name
+                val messageType = messageModel.javaClass.simpleName
 
                 val xmlFragment: String = send.writeValueAsString(messageModel)
 
@@ -51,9 +51,19 @@ $xmlFragment
  """.trimIndent()
             }
         }
+
+        @JvmStatic
+        fun toOriginalXml(messageType: String): String {
+            with(XmlMappers) {
+
+                return """<?xml version="1.0" encoding="UTF-8"?>
+<Body MessageType ="$messageType">
+</Body>
+ """.trimIndent()
+            }
+        }
     }
 }
-
 
 fun GameMessage.toOriginalXml(): String =
     GameMessageUtil.toOriginalXml(this)
