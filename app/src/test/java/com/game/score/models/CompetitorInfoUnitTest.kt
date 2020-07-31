@@ -21,14 +21,16 @@ class CompetitorInfoUnitTest {
     fun test() {
         val xmlFile = Paths.get(
             System.getProperty("user.dir"),
-            """sampledata\xml\modify\receive\CompetitorInfo.xml"""
+            """sampledata\xml\original\receive\CompetitorInfo.xml"""
         )
 
+        val gameMessage =
+            GameMessageUtil.convertFrom(File(xmlFile.toString()).readText(Charsets.UTF_8))
         //val node = mapper.readValue(File(xmlFile.toString()), CompetitorInfo::class.java)
 
-        val class1 = Class.forName("com.game.score.models.xml.CompetitorInfo")
+        val class1 = Class.forName("com.game.score.models.xml." + gameMessage.messageType)
         //动态类型
-        val node = mapper.readValue(File(xmlFile.toString()), class1) as CompetitorInfo
+        val node = mapper.readValue(gameMessage.messageContent, class1) as CompetitorInfo
 
         println(node)
     }
