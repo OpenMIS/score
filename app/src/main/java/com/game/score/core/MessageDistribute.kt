@@ -42,6 +42,7 @@ $messageModel
      * 处理消息
      */
     override fun Handle(messageModel: GameMessageModel) {
+        //从非界面线程发送消息到界面线程
         _handler.sendMessage(Message().apply { obj = messageModel })
     }
 
