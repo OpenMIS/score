@@ -47,6 +47,13 @@ class MainFragment : Fragment() {
         _binding.viewModel = _viewModel
         //endregion
 
+        val recyclerView = _binding.root.findViewById<RecyclerView>(R.id.score_list)
+        val scoreListAdapter = recyclerView.adapter as ScoreListAdapter
+
+        _viewModel.scoreListChangeListener = {
+            scoreListAdapter.notifyDataSetChanged()
+        }
+
         //region 挂接按钮事件
         for (button in listOf(
             _binding.button0, _binding.button1, _binding.button2, _binding.button3,
@@ -66,30 +73,16 @@ class MainFragment : Fragment() {
         }
         //endregion
 
-        init()
         return _binding.root
-    }
-
-    private fun init() {
-        with(_viewModel) {
-            //临时测试数据
-            gameMatch.value = "盛装舞步个人赛资格赛"
-            athleteNameAndTeamName.value = "贾海涛(浙江队)"
-
-            currentScoreIndex.value = 0
-            currentScore.value =
-                competitorInfo.value?.CompetitorInfo?.Scores?.get(currentScoreIndex.value!!)
-
-            if (competitorInfo.value?.CompetitorInfo != null) {
-                judgeName.value = competitorInfo.value?.CompetitorInfo?.JudgeName
-            } else judgeName.value = " "
-        }
     }
 
     /**
      * 按钮事件
      */
     private val _buttonListener = View.OnClickListener {
+        if (_viewModel.currentScore.value == null) //如果没有当前的分数模型，直接退出。
+            return@OnClickListener
+
         val recyclerView = it.rootView.findViewById<RecyclerView>(R.id.score_list)
         val scoreListAdapter = recyclerView.adapter as ScoreListAdapter
 

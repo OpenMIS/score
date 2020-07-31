@@ -1,27 +1,36 @@
 package com.game.score.ui.main
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.game.score.core.GameMessageHandler
 import com.game.score.core.GameMessageModel
 import com.game.score.models.xml.receive.CompetitorInfo
-import com.game.score.ui.main.dummy.ScoreContent
+import com.game.score.models.xml.receive.ScoreResponse
 
 class MainViewModel : GameMessageHandler, ViewModel() {
+//    class ScoreItemClickListener(val clickListener: (score: CompetitorInfo.CompetitorInfoClass.Score, position: Int) -> Unit) {
+//        fun onClick(score: CompetitorInfo.CompetitorInfoClass.Score, position: Int) =
+//            clickListener(score, position)
+//    }
+
     /**
-     * 场次信息。
+     * 分数列表改变
+     */
+    var scoreListChangeListener: ((MainViewModel) -> Unit)? = null
+
+    /**
+     * 场次与轮次。
      *
      * 比如：盛装舞步个人赛资格赛
      */
-    val gameMatch = MutableLiveData<String>("")
+    val eventAndPhase = MutableLiveData<String>("")
 
     /**
      * 运动员与队名。
      *
      * 比如：贾海涛(浙江队)
      */
-    val athleteNameAndTeamName = MutableLiveData<String>("")
+    val competitorName = MutableLiveData<String>("")
 
     /**
      * 裁判位置代码。
@@ -43,7 +52,7 @@ class MainViewModel : GameMessageHandler, ViewModel() {
      * CompetitorInfo 数据模型
      *
      */
-    val competitorInfo = MutableLiveData<CompetitorInfo>(ScoreContent.competitorInfo)
+    val competitorInfo = MutableLiveData<CompetitorInfo>()
 
     /**
      * 当前分数 在 分数列表里的索引
@@ -62,10 +71,45 @@ class MainViewModel : GameMessageHandler, ViewModel() {
      * 处理消息
      */
     override fun Handle(messageModel: GameMessageModel) {
-        Log.d("TAG", "Handle: " + messageModel.javaClass.simpleName)
-
         if (messageModel is CompetitorInfo) {
-            //messageModel.
+            //region CompetitorInfo消息处理
+            competitorInfo.value = messageModel
+            eventAndPhase.value =
+                messageModel.CompetitorInfo.Event + messageModel.CompetitorInfo.Phase
+            judgeName.value = messageModel.CompetitorInfo.JudgeName
+            competitorName.value = messageModel.CompetitorInfo.CompetitorName
+
+            if (messageModel.CompetitorInfo.Scores.count() > 0) {
+                currentScore.value = messageModel.CompetitorInfo.Scores[0]
+                currentScoreIndex.value = 0
+            } else {
+                currentScore.value = CompetitorInfo.CompetitorInfoClass.Score.emptyValueInstance
+                currentScoreIndex.value = -1
+            }
+            //endregion
+        } else if (messageModel is ScoreResponse) {
+            //region ScoreResponse消息处理
+            if (competitorInfo.value != null &&
+                competitorInfo.value!!.CompetitorInfo.CompetitorID ==
+                messageModel.ScoreResponse.CompetitorID
+            ) {//同一个运动员 或者 同一组（多人项目）
+                var change = false
+                messageModel.ScoreResponse.Scores.forEach { score ->
+                    competitorInfo.value!!.CompetitorInfo.Scores.find {
+                        it.ScoreID == score.ScoreID
+                    }?.let {
+                        it.ScoreStatus = score.ScoreStatus
+                        it.ScoreErrorMessage = score.ScoreErrorMessage
+                        it.ScoreValue = score.ScoreValue
+
+                        change = true
+                    }
+                }
+
+                if (change && scoreListChangeListener != null)
+                    scoreListChangeListener!!.invoke(this)
+            }
+            //endregion
         }
     }
     //endregion

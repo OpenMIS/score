@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Body MessageType="CompetitorInfo">
-    <CompetitorInfo CompetitorID="" CompetitorName="" Event="盛装舞步个人赛资格赛" JudgeName="" Phase="">
-        <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="快步" ScoreStatus="" ScoreValue="2" />
-        <Score ScoreErrorMessage="" ScoreID="F_2" ScoreName="快步2" ScoreStatus="" ScoreValue="3" />
+    <CompetitorInfo CompetitorID="1" CompetitorName="贾海涛(浙江队)" Event="盛装舞步个人赛" JudgeName="E"
+        Phase="资格赛">
+        <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="快步" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_2" ScoreName="快步2" ScoreStatus="" ScoreValue="" />
     </CompetitorInfo>
 </Body>

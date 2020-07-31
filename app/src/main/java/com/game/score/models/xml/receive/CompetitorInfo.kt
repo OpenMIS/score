@@ -93,6 +93,10 @@ data class CompetitorInfo(
         ) {
             @XmlTransient
             fun getOrder(): String = ScoreUtil.getOrder(ScoreID)
+
+            companion object {
+                val emptyValueInstance = Score("", "", "", "", "")
+            }
         }
     }
 }

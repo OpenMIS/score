@@ -21,8 +21,7 @@ object ScoreContent {
     private val _scores: MutableList<CompetitorInfo.CompetitorInfoClass.Score> = ArrayList()
 
     init {
-
-
+        //region 分数列表
         _scores.add(
             CompetitorInfo.CompetitorInfoClass.Score(
                 "F_1",
@@ -242,19 +241,19 @@ object ScoreContent {
                 ""
             )
         )
+        //endregion
 
         competitorInfo = CompetitorInfo(
             "CompetitorInfo",
             CompetitorInfo.CompetitorInfoClass(
-                Event = "",
-                Phase = "",
-
-                CompetitorName = "",
+                Event = "盛装舞步个人赛",
+                Phase = "资格赛",
+                CompetitorName = "贾海涛(浙江队)",
 
                 /**
                  * 【注意】此处含字符，所以使用字符串。
                  */
-                CompetitorID = "",
+                CompetitorID = "1",
 
                 /**
                  * 裁判名称。
