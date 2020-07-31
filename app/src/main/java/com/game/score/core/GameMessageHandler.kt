@@ -8,5 +8,5 @@ interface GameMessageHandler {
     /**
      * 处理消息
      */
-    fun Handle(messageModel: Any)
+    fun Handle(messageModel: GameMessageModel)
 }

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.game.score.core.GameMessageHandler
+import com.game.score.core.GameMessageModel
 import com.game.score.models.xml.receive.CompetitorInfo
 import com.game.score.models.xml.receive.competitorInfo.Score
 import com.game.score.ui.main.dummy.ScoreContent
@@ -61,7 +62,7 @@ class MainViewModel : GameMessageHandler, ViewModel() {
     /**
      * 处理消息
      */
-    override fun Handle(messageModel: Any) {
+    override fun Handle(messageModel: GameMessageModel) {
         Log.d("TAG", "Handle: " + messageModel.javaClass.simpleName)
 
         if (messageModel is CompetitorInfo) {

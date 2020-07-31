@@ -8,25 +8,10 @@ import javax.xml.bind.annotation.XmlRootElement
 
 @XmlRootElement(name = "Body")
 @XmlAccessorType(XmlAccessType.FIELD)
-data class HeartBeat(
+data class CompetitorInfoResponse(
     /**
      * 消息类型
      */
     @XmlAttribute
-    override val MessageType: String,
-
-    val HeartBeat: HeartBeatClass
-) : GameMessageModel {
-    @XmlAccessorType(XmlAccessType.FIELD)
-    data class HeartBeatClass(
-
-        @XmlAttribute
-        val Battery: Int,
-
-        @XmlAttribute
-        val RcvPort: Int,
-
-        @XmlAttribute
-        val Version: String
-    )
-}
+    override val MessageType: String
+) : GameMessageModel

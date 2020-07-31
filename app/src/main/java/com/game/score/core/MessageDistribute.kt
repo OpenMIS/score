@@ -11,7 +11,7 @@ class MessageDistribute : GameMessageHandler {
     /**
      * 处理消息
      */
-    override fun Handle(messageModel: Any) {
+    override fun Handle(messageModel: GameMessageModel) {
         //region 分发消息
         _gameMessageHandlers.forEach {
             try {

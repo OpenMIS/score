@@ -14,13 +14,11 @@ class GameMessageUtilUnitTest {
                 System.getProperty("user.dir"),
                 """sampledata\xml\receive\CompetitorInfo.xml"""
             )
-        val content = File(xmlFile.toString()).readText()
-        val testResult = GameMessageUtil.convertFrom(content)
+        val content = File(xmlFile.toString()).readText(Charsets.UTF_8)
+        val testResult = GameMessageUtil.getMessageType(content)
 
         println(testResult)
 
-        val original = GameMessageUtil.toOriginalXml(testResult)
-
-        Assert.assertEquals(content, original)
+        Assert.assertEquals("CompetitorInfo", testResult)
     }
 }
