@@ -1,6 +1,5 @@
 package com.game.score
 
-import androidx.lifecycle.MutableLiveData
 import com.game.score.core.GameMessageUtil
 import org.junit.Assert
 import org.junit.Test
@@ -21,14 +20,6 @@ class GameMessageUtilUnitTest {
         println(testResult)
 
         Assert.assertEquals("CompetitorInfo", testResult)
-
-        var tt = Test2(MessageType = "aa")
-        val a = MutableLiveData(tt)
-        var b = MutableLiveData(tt)
-        a.value!!.MessageType = "bb"
-
-        println(b.value!!.MessageType)
-
     }
 }
 

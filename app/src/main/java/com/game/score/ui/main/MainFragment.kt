@@ -140,7 +140,8 @@ class MainFragment : Fragment() {
                     //region 载入并定位到下一条记录
                     if (_viewModel.competitorInfo.value?.CompetitorInfo?.Scores != null &&
                         _viewModel.currentScoreIndex.value != null &&
-                        _viewModel.currentScoreIndex.value!! < _viewModel.competitorInfo.value?.CompetitorInfo?.Scores!!.count() - 1
+                        _viewModel.currentScoreIndex.value!! <
+                        _viewModel.competitorInfo.value?.CompetitorInfo?.Scores!!.count() - 1
                     ) {
                         val nextIndex = _viewModel.currentScoreIndex.value!! + 1
                         val nextScore =
@@ -189,11 +190,6 @@ class MainFragment : Fragment() {
 
         //region 触发界面更新
         _viewModel.currentScore.postValue(_viewModel.currentScore.value)
-
-//        _viewModel.competitorInfo.value?.CompetitorInfo?.Scores?.set(
-//            _viewModel.currentScoreIndex.value!!,
-//            _viewModel.currentScore.value!!
-//        )
 
         //【注意】此处需要通知刷新全部，这样选择行的样式才有效果。
         //scoreListAdapter.notifyItemChanged(_viewModel.currentScoreIndex.value!!)
