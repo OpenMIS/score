@@ -17,7 +17,7 @@ class XmlMappers {
         }).registerKotlinModule()
             .configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true) //映射时不区分大小写
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false) //忽略未知的XML元素或属性
-            .configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true) //忽略根
+            .configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true)!! //忽略根
 
         /**
          * 用于发送消息处理的XmlMapper

@@ -1,5 +1,8 @@
 package com.game.score.models.xml.receive.competitorInfo
 
+import javax.xml.bind.annotation.XmlAttribute
+import javax.xml.bind.annotation.XmlTransient
+
 data class Score(
     /**
      * 分数标识。
@@ -10,6 +13,7 @@ data class Score(
      *
      * F_Status表示validate（已经确认成绩）
      */
+    @XmlAttribute
     val ScoreID: String,
 
     /**
@@ -17,6 +21,7 @@ data class Score(
      *
      * 比如：立定敬礼
      */
+    @XmlAttribute
     val ScoreName: String,
 
     /**
@@ -24,6 +29,7 @@ data class Score(
      *
      * 空字符串表示还未打分。
      */
+    @XmlAttribute
     var ScoreValue: String,
 
     /**
@@ -38,20 +44,19 @@ data class Score(
      *
      * 比如： 空字符串、Done、Error
      */
+
     val ScoreStatus: String
 ) {
-
-
-    val order: String
-        get() =
-            when (ScoreID) {
-                "F_TotalScore", "F_Status" -> ""
-                else -> ScoreID.substring(2)
-            }
-//    fun getOrder(): String {
-//        return when (ScoreID) {
-//            "F_TotalScore", "F_Status" -> ""
-//            else -> ScoreID.substring(2)
-//        }
-//    }
+    //    @XmlTransient
+//    val order: String
+//        get() =
+//            when (ScoreID) {
+//                "F_TotalScore", "F_Status" -> ""
+//                else -> ScoreID.substring(2)
+//            }
+    @XmlTransient
+    fun getOrder(): String = when (ScoreID) {
+        "F_TotalScore", "F_Status" -> ""
+        else -> ScoreID.substring(2)
+    }
 }

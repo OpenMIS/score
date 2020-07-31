@@ -143,7 +143,7 @@ class MainFragment : Fragment() {
                     ) {
                         val nextIndex = _viewModel.currentScoreIndex.value!! + 1
                         val nextScore = _viewModel.scores.value?.get(nextIndex)
-                        if (nextScore != null && nextScore.order.isNotEmpty()) {
+                        if (nextScore != null && nextScore.getOrder().isNotEmpty()) {
                             _viewModel.currentScoreIndex.value = nextIndex
                             _viewModel.currentScore.value = _viewModel.scores.value?.get(nextIndex)
 

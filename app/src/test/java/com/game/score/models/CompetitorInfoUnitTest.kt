@@ -1,10 +1,7 @@
 package com.game.score.models
 
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.MapperFeature
-import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule
 import com.game.score.core.GameMessageUtil
 import com.game.score.core.XmlMappers
 import com.game.score.models.xml.receive.CompetitorInfo
@@ -12,14 +9,8 @@ import org.junit.Test
 import java.io.File
 import java.nio.file.Paths
 
-class CompetitorInfoUnitTest {
-    private val xmlMapper = XmlMapper(JacksonXmlModule().apply {
-        setDefaultUseWrapper(false)
-    }).registerKotlinModule()
-        .configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true) //映射时不区分大小写
-        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false) //忽略未知的XML元素或属性
-        .configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true) //忽略根
 
+class CompetitorInfoUnitTest {
     @Test
     fun test() {
         val xmlFile = Paths.get(
@@ -38,7 +29,15 @@ class CompetitorInfoUnitTest {
             val node = receive.readValue(gameMessage.messageContent, class1) as CompetitorInfo
 
             println(node)
-            val xml: String = receive.writeValueAsString(node)
+//            val xml: String = receive.writeValueAsString(node)
+//            println(xml)
+
+            val mapper = XmlMapper()
+                //与下句registerModule(JaxbAnnotationModule())等效
+                //.setAnnotationIntrospector(JaxbAnnotationIntrospector.nopInstance())
+                .registerModule(JaxbAnnotationModule())
+
+            val xml: String = mapper.writeValueAsString(node)
             println(xml)
         }
     }
