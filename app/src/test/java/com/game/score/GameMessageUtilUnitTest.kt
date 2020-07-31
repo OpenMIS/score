@@ -8,7 +8,7 @@ import java.nio.file.Paths
 
 class GameMessageUtilUnitTest {
     @Test
-    fun convertFromTest() {
+    fun convertFrom_convertToTest() {
         val xmlFile =
             Paths.get(
                 System.getProperty("user.dir"),

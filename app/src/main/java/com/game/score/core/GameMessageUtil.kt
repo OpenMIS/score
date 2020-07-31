@@ -27,13 +27,11 @@ class GameMessageUtil {
         @JvmStatic
         fun convertTo(gameMessage: GameMessage): String {
             val messageTypeString = """MessageType="${gameMessage.messageType}""""
-            val regex = """(encoding="UTF-8"\s*)(\?>)"""".toRegex()
-            val newContent =
-                regex.replace(gameMessage.messageContent, "$1" + messageTypeString + "$2")
-            return """<?xml version="1.0" encoding="UTF-8"?>
-<Body MessageType="${gameMessage.messageType}">
-$newContent
-</Body>"""
+
+            return gameMessage.messageContent.replace(
+                """(<Body\s+)(>)""".toRegex(),
+                "$1$messageTypeString$2"
+            )
         }
     }
 }
