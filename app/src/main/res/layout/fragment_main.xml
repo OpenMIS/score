@@ -316,11 +316,11 @@
             tools:text="贾海涛(浙江队)" />
 
         <TextView
-            android:id="@+id/textView_deviceCode"
+            android:id="@+id/textView_judgeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:text="@{viewModel.deviceCode}"
+            android:text="@{viewModel.judgeName}"
             android:textSize="@dimen/textView_textSize"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView_athleteNameAndTeamName"
             app:layout_constraintEnd_toEndOf="parent"

@@ -58,7 +58,7 @@ class MainFragment : Fragment() {
         //endregion
 
         //region 长按“设备代码”打开“设置”页面
-        _binding.textViewDeviceCode.setOnLongClickListener {
+        _binding.textViewJudgeName.setOnLongClickListener {
             val controller = Navigation.findNavController(it)
             controller.navigate(R.id.settingsFragment)
 
@@ -75,10 +75,14 @@ class MainFragment : Fragment() {
             //临时测试数据
             gameMatch.value = "盛装舞步个人赛资格赛"
             athleteNameAndTeamName.value = "贾海涛(浙江队)"
-            deviceCode.value = "E"
+
             currentScoreIndex.value = 0
             currentScore.value =
                 competitorInfo.value?.CompetitorInfo?.Scores?.get(currentScoreIndex.value!!)
+
+            if (competitorInfo.value?.CompetitorInfo != null) {
+                judgeName.value = competitorInfo.value?.CompetitorInfo?.JudgeName
+            } else judgeName.value = " "
         }
     }
 

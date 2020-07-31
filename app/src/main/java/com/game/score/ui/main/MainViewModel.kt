@@ -24,13 +24,13 @@ class MainViewModel : GameMessageHandler, ViewModel() {
     val athleteNameAndTeamName = MutableLiveData<String>("")
 
     /**
-     * 设备代码。
+     * 裁判位置代码。
      *
      * E、M、C 等单个字符。
      *
      * 【注意】此处默认必须为空格，否则在初始化时，无法长按进入“设置”页面。
      */
-    val deviceCode = MutableLiveData<String>(" ")
+    val judgeName = MutableLiveData<String>(" ")
 
     /**
      * 场次里的步骤。
