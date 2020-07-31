@@ -1,6 +1,7 @@
-package com.game.score.models.xml.receive.competitorInfo
+package com.game.score.models.xml.receive
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import com.game.score.models.xml.receive.competitorInfo.Score
 
 data class CompetitorInfo(
 

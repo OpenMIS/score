@@ -6,13 +6,13 @@ import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.game.score.core.GameMessageUtil
-import com.game.score.models.xml.receive.competitorInfo.CompetitorInfo
+import com.game.score.models.xml.receive.CompetitorInfo
 import org.junit.Test
 import java.io.File
 import java.nio.file.Paths
 
 class CompetitorInfoUnitTest {
-    private val mapper = XmlMapper(JacksonXmlModule().apply {
+    private val xmlMapper = XmlMapper(JacksonXmlModule().apply {
         setDefaultUseWrapper(false)
     }).registerKotlinModule()
         .configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true) //映射时不区分大小写
@@ -30,10 +30,12 @@ class CompetitorInfoUnitTest {
             GameMessageUtil.convertFrom(File(xmlFile.toString()).readText(Charsets.UTF_8))
         //val node = mapper.readValue(File(xmlFile.toString()), CompetitorInfo::class.java)
 
-        val class1 = Class.forName("com.game.score.models.xml." + gameMessage.messageType)
+        val class1 = Class.forName("com.game.score.models.xml.receive." + gameMessage.messageType)
         //动态类型
-        val node = mapper.readValue(gameMessage.messageContent, class1) as CompetitorInfo
+        val node = xmlMapper.readValue(gameMessage.messageContent, class1) as CompetitorInfo
 
-        println(node)
+        //println(node)
+        val xml: String = xmlMapper.writeValueAsString(node)
+        println(xml)
     }
 }
