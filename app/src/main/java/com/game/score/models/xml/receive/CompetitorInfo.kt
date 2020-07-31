@@ -81,7 +81,7 @@ data class CompetitorInfo(
              * 比如： 空字符串、Please Enter Score、Score out of Range
              */
             @XmlAttribute
-            val ScoreErrorMessage: String,
+            var ScoreErrorMessage: String,
 
             /**
              * 分数状态。
@@ -89,7 +89,7 @@ data class CompetitorInfo(
              * 比如： 空字符串、Done、Error
              */
             @XmlAttribute
-            val ScoreStatus: String
+            var ScoreStatus: String
         ) {
             @XmlTransient
             fun getOrder(): String = ScoreUtil.getOrder(ScoreID)

@@ -190,10 +190,10 @@ class MainFragment : Fragment() {
         //region 触发界面更新
         _viewModel.currentScore.postValue(_viewModel.currentScore.value)
 
-        _viewModel.competitorInfo.value?.CompetitorInfo?.Scores?.set(
-            _viewModel.currentScoreIndex.value!!,
-            _viewModel.currentScore.value!!
-        )
+//        _viewModel.competitorInfo.value?.CompetitorInfo?.Scores?.set(
+//            _viewModel.currentScoreIndex.value!!,
+//            _viewModel.currentScore.value!!
+//        )
 
         //【注意】此处需要通知刷新全部，这样选择行的样式才有效果。
         //scoreListAdapter.notifyItemChanged(_viewModel.currentScoreIndex.value!!)
