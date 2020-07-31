@@ -21,7 +21,7 @@ class CompetitorInfoUnitTest {
     fun test() {
         val xmlFile = Paths.get(
             System.getProperty("user.dir"),
-            """sampledata\xml\original\receive\CompetitorInfo.xml"""
+            """sampledata\xml\receive\CompetitorInfo.xml"""
         )
 
         val gameMessage =

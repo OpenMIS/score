@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Body MessageType="ScoreResponse">
-    <CompetitorInfo CompetitorID="">
-        <Score ScoreErrorMessage="" ScoreID="1" ScoreStatus="" ScoreValue="2" />
-        <Score ScoreErrorMessage="" ScoreID="2" ScoreStatus="" ScoreValue="3" />
-    </CompetitorInfo>
-</Body>
