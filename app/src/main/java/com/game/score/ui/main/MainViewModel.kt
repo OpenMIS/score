@@ -2,7 +2,7 @@ package com.game.score.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.game.score.models.Score
+import com.game.score.models.xml.receive.competitorInfo.Score
 import com.game.score.ui.main.dummy.ScoreContent
 
 class MainViewModel : ViewModel() {

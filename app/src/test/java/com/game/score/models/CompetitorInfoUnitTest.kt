@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import com.game.score.core.GameMessageUtil
+import com.game.score.models.xml.receive.competitorInfo.CompetitorInfo
 import org.junit.Test
 import java.io.File
 import java.nio.file.Paths

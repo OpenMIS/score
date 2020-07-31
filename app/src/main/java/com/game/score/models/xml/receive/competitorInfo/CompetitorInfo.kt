@@ -1,4 +1,4 @@
-package com.game.score.models
+package com.game.score.models.xml.receive.competitorInfo
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 
@@ -10,6 +10,9 @@ data class CompetitorInfo(
 
     val CompetitorName: String,
 
+    /**
+     * 【注意】此处含字符，所以使用字符串。
+     */
     val CompetitorID: String,
 
     /**

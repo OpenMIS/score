@@ -1,6 +1,6 @@
 package com.game.score.ui.main.dummy
 
-import com.game.score.models.Score
+import com.game.score.models.xml.receive.competitorInfo.Score
 import java.util.*
 
 /**
@@ -16,8 +16,24 @@ object ScoreContent {
     val ITEMS: MutableList<Score> = ArrayList()
 
     init {
-        ITEMS.add(Score("F_1", "立定敬礼", "6", "", ""))
-        ITEMS.add(Score("F_2", " 快步 ", "6.1", "", ""))
+        ITEMS.add(
+            Score(
+                "F_1",
+                "立定敬礼",
+                "6",
+                "",
+                ""
+            )
+        )
+        ITEMS.add(
+            Score(
+                "F_2",
+                " 快步 ",
+                "6.1",
+                "",
+                ""
+            )
+        )
         ITEMS.add(
             Score(
                 "F_3",

@@ -7,7 +7,7 @@
 
         <variable
             name="score"
-            type="com.game.score.models.Score" />
+            type="com.game.score.models.xml.receive.competitorInfo.Score" />
 
         <variable
             name="scoreIndex"

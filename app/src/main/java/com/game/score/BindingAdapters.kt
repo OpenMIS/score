@@ -2,7 +2,7 @@ package com.game.score
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.game.score.models.Score
+import com.game.score.models.xml.receive.competitorInfo.Score
 import com.game.score.ui.main.ScoreListAdapter
 
 /**

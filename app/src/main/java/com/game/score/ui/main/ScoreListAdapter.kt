@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.databinding.FragmentScoreItemBinding
-import com.game.score.models.Score
+import com.game.score.models.xml.receive.competitorInfo.Score
 
 /**
  * [RecyclerView.Adapter] that can display a [Score].

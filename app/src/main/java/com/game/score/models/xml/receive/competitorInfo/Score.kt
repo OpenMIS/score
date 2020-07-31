@@ -1,4 +1,4 @@
-package com.game.score.models
+package com.game.score.models.xml.receive.competitorInfo
 
 data class Score(
     /**

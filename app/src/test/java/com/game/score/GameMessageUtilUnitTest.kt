@@ -1,6 +1,7 @@
 package com.game.score
 
 import com.game.score.core.GameMessageUtil
+import org.junit.Assert
 import org.junit.Test
 import java.io.File
 import java.nio.file.Paths
@@ -17,5 +18,9 @@ class GameMessageUtilUnitTest {
         val testResult = GameMessageUtil.convertFrom(content)
 
         println(testResult)
+
+        val original = GameMessageUtil.convertTo(testResult)
+
+        Assert.assertEquals(content, original)
     }
 }
