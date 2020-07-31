@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Body MessageType="HeartBeat">
+    <HeartBeat Battery="80" RcvPort="8080" Version="1.0" />
+</Body>

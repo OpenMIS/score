@@ -11,7 +11,7 @@ class GameMessageUtilUnitTest {
         val xmlFile =
             Paths.get(
                 System.getProperty("user.dir"),
-                """sampledata\xml\original\CompetitorInfo.xml"""
+                """sampledata\xml\original\receive\CompetitorInfo.xml"""
             )
         val content = File(xmlFile.toString()).readText()
         val testResult = GameMessageUtil.convertFrom(content)
