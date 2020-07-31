@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,15 +49,8 @@ class MainFragment : Fragment() {
         val recyclerView = _binding.root.findViewById<RecyclerView>(R.id.score_list)
         val scoreListAdapter = recyclerView.adapter as ScoreListAdapter
 
-        // Create the observer which updates the UI.
-        val nameObserver = Observer<Int> {
-            // Update the UI, in this case, a TextView.
-            scoreListAdapter.notifyDataSetChanged()
-        }
-        _viewModel.changeTimes.observe(activity as FragmentActivity, nameObserver)
-
         _viewModel.scoreListChangeListener = {
-            //scoreListAdapter.notifyDataSetChanged()
+            scoreListAdapter.notifyDataSetChanged()
         }
 
         //region 挂接按钮事件

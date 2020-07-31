@@ -60,7 +60,7 @@ class MainViewModel : GameMessageHandler, ViewModel() {
      *
      */
     val currentScore = MutableLiveData<CompetitorInfo.CompetitorInfoClass.Score>()
-    val changeTimes = MutableLiveData(0)
+
     //region 处理消息
     /**
      * 处理消息
@@ -102,7 +102,6 @@ class MainViewModel : GameMessageHandler, ViewModel() {
                 }
 
                 if (change && scoreListChangeListener != null) {
-                    //changeTimes.value = changeTimes.value!! + 1
                     scoreListChangeListener!!.invoke(this)
                 }
             }
