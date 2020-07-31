@@ -1,10 +1,8 @@
 package com.game.score.ui.main
 
-import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -137,31 +135,6 @@ class MainFragment : Fragment() {
                         val level = batteryStatus.getIntExtra("level", 0)
                         Toast.makeText(context, "剩余电量:$level%", Toast.LENGTH_SHORT).show()
                     }
-
-                    //region 读取配置测试
-                    val pref = activity?.getSharedPreferences(
-                        activity?.packageName + "_preferences",
-                        Context.MODE_PRIVATE
-                    )
-
-                    val a1 =
-                        pref?.getString(getString(R.string.settings_network_local_port_key), "8080")
-                            ?.toIntOrNull() ?: 8080
-                    val a2 =
-                        pref?.getString(getString(R.string.settings_network_server_host_key), "")
-                    val a3 =
-                        pref?.getString(
-                            getString(R.string.settings_network_server_port_key),
-                            "8080"
-                        )?.toIntOrNull() ?: 8080
-                    val a4 = pref?.getString(getString(R.string.settings_client_id_key), "1")
-                        ?.toIntOrNull() ?: 1
-
-                    Log.d("Setting", "settings_network_local_port_key " + a1)
-                    Log.d("Setting", "settings_network_server_host_key " + a2)
-                    Log.d("Setting", "settings_network_server_port_key " + a3)
-                    Log.d("Setting", "settings_client_id_key " + a4)
-                    //endregion
 
                     //region 载入并定位到下一条记录
                     if (_viewModel.scores.value != null &&
