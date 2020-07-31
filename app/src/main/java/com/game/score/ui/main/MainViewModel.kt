@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.game.score.core.GameMessageHandler
 import com.game.score.core.GameMessageModel
 import com.game.score.models.xml.receive.CompetitorInfo
-import com.game.score.models.xml.receive.competitorInfo.Score
 import com.game.score.ui.main.dummy.ScoreContent
 
 class MainViewModel : GameMessageHandler, ViewModel() {
@@ -41,10 +40,10 @@ class MainViewModel : GameMessageHandler, ViewModel() {
     val matchStep = MutableLiveData<String>("")
 
     /**
-     * 分数列表
+     * CompetitorInfo 数据模型
      *
      */
-    val scores = MutableLiveData<MutableList<Score>>(ScoreContent.ITEMS)
+    val competitorInfo = MutableLiveData<CompetitorInfo>(ScoreContent.competitorInfo)
 
     /**
      * 当前分数 在 分数列表里的索引
@@ -53,10 +52,10 @@ class MainViewModel : GameMessageHandler, ViewModel() {
     val currentScoreIndex = MutableLiveData<Int>()
 
     /**
-     * 当前分数
+     * 当前分数模型
      *
      */
-    val currentScore = MutableLiveData<Score>()
+    val currentScore = MutableLiveData<CompetitorInfo.CompetitorInfoClass.Score>()
 
     //region 处理消息
     /**

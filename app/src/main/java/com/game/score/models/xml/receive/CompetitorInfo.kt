@@ -43,7 +43,7 @@ data class CompetitorInfo(
 
         @JacksonXmlProperty(localName = "Score")
         @XmlElement(name = "Score")
-        val Scores: List<Score>
+        val Scores: MutableList<Score>
     ) {
         @XmlAccessorType(XmlAccessType.FIELD)
         data class Score(

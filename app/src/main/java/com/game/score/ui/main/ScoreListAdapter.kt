@@ -6,21 +6,28 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.databinding.FragmentScoreItemBinding
-import com.game.score.models.xml.receive.competitorInfo.Score
+import com.game.score.models.xml.receive.CompetitorInfo
 
 /**
- * [RecyclerView.Adapter] that can display a [Score].
+ * [RecyclerView.Adapter] that can display a [CompetitorInfo.CompetitorInfoClass.Score].
  */
 class ScoreListAdapter(
     private val _viewModel: MainViewModel,
     private val _clickListener: ScoreItemClickListener
-) : ListAdapter<Score, ScoreListAdapter.ViewHolder>(DiffCallback) {
-    companion object DiffCallback : DiffUtil.ItemCallback<Score>() {
-        override fun areItemsTheSame(oldItem: Score, newItem: Score): Boolean {
+) : ListAdapter<CompetitorInfo.CompetitorInfoClass.Score, ScoreListAdapter.ViewHolder>(DiffCallback) {
+    companion object DiffCallback :
+        DiffUtil.ItemCallback<CompetitorInfo.CompetitorInfoClass.Score>() {
+        override fun areItemsTheSame(
+            oldItem: CompetitorInfo.CompetitorInfoClass.Score,
+            newItem: CompetitorInfo.CompetitorInfoClass.Score
+        ): Boolean {
             return oldItem.ScoreID == newItem.ScoreID
         }
 
-        override fun areContentsTheSame(oldItem: Score, newItem: Score): Boolean {
+        override fun areContentsTheSame(
+            oldItem: CompetitorInfo.CompetitorInfoClass.Score,
+            newItem: CompetitorInfo.CompetitorInfoClass.Score
+        ): Boolean {
             return oldItem == newItem
         }
     }
@@ -36,7 +43,7 @@ class ScoreListAdapter(
         fun bind(
             viewModel: MainViewModel,
             listener: ScoreItemClickListener,
-            score: Score,
+            score: CompetitorInfo.CompetitorInfoClass.Score,
             position: Int
         ) {
             _binding.score = score
@@ -62,6 +69,7 @@ class ScoreListAdapter(
     }
 }
 
-class ScoreItemClickListener(val clickListener: (score: Score, position: Int) -> Unit) {
-    fun onClick(score: Score, position: Int) = clickListener(score, position)
+class ScoreItemClickListener(val clickListener: (score: CompetitorInfo.CompetitorInfoClass.Score, position: Int) -> Unit) {
+    fun onClick(score: CompetitorInfo.CompetitorInfoClass.Score, position: Int) =
+        clickListener(score, position)
 }

@@ -23,7 +23,7 @@ data class ScoreList(
 
         @JacksonXmlProperty(localName = "Score")
         @XmlAttribute
-        val Scores: List<Score>
+        val Scores: MutableList<Score>
     ) {
         @XmlAccessorType(XmlAccessType.FIELD)
         data class Score(

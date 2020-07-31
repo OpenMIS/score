@@ -7,7 +7,7 @@
 
         <variable
             name="score"
-            type="com.game.score.models.xml.receive.competitorInfo.Score" />
+            type="com.game.score.models.xml.receive.CompetitorInfo.CompetitorInfoClass.Score" />
 
         <variable
             name="scoreIndex"
@@ -34,7 +34,6 @@
             android:textAppearance="?attr/textAppearanceListItem"
             android:text="@{score.order}"
             android:textSize="@dimen/textView_item_textSize"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/item_score_scoreName"
             app:layout_constraintHorizontal_chainStyle="packed"

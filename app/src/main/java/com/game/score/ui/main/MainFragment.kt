@@ -77,7 +77,8 @@ class MainFragment : Fragment() {
             athleteNameAndTeamName.value = "贾海涛(浙江队)"
             deviceCode.value = "E"
             currentScoreIndex.value = 0
-            currentScore.value = scores.value?.get(currentScoreIndex.value!!)
+            currentScore.value =
+                competitorInfo.value?.CompetitorInfo?.Scores?.get(currentScoreIndex.value!!)
         }
     }
 
@@ -137,15 +138,19 @@ class MainFragment : Fragment() {
                     }
 
                     //region 载入并定位到下一条记录
-                    if (_viewModel.scores.value != null &&
+                    if (_viewModel.competitorInfo.value?.CompetitorInfo?.Scores != null &&
                         _viewModel.currentScoreIndex.value != null &&
-                        _viewModel.currentScoreIndex.value!! < _viewModel.scores.value!!.count() - 1
+                        _viewModel.currentScoreIndex.value!! < _viewModel.competitorInfo.value?.CompetitorInfo?.Scores!!.count() - 1
                     ) {
                         val nextIndex = _viewModel.currentScoreIndex.value!! + 1
-                        val nextScore = _viewModel.scores.value?.get(nextIndex)
+                        val nextScore =
+                            _viewModel.competitorInfo.value?.CompetitorInfo?.Scores?.get(nextIndex)
                         if (nextScore != null && nextScore.getOrder().isNotEmpty()) {
                             _viewModel.currentScoreIndex.value = nextIndex
-                            _viewModel.currentScore.value = _viewModel.scores.value?.get(nextIndex)
+                            _viewModel.currentScore.value =
+                                _viewModel.competitorInfo.value?.CompetitorInfo?.Scores?.get(
+                                    nextIndex
+                                )
 
                             //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
                             (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
@@ -185,7 +190,7 @@ class MainFragment : Fragment() {
         //region 触发界面更新
         _viewModel.currentScore.postValue(_viewModel.currentScore.value)
 
-        _viewModel.scores.value?.set(
+        _viewModel.competitorInfo.value?.CompetitorInfo?.Scores?.set(
             _viewModel.currentScoreIndex.value!!,
             _viewModel.currentScore.value!!
         )
