@@ -48,8 +48,8 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (SettingsFragment.isDisplaying) {
             super.onBackPressed() //仅“设置”页面可以使用“返回”键，主页面不能使用“返回”退出app。
-            //载入设置
-            GameSettingsUtil.loadSettings(this)
+
+            GameSettingsUtil.reload() //重新载入设置
 
             if (GameSettings.isChangeSettingsForReceive())
                 _gameService?.restartReceiveThread()
