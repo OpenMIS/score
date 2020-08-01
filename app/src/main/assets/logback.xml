@@ -1,11 +1,5 @@
 <!--debug属性用来决定是否打印logback的日志信息-->
 <configuration debug='false'>
-    <!--    /com.game.score/log
-/sdcard/score
-    /sdcard/Android/data
-    /sdcard/Android/data/com.game.score/log
-    /sdcard/Download
-    -->
     <!--声明一个属性,用来指定log文件存放的路径-->
     <property name="LOG_DIR" value="/sdcard/Android/data/com.game.score/log" />
     <!--声明一个时间戳-->
