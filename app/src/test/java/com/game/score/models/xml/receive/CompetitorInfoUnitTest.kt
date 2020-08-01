@@ -1,4 +1,4 @@
-package com.game.score.models
+package com.game.score.models.xml.receive
 
 import com.game.score.core.GameMessageUtil
 import com.game.score.core.XmlMappers
@@ -9,9 +9,11 @@ import java.nio.file.Paths
 class CompetitorInfoUnitTest {
     @Test
     fun test() {
+        val xmlFileName = javaClass.simpleName.replace("UnitTest", "")
+        val dirName = if (javaClass.name.contains("receive")) "receive" else "send"
         val xmlFile = Paths.get(
             System.getProperty("user.dir"),
-            """sampledata\xml\receive\CompetitorInfo.xml"""
+            """sampledata\xml\$dirName\$xmlFileName.xml"""
         )
         val xmlContent = File(xmlFile.toString()).readText(Charsets.UTF_8)
         val messageType = GameMessageUtil.getMessageType(xmlContent)
@@ -19,7 +21,7 @@ class CompetitorInfoUnitTest {
 
         with(XmlMappers) {
             val class1 =
-                Class.forName("com.game.score.models.xml.receive.$messageType")
+                Class.forName("com.game.score.models.xml.$dirName.$messageType")
             //动态类型
             val gameMessageModel = receive.readValue(xmlContent, class1)
 
@@ -27,7 +29,7 @@ class CompetitorInfoUnitTest {
 
             println("从对象生成的XML：")
 
-            val xml: String = send.writeValueAsString(gameMessageModel)
+            val xml = send.writeValueAsString(gameMessageModel)
             println(xml)
         }
     }

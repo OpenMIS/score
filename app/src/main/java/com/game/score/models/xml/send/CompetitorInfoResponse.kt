@@ -14,5 +14,5 @@ data class CompetitorInfoResponse(
      * 消息类型
      */
     @XmlAttribute
-    override val MessageType: String
+    override val MessageType: String = "CompetitorInfoResponse"
 ) : IGameMessageModel, IGameSendMessageModel

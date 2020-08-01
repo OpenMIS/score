@@ -78,4 +78,17 @@ dependencies {
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.11.0'
 
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    /*
+    val send =
+        XmlMapper()
+            .configure(ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true)
+            .setAnnotationIntrospector(JaxbAnnotationIntrospector(TypeFactory.defaultInstance())) //希望的结果
+    在安卓模拟器非调试状态正常，在调试状态报错：java.lang.NoClassDefFoundError: Failed resolution of: Ljavax/xml/stream/XMLInputFactory;
+    引用包stax-api包可以解决此问题
+    */
+    implementation 'javax.xml.stream:stax-api:1.0-2'
+
+    // logback - android
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+    implementation 'com.github.tony19:logback-android:2.0.0'
 }

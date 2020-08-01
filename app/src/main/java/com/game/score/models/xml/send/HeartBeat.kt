@@ -14,7 +14,7 @@ data class HeartBeat(
      * 消息类型
      */
     @XmlAttribute
-    override val MessageType: String,
+    override val MessageType: String = "HeartBeat",
 
     val HeartBeat: HeartBeatClass
 ) : IGameMessageModel, IGameSendMessageModel {

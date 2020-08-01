@@ -1,7 +1,5 @@
 package com.game.score.ui.main
 
-import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -123,16 +121,6 @@ class MainFragment : Fragment() {
                     }
                 }
                 R.id.button_send -> {
-                    val batteryStatus: Intent? =
-                        IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter ->
-                            context?.registerReceiver(null, ifilter)
-                        }
-
-                    if (batteryStatus != null) {
-                        val level = batteryStatus.getIntExtra("level", 0)
-                        Toast.makeText(context, "剩余电量:$level%", Toast.LENGTH_SHORT).show()
-                    }
-
                     //region 载入并定位到下一条记录
                     if (_viewModel.competitorInfo.value?.CompetitorInfo?.Scores != null &&
                         _viewModel.currentScoreIndex.value != null &&

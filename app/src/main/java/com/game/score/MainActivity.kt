@@ -16,6 +16,7 @@ import com.game.score.databinding.ActivityMainBinding
 import com.game.score.models.GameSettings
 import com.game.score.ui.main.MainViewModel
 
+
 class MainActivity : AppCompatActivity() {
 
     //region 字段

@@ -13,7 +13,7 @@ data class ScoreList(
      * 消息类型
      */
     @XmlAttribute
-    override val MessageType: String,
+    override val MessageType: String = "ScoreList",
 
     val ScoreList: ScoreListClass
 ) : IGameMessageModel, IGameSendMessageModel {
