@@ -1,5 +1,6 @@
 package com.game.score
 
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.game.score.core.GameSettingsUtil
 import com.game.score.core.GameUdp
 import com.game.score.core.MessageDistribute
+import com.game.score.core.requestPermissionIfNeed
 import com.game.score.databinding.ActivityMainBinding
 import com.game.score.models.GameSettings
 import com.game.score.ui.main.MainViewModel
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        this.requestPermissionIfNeed(WRITE_EXTERNAL_STORAGE)
         //使用数据绑定
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 

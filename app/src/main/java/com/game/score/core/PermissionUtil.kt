@@ -1,6 +1,5 @@
 package com.game.score.core
 
-import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.util.Log
@@ -16,7 +15,7 @@ class PermissionUtil {
         /**
          * 如果没有此权限，则申请此权限。
          *
-         * @param permission The name of the permission being checked.
+         * @param permission 使用[android.Manifest.permission]类里定义的字符串常量。
          *
          * @param requestCode Application specific request code to match with a result
          *    reported to {@link OnRequestPermissionsResultCallback#onRequestPermissionsResult(int, String[], int[])}.
@@ -45,30 +44,6 @@ class PermissionUtil {
             }
         }
         //endregion
-
-        /**
-         * 请求磁盘写入权限
-         */
-        fun requestPermissions(activity: Activity) {
-            try {
-                //检测是否有写的权限
-                val permission = ActivityCompat.checkSelfPermission(
-                    activity,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                )
-
-                if (permission != PackageManager.PERMISSION_GRANTED) {
-                    // 没有写的权限，去申请写的权限，会弹出对话框
-                    ActivityCompat.requestPermissions(
-                        activity,
-                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                        1
-                    )
-                }
-            } catch (e: Throwable) {
-                Log.e(PermissionUtil::class.java.simpleName, "initLog: ", e)
-            }
-        }
     }
 }
 
@@ -77,7 +52,7 @@ class PermissionUtil {
 /**
  * 如果没有此权限，则申请此权限。
  *
- * @param permission The name of the permission being checked.
+ * @param permission 使用[android.Manifest.permission]类里定义的字符串常量。
  *
  * @param requestCode Application specific request code to match with a result
  *    reported to {@link OnRequestPermissionsResultCallback#onRequestPermissionsResult(int, String[], int[])}.
