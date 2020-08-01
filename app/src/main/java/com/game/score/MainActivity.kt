@@ -17,7 +17,6 @@ import com.game.score.core.requestPermissionIfNeed
 import com.game.score.databinding.ActivityMainBinding
 import com.game.score.models.GameSettings
 import com.game.score.ui.main.MainViewModel
-import org.slf4j.LoggerFactory
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +31,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //请求写入内部 与 外部 SD卡。写入日志需要此权限。
         this.requestPermissionIfNeed(WRITE_EXTERNAL_STORAGE)
+
         //使用数据绑定
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
