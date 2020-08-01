@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Body MessageType="ScoreList">
+<Body JudgeID="1" MessageType="ScoreList">
     <ScoreList CompetitorID="111">
         <Score ScoreID="F_1" ScoreValue="8" />
         <Score ScoreID="F_2" ScoreValue="6.7" />

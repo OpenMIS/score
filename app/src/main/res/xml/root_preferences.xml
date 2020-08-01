@@ -17,10 +17,10 @@
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
             android:defaultValue="8080"
-            android:key="@string/settings_network_local_port_key"
+            android:key="@string/settings_network_server_port_key"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="@string/settings_network_local_port"
+            android:title="@string/settings_network_server_port"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>

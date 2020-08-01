@@ -18,6 +18,18 @@ data class HeartBeat(
 
     val HeartBeat: HeartBeatClass
 ) : IGameMessageModel, IGameSendMessageModel {
+    /**
+     * 裁判ID。
+     *
+     * 实际数据：1-3。
+     *
+     * 与设置文件里的ClientID对应。
+     *
+     * 发送时自动设置此值。
+     */
+    @XmlAttribute
+    override var JudgeID: Int = 0
+
     @XmlAccessorType(XmlAccessType.FIELD)
     data class HeartBeatClass(
 
