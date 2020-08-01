@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             //载入设置
             GameSettingsUtil.loadSettings(this)
 
-            if (GameSettings.isChangeServerSettings())
+            if (GameSettings.isChangeSettingsForReceive())
                 _gameService?.restartReceiveThread()
         }
     }
