@@ -13,6 +13,7 @@ import com.game.score.core.GameSettingsUtil
 import com.game.score.core.GameUdp
 import com.game.score.core.MessageDistribute
 import com.game.score.databinding.ActivityMainBinding
+import com.game.score.models.GameSettings
 import com.game.score.ui.main.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -49,6 +50,9 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed() //仅“设置”页面可以使用“返回”键，主页面不能使用“返回”退出app。
             //载入设置
             GameSettingsUtil.loadSettings(this)
+
+            if (GameSettings.isChangeServerSettings())
+                _gameService?.restartReceiveThread()
         }
     }
 }
