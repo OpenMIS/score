@@ -2,12 +2,12 @@ package com.game.score.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.game.score.core.GameMessageHandler
-import com.game.score.core.GameMessageModel
+import com.game.score.core.IGameMessageHandler
+import com.game.score.core.IGameMessageModel
 import com.game.score.models.xml.receive.CompetitorInfo
 import com.game.score.models.xml.receive.ScoreResponse
 
-class MainViewModel : GameMessageHandler, ViewModel() {
+class MainViewModel : IGameMessageHandler, ViewModel() {
     /**
      * 分数列表改变
      */
@@ -65,7 +65,7 @@ class MainViewModel : GameMessageHandler, ViewModel() {
     /**
      * 处理消息
      */
-    override fun Handle(messageModel: GameMessageModel) {
+    override fun handle(messageModel: IGameMessageModel) {
         if (messageModel is CompetitorInfo) {
             //region CompetitorInfo消息处理
             competitorInfo.value = messageModel

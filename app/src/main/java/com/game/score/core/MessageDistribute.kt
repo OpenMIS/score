@@ -5,12 +5,12 @@ import android.os.Looper
 import android.os.Message
 import android.util.Log
 
-class MessageDistribute : GameMessageHandler {
+class MessageDistribute : IGameMessageHandler {
     //region 字段
     /**
      * 竞赛消息处理器
      */
-    private val _gameMessageHandlers = mutableListOf<GameMessageHandler>()
+    private val _gameMessageHandlers = mutableListOf<IGameMessageHandler>()
 
     private val _handler = object : Handler(Looper.getMainLooper()) {
         /*
@@ -19,12 +19,12 @@ class MessageDistribute : GameMessageHandler {
          */
         override fun handleMessage(inputMessage: Message) {//在界面线程处理
             // Gets the image task from the incoming Message object.
-            val messageModel = inputMessage.obj as GameMessageModel
+            val messageModel = inputMessage.obj as IGameMessageModel
 
             //region 分发消息
             _gameMessageHandlers.forEach {
                 try {
-                    it.Handle(messageModel)
+                    it.handle(messageModel)
                 } catch (e2: Exception) {
                     Log.e(
                         javaClass.simpleName, """处理消息时错误。消息内容如下：
@@ -41,7 +41,7 @@ $messageModel
     /**
      * 处理消息
      */
-    override fun Handle(messageModel: GameMessageModel) {
+    override fun handle(messageModel: IGameMessageModel) {
         //从非界面线程发送消息到界面线程
         _handler.sendMessage(Message().apply { obj = messageModel })
     }
@@ -55,7 +55,7 @@ $messageModel
         /**
          * 注册竞赛消息处理器（如果需要的话）
          */
-        fun registerGameMessageHandlerIfNeed(gameMessageHandler: GameMessageHandler) {
+        fun registerGameMessageHandlerIfNeed(gameMessageHandler: IGameMessageHandler) {
             if (!instance._gameMessageHandlers.contains(gameMessageHandler))
                 instance._gameMessageHandlers.add(gameMessageHandler)
         }

@@ -3,10 +3,10 @@ package com.game.score.core
 /**
  * 竞赛消息处理器
  */
-interface GameMessageHandler {
+interface IGameMessageHandler {
 
     /**
      * 处理消息
      */
-    fun Handle(messageModel: GameMessageModel)
+    fun handle(messageModel: IGameMessageModel)
 }

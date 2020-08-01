@@ -1,7 +1,8 @@
 package com.game.score.models.xml.send
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import com.game.score.core.GameMessageModel
+import com.game.score.core.IGameMessageModel
+import com.game.score.core.IGameSendMessageModel
 import com.game.score.core.ScoreUtil
 import javax.xml.bind.annotation.*
 
@@ -15,7 +16,7 @@ data class ScoreList(
     override val MessageType: String,
 
     val ScoreList: ScoreListClass
-) : GameMessageModel {
+) : IGameMessageModel, IGameSendMessageModel {
     @XmlAccessorType(XmlAccessType.FIELD)
     data class ScoreListClass(
         @XmlAttribute

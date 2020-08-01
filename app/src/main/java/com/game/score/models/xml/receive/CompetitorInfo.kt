@@ -1,7 +1,7 @@
 package com.game.score.models.xml.receive
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import com.game.score.core.GameMessageModel
+import com.game.score.core.IGameMessageModel
 import com.game.score.core.ScoreUtil
 import javax.xml.bind.annotation.*
 
@@ -15,7 +15,7 @@ data class CompetitorInfo(
     override val MessageType: String,
 
     val CompetitorInfo: CompetitorInfoClass
-) : GameMessageModel {
+) : IGameMessageModel {
     @XmlAccessorType(XmlAccessType.FIELD)
     data class CompetitorInfoClass(
         @XmlAttribute

@@ -1,9 +1,9 @@
 package com.game.score.core
 
 /**
- * 竞赛消息
+ * 竞赛消息模型
  */
-interface GameMessageModel {
+interface IGameMessageModel {
 
     /**
      * 消息类型

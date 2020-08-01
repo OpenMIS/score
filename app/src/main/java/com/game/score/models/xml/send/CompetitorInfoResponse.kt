@@ -1,6 +1,7 @@
 package com.game.score.models.xml.send
 
-import com.game.score.core.GameMessageModel
+import com.game.score.core.IGameMessageModel
+import com.game.score.core.IGameSendMessageModel
 import javax.xml.bind.annotation.XmlAccessType
 import javax.xml.bind.annotation.XmlAccessorType
 import javax.xml.bind.annotation.XmlAttribute
@@ -14,4 +15,4 @@ data class CompetitorInfoResponse(
      */
     @XmlAttribute
     override val MessageType: String
-) : GameMessageModel
+) : IGameMessageModel, IGameSendMessageModel

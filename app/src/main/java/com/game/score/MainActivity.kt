@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.game.score.core.GameSettingsUtil
+import com.game.score.core.GameUdp
 import com.game.score.core.MessageDistribute
 import com.game.score.databinding.ActivityMainBinding
 import com.game.score.ui.main.MainViewModel
