@@ -1,12 +1,15 @@
 package com.game.score
 
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.IBinder
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.game.score.core.GameSettingsUtil
