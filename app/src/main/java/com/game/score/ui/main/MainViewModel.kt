@@ -4,8 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.game.score.core.IGameMessageHandler
 import com.game.score.core.IGameMessageModel
+import com.game.score.core.sendInUI
 import com.game.score.models.xml.receive.CompetitorInfo
 import com.game.score.models.xml.receive.ScoreResponse
+import com.game.score.models.xml.send.CompetitorInfoResponse
 
 class MainViewModel : IGameMessageHandler, ViewModel() {
     /**
@@ -35,13 +37,6 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
      * 【注意】此处默认必须为空格，否则在初始化时，无法长按进入“设置”页面。
      */
     val judgeName = MutableLiveData<String>(" ")
-
-    /**
-     * 场次里的步骤。
-     *
-     * 比如：立定敬礼
-     */
-    val matchStep = MutableLiveData<String>("")
 
     /**
      * CompetitorInfo 数据模型
@@ -74,23 +69,29 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
             judgeName.value = messageModel.CompetitorInfo.JudgeName
             competitorName.value = messageModel.CompetitorInfo.CompetitorName
 
-            if (messageModel.CompetitorInfo.Scores.count() > 0) {
-                currentScore.value = messageModel.CompetitorInfo.Scores[0]
+            if (messageModel.CompetitorInfo.Scores != null &&
+                messageModel.CompetitorInfo.Scores!!.count() > 0
+            ) {
+                currentScore.value = messageModel.CompetitorInfo.Scores!![0]
                 currentScoreIndex.value = 0
             } else {
                 currentScore.value = CompetitorInfo.CompetitorInfoClass.Score.emptyValueInstance
                 currentScoreIndex.value = -1
             }
             //endregion
+
+            //回应收到消息
+            CompetitorInfoResponse().sendInUI()
         } else if (messageModel is ScoreResponse) {
             //region ScoreResponse消息处理
             if (competitorInfo.value != null &&
+                competitorInfo.value!!.CompetitorInfo.Scores != null &&
                 competitorInfo.value!!.CompetitorInfo.CompetitorID ==
                 messageModel.ScoreResponse.CompetitorID
             ) {//同一个运动员 或者 同一组（多人项目）
                 var change = false
                 messageModel.ScoreResponse.Scores.forEach { score ->
-                    competitorInfo.value!!.CompetitorInfo.Scores.find {
+                    competitorInfo.value!!.CompetitorInfo.Scores!!.find {
                         it.ScoreID == score.ScoreID
                     }?.let {
                         it.ScoreStatus = score.ScoreStatus

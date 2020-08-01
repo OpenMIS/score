@@ -246,8 +246,8 @@ object ScoreContent {
         competitorInfo = CompetitorInfo(
             "CompetitorInfo",
             CompetitorInfo.CompetitorInfoClass(
-                Event = "盛装舞步个人赛",
-                Phase = "资格赛",
+                Event = "盛装舞步个人赛资格赛",
+                Phase = "",
                 CompetitorName = "贾海涛(浙江队)",
 
                 /**

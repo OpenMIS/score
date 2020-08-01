@@ -18,9 +18,15 @@ data class CompetitorInfo(
 ) : IGameMessageModel {
     @XmlAccessorType(XmlAccessType.FIELD)
     data class CompetitorInfoClass(
+        /**
+         * 比如：盛装舞步个人赛资格赛
+         */
         @XmlAttribute
         val Event: String,
 
+        /**
+         * 可能空字符串
+         */
         @XmlAttribute
         val Phase: String,
 
@@ -41,9 +47,14 @@ data class CompetitorInfo(
         @XmlAttribute
         val JudgeName: String,
 
+        /**
+         * 分数列表。
+         *
+         * 可能为空。
+         */
         @JacksonXmlProperty(localName = "Score")
         @XmlElement(name = "Score")
-        val Scores: MutableList<Score>
+        var Scores: MutableList<Score>?
     ) {
         @XmlAccessorType(XmlAccessType.FIELD)
         data class Score(
