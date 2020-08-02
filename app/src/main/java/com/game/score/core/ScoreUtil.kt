@@ -7,6 +7,7 @@ class ScoreUtil {
         @JvmStatic
         fun getOrder(scoreID: String): String {
             var result = ""
+            //由于此方法，在layout布局xml的数据绑定直接调用，所以也做一下异常处理
             usingExceptionHandler {
                 if (!scoreID.isBlank())
                     result = when (scoreID) {
