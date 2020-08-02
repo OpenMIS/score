@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Body MessageType="ScoreResponse">
-    <CompetitorInfo CompetitorID="">
-        <Score ScoreErrorMessage="" ScoreID="F_1" ScoreStatus="" ScoreValue="2" />
-        <Score ScoreErrorMessage="" ScoreID="F_2" ScoreStatus="" ScoreValue="3" />
+    <CompetitorInfo CompetitorID="2-4982-1">
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_1" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_2" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_3" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_4" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_5" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_6" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_7" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_8" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_9" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_10" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_11" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_12" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_13" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_14" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_15" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_16" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_17" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_18" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_19" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_20" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_21" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_22" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_23" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_24" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_25" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_26" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_27" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_28" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_29" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_Status" ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreStatus="" ScoreValue="0" />
     </CompetitorInfo>
 </Body>

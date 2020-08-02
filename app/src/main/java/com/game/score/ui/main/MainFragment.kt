@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.R
 import com.game.score.core.ExceptionHandlerUtil
+import com.game.score.core.sendInUI
 import com.game.score.databinding.FragmentMainBinding
+import com.game.score.models.xml.send.ScoreList
 
 class MainFragment : Fragment() {
     //region 字段
@@ -134,6 +136,30 @@ class MainFragment : Fragment() {
                             _viewModel.currentScoreIndex.value!! <
                             _viewModel.competitorInfo.value?.CompetitorInfo?.Scores!!.count() - 1
                         ) {
+                            //region 把分数列表发送给服务端。按键S
+                            if (_viewModel.competitorInfo.value != null &&
+                                !_viewModel.competitorInfo.value!!.CompetitorInfo.Scores.isNullOrEmpty()
+                            )
+                                with(_viewModel.competitorInfo.value!!.CompetitorInfo) {
+                                    val scores = mutableListOf<ScoreList.ScoreListClass.Score>()
+                                    Scores?.forEach {
+                                        scores.add(
+                                            ScoreList.ScoreListClass.Score(
+                                                it.ScoreID,
+                                                it.ScoreValue
+                                            )
+                                        )
+                                    }
+
+                                    ScoreList(
+                                        ScoreList = ScoreList.ScoreListClass(
+                                            CompetitorID = CompetitorID,
+                                            Scores = scores
+                                        )
+                                    ).sendInUI()
+                                }
+                            //endregion
+
                             val nextIndex = _viewModel.currentScoreIndex.value!! + 1
                             val nextScore =
                                 _viewModel.competitorInfo.value?.CompetitorInfo?.Scores?.get(

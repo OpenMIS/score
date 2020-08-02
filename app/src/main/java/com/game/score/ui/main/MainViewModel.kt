@@ -92,18 +92,27 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
             if (competitorInfo.value != null &&
                 competitorInfo.value!!.CompetitorInfo.Scores != null &&
                 competitorInfo.value!!.CompetitorInfo.CompetitorID ==
-                messageModel.ScoreResponse.CompetitorID
+                messageModel.CompetitorInfo.CompetitorID
             ) {//同一个运动员 或者 同一组（多人项目）
                 var change = false
-                messageModel.ScoreResponse.Scores.forEach { score ->
+                messageModel.CompetitorInfo.Scores.forEach { score ->
                     competitorInfo.value!!.CompetitorInfo.Scores!!.find {
                         it.ScoreID == score.ScoreID
                     }?.let {
-                        it.ScoreStatus = score.ScoreStatus
-                        it.ScoreErrorMessage = score.ScoreErrorMessage
-                        it.ScoreValue = score.ScoreValue
+                        if (it.ScoreStatus != score.ScoreStatus) {
+                            it.ScoreStatus = score.ScoreStatus
+                            change = true
+                        }
 
-                        change = true
+                        if (it.ScoreErrorMessage != score.ScoreErrorMessage) {
+                            it.ScoreErrorMessage = score.ScoreErrorMessage
+                            change = true
+                        }
+
+                        if (it.ScoreValue != score.ScoreValue) {
+                            it.ScoreValue = score.ScoreValue
+                            change = true
+                        }
                     }
                 }
 

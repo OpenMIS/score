@@ -13,11 +13,12 @@ data class ScoreResponse(
     @XmlAttribute
     override val MessageType: String,
 
-    val ScoreResponse: ScoreResponseClass
+    val CompetitorInfo: CompetitorInfoClass
 ) : IGameMessageModel {
-    data class ScoreResponseClass(
+    data class CompetitorInfoClass(
         /**
          * 【注意】此处含字符，所以使用字符串。
+         * 比如：2-4982-1
          */
         @XmlAttribute
         val CompetitorID: String,
