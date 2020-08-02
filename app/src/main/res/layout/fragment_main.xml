@@ -26,9 +26,9 @@
             android:text="@string/button5"
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintEnd_toStartOf="@+id/guideline50"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
             app:layout_constraintTop_toTopOf="@+id/guideline5"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -41,9 +41,9 @@
             android:text="@string/button3"
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline5"
-            app:layout_constraintEnd_toStartOf="@+id/guideline12"
+            app:layout_constraintEnd_toStartOf="@+id/guideline75"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintStart_toStartOf="@+id/guideline50"
             app:layout_constraintTop_toTopOf="@+id/guideline4"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -56,7 +56,7 @@
             android:text="@string/button1"
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline5"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintEnd_toStartOf="@+id/guideline25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
@@ -69,7 +69,7 @@
             android:text="@string/button4"
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintEnd_toStartOf="@+id/guideline25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
@@ -82,8 +82,8 @@
             android:text="@string/buttonDot"
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline8"
-            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintEnd_toStartOf="@+id/guideline50"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
             app:layout_constraintTop_toTopOf="@+id/guideline" />
 
         <Button
@@ -97,7 +97,7 @@
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline12"
+            app:layout_constraintStart_toStartOf="@+id/guideline75"
             app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
         <Button
@@ -111,7 +111,7 @@
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintStart_toStartOf="@+id/guideline50"
             app:layout_constraintTop_toTopOf="@+id/guideline" />
 
         <Button
@@ -123,7 +123,7 @@
             android:text="@string/button0"
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintEnd_toStartOf="@+id/guideline25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline" />
 
@@ -136,9 +136,9 @@
             android:text="@string/button9"
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
-            app:layout_constraintEnd_toStartOf="@+id/guideline12"
+            app:layout_constraintEnd_toStartOf="@+id/guideline75"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintStart_toStartOf="@+id/guideline50"
             app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
         <Button
@@ -151,8 +151,8 @@
             android:text="@string/button8"
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
-            app:layout_constraintEnd_toStartOf="@+id/guideline8"
-            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintEnd_toStartOf="@+id/guideline50"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
             app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
         <Button
@@ -164,7 +164,7 @@
             android:text="@string/button7"
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintEnd_toStartOf="@+id/guideline25"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline6" />
@@ -178,8 +178,8 @@
             android:text="@string/button6"
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            app:layout_constraintEnd_toStartOf="@+id/guideline12"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintEnd_toStartOf="@+id/guideline75"
+            app:layout_constraintStart_toStartOf="@+id/guideline50"
             app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -239,39 +239,32 @@
             app:layout_constraintGuide_percent="0.75" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline7"
+            android:id="@+id/guideline25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.25" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.90" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.79" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline8"
+            android:id="@+id/guideline50"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline12"
+            android:id="@+id/guideline75"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.74" />
+            app:layout_constraintGuide_percent="0.75" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline90"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.90" />
 
         <Button
             android:id="@+id/button2"
@@ -282,13 +275,13 @@
             android:text="@string/button2"
             android:textSize="@dimen/button_number_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline5"
-            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintEnd_toStartOf="@+id/guideline50"
             app:layout_constraintHorizontal_bias="0.431"
-            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline25"
             app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
         <TextView
-            android:id="@+id/textView_gameMatch"
+            android:id="@+id/textView_eventAndPhase"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@android:drawable/editbox_background_normal"
@@ -302,7 +295,7 @@
             tools:text="盛装舞步个人赛资格赛" />
 
         <TextView
-            android:id="@+id/textView_athleteNameAndTeamName"
+            android:id="@+id/textView_competitorName"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@android:drawable/editbox_background_normal"
@@ -310,7 +303,7 @@
             android:text="@{viewModel.competitorName}"
             android:textSize="@dimen/textView_textSize"
             app:layout_constraintBottom_toTopOf="@+id/guideline10"
-            app:layout_constraintEnd_toStartOf="@+id/guideline11"
+            app:layout_constraintEnd_toStartOf="@+id/guideline90"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline3"
             tools:text="贾海涛(浙江队)" />
@@ -322,33 +315,34 @@
             android:layout_margin="3dp"
             android:text="@{viewModel.judgeName}"
             android:textSize="@dimen/textView_textSize"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView_athleteNameAndTeamName"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView_competitorName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline11"
+            app:layout_constraintStart_toStartOf="@+id/guideline90"
             tools:text="E" />
 
         <TextView
-            android:id="@+id/textView_matchStep"
+            android:id="@+id/textView_scoreName"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_margin="3dp"
+            android:gravity="center_vertical"
             android:text="@{viewModel.currentScore.scoreName}"
-            android:textSize="@{viewModel.currentScore.scoreName.length() >= Integer.valueOf(@integer/score_name_big_size)?@dimen/textView_row3_small_textSize:@dimen/textView_row3_big_textSize}"
             android:textColor="@color/colorScoreName"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView_order"
+
+            android:textSize="@{viewModel.currentScore.scoreName.length() >= Integer.valueOf(@integer/score_name_big_size)?@dimen/textView_row3_small_textSize:@dimen/textView_row3_big_textSize}"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
-            app:layout_constraintEnd_toStartOf="@+id/guideline11"
-            app:layout_constraintStart_toEndOf="@+id/textView_order"
+            app:layout_constraintEnd_toStartOf="@+id/guideline90"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline10"
             app:layout_constraintVertical_bias="1.0"
-            tools:text="立定敬礼" />
+            tools:text="1 立定敬礼" />
 
         <TextView
             android:id="@+id/textView_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
             android:layout_marginEnd="5dp"
+            android:gravity="center_vertical"
             android:text="@{viewModel.currentScore.scoreValue}"
             android:textColor="@color/colorScoreValue"
             android:textSize="@{viewModel.currentScore.scoreName.length() >= Integer.valueOf(@integer/score_name_big_size)?@dimen/textView_score_small_textSize:@dimen/textView_score_big_textSize}"
@@ -366,7 +360,7 @@
             android:contentDescription="@string/imageButton_back_contentDescription"
             app:layout_constraintBottom_toTopOf="@+id/guideline5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline12"
+            app:layout_constraintStart_toStartOf="@+id/guideline75"
             app:layout_constraintTop_toTopOf="@+id/guideline4"
             app:srcCompat="@drawable/ic_baseline_backspace_24" />
 
@@ -380,17 +374,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline15"
             tools:ignore="FragmentTagUsage" />
-
-        <TextView
-            android:id="@+id/textView_order"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.currentScore.order}"
-            android:textSize="@{viewModel.currentScore.scoreName.length() >= Integer.valueOf(@integer/score_name_big_size)?@dimen/textView_row3_small_textSize:@dimen/textView_row3_big_textSize}"
-            app:layout_constraintBottom_toTopOf="@+id/guideline9"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline10"
-            tools:text="1" />
 
         <TextView
             android:id="@+id/textView_message"

@@ -2,7 +2,6 @@ package com.game.score.models.xml.receive
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.game.score.core.IGameMessageModel
-import com.game.score.core.ScoreUtil
 import javax.xml.bind.annotation.*
 
 @XmlRootElement(name = "Body")
@@ -64,9 +63,6 @@ data class ScoreResponse(
              */
             @XmlAttribute
             val ScoreStatus: String
-        ) {
-            @XmlTransient
-            fun getOrder(): String = ScoreUtil.getOrder(ScoreID)
-        }
+        )
     }
 }

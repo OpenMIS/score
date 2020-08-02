@@ -3,8 +3,10 @@ package com.game.score.models.xml.send
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.game.score.core.IGameMessageModel
 import com.game.score.core.IGameSendMessageModel
-import com.game.score.core.ScoreUtil
-import javax.xml.bind.annotation.*
+import javax.xml.bind.annotation.XmlAccessType
+import javax.xml.bind.annotation.XmlAccessorType
+import javax.xml.bind.annotation.XmlAttribute
+import javax.xml.bind.annotation.XmlRootElement
 
 @XmlRootElement(name = "Body")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -60,9 +62,6 @@ data class ScoreList(
              * 空字符串表示还未打分。
              */
             var ScoreValue: String
-        ) {
-            @XmlTransient
-            fun getOrder(): String = ScoreUtil.getOrder(ScoreID)
-        }
+        )
     }
 }
