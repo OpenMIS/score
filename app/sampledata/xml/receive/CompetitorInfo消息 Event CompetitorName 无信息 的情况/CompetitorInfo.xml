@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Body MessageType="CompetitorInfo">
+    <CompetitorInfo CompetitorID="-1" CompetitorName="" Event="" JudgeName="E" Phase="">
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_1" ScoreName="1 立定敬礼"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_2" ScoreName="2 快步" ScoreStatus=""
+            ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_3" ScoreName="3 肩向内（右）"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_4" ScoreName="4 8米圆（右）"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_5" ScoreName="5 斜横步（右）(2)"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_6" ScoreName="6 立定后退5步"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_7" ScoreName="7 斜横步（左）(2)"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_8" ScoreName="8 8米圆（左）"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_9" ScoreName="9 肩向内（左）"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_10" ScoreName="10 中间快步"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_11" ScoreName="11 缩短慢步(2)"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_12" ScoreName="12 伸长慢步(2)"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_13" ScoreName="13 慢步跑步快步"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_14" ScoreName="14 3个斜横步(2)"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_15" ScoreName="15 伸长跑步"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_16" ScoreName="16 空中变脚缩短跑步"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_17" ScoreName="17 5个3步一换"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_18" ScoreName="18 后肢旋转（左）(2)"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_19" ScoreName="19 空中变脚"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_20" ScoreName="20 后肢旋转（右）(2)"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_21" ScoreName="21 空中变脚"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_22" ScoreName="22 7个2步一换"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_23" ScoreName="23 伸长快步"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_24" ScoreName="24 过渡"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_25" ScoreName="25 立定敬礼"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_26" ScoreName="26 步法"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_27" ScoreName="27 推进"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_28" ScoreName="28 顺从(2)"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_29" ScoreName="29 骑坐(2)"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_Status" ScoreName="Validate" ScoreStatus=""
+            ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
+            ScoreValue="" />
+    </CompetitorInfo>
+</Body>

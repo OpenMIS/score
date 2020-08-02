@@ -64,10 +64,15 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
         if (messageModel is CompetitorInfo) {
             //region CompetitorInfo消息处理
             competitorInfo.value = messageModel
-            eventAndPhase.value =
-                messageModel.CompetitorInfo.Event + messageModel.CompetitorInfo.Phase
+            (messageModel.CompetitorInfo.Event + messageModel.CompetitorInfo.Phase).let {
+                if (it.isNotBlank()) eventAndPhase.value = it
+            }
+
+            messageModel.CompetitorInfo.CompetitorName.let {
+                if (it.isNotBlank()) competitorName.value = it
+            }
+
             judgeName.value = messageModel.CompetitorInfo.JudgeName
-            competitorName.value = messageModel.CompetitorInfo.CompetitorName
 
             if (messageModel.CompetitorInfo.Scores != null &&
                 messageModel.CompetitorInfo.Scores!!.count() > 0

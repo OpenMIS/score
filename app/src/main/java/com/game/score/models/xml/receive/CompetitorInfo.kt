@@ -2,6 +2,7 @@ package com.game.score.models.xml.receive
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.game.score.core.IGameMessageModel
+import com.game.score.core.ScoreUtil
 import javax.xml.bind.annotation.*
 
 @XmlRootElement(name = "Body")
@@ -101,6 +102,9 @@ data class CompetitorInfo(
             @XmlAttribute
             var ScoreStatus: String
         ) {
+            @XmlTransient
+            fun isScoring(): Boolean = ScoreUtil.isScoring(ScoreID)
+
             companion object {
                 val emptyValueInstance = Score("", "", "", "", "")
             }

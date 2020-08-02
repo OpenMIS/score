@@ -51,7 +51,7 @@ class ScoreListFragment : Fragment() {
 
             // region 设置适配器
             _adapter = ScoreListAdapter(_viewModel, ScoreItemClickListener { score, position ->
-                if (!score.getOrder().isBlank()) {
+                if (score.isScoring()) {
                     _viewModel.currentScore.value = score
                     _viewModel.currentScoreIndex.value = position
 
@@ -73,7 +73,7 @@ class ScoreListFragment : Fragment() {
             }
             // endregion
         }
-        
+
         return _binding.root
     }
 }

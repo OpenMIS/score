@@ -27,21 +27,6 @@
         tools:context=".ui.main.ScoreListFragment">
 
         <TextView
-            android:id="@+id/item_score_scoreID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:textAppearance="?attr/textAppearanceListItem"
-            android:text="@{score.order}"
-            android:textSize="@dimen/textView_item_textSize"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/item_score_scoreName"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="18" />
-
-        <TextView
             android:id="@+id/item_score_scoreName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -49,7 +34,6 @@
             android:textAppearance="?attr/textAppearanceListItem"
             android:textSize="@dimen/textView_item_textSize"
             android:text="@{score.scoreName}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/item_score_scoreID"
             app:layout_constraintBottom_toTopOf="@+id/guideline13"
             app:layout_constraintEnd_toStartOf="@+id/item_score_scoreValue"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,11 +60,5 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="35dp" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.10" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -139,7 +139,7 @@ class MainFragment : Fragment() {
                                 _viewModel.competitorInfo.value?.CompetitorInfo?.Scores?.get(
                                     nextIndex
                                 )
-                            if (nextScore != null && nextScore.getOrder().isNotEmpty()) {
+                            if (nextScore != null && nextScore.isScoring()) {
                                 _viewModel.currentScoreIndex.value = nextIndex
                                 _viewModel.currentScore.value =
                                     _viewModel.competitorInfo.value?.CompetitorInfo?.Scores?.get(

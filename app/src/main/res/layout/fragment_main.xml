@@ -301,7 +301,7 @@
             android:background="@android:drawable/editbox_background_normal"
             android:gravity="center_vertical"
             android:text="@{viewModel.competitorName}"
-            android:textSize="@dimen/textView_textSize"
+            android:textSize="@{viewModel.competitorName.length() >= Integer.valueOf(@integer/competitorName_name_big_size)?@dimen/textView_competitorName_small_textSize:@dimen/textView_competitorName_big_textSize}"
             app:layout_constraintBottom_toTopOf="@+id/guideline10"
             app:layout_constraintEnd_toStartOf="@+id/guideline90"
             app:layout_constraintStart_toStartOf="parent"
@@ -328,7 +328,6 @@
             android:gravity="center_vertical"
             android:text="@{viewModel.currentScore.scoreName}"
             android:textColor="@color/colorScoreName"
-
             android:textSize="@{viewModel.currentScore.scoreName.length() >= Integer.valueOf(@integer/score_name_big_size)?@dimen/textView_row3_small_textSize:@dimen/textView_row3_big_textSize}"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toStartOf="@+id/guideline90"
