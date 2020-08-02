@@ -14,10 +14,6 @@
             type="Integer" />
 
         <variable
-            name="done"
-            type="Boolean" />
-
-        <variable
             name="clickListener"
             type="com.game.score.ui.main.ScoreItemClickListener" />
     </data>
@@ -43,9 +39,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="20 后肢旋转（左） (2)" />
-        <!--
-             【注意】此次在此文件里绑定textColor无法达到效果，现在已经改成使用代码绑定。
-             android:textColor='@{score.scoreStatus=="Done"? @color/colorScoreValue_Done:@color/colorScoreValue_NonDone}'-->
+
         <TextView
             android:id="@+id/item_score_scoreValue"
             android:layout_width="wrap_content"
@@ -53,7 +47,6 @@
             android:layout_marginEnd="3dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textSize="@dimen/textView_item_textSize"
-            android:textColor='@{done? @color/colorScoreValue_Done:@color/colorScoreValue_NonDone}'
             android:text="@{score.scoreValue}"
             app:layout_constraintBaseline_toBaselineOf="@+id/item_score_scoreName"
             app:layout_constraintEnd_toEndOf="parent"

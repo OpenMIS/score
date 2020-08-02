@@ -2,9 +2,11 @@ package com.game.score.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.game.score.R
 import com.game.score.core.ExceptionHandlerUtil
 import com.game.score.databinding.FragmentScoreItemBinding
 import com.game.score.models.xml.receive.CompetitorInfo
@@ -44,32 +46,39 @@ class ScoreListAdapter(
         }
     }
 
-
     class ViewHolder(private var _binding: FragmentScoreItemBinding) :
         RecyclerView.ViewHolder(_binding.root) {
+
         fun bind(
             viewModel: MainViewModel,
             listener: ScoreItemClickListener,
             score: CompetitorInfo.CompetitorInfoClass.ScoreClass,
             position: Int
         ) {
-            _binding.score = score
-            _binding.scoreIndex = position
-            _binding.clickListener = listener
-            if (!score.ScoreErrorMessage.isBlank() && score.ScoreStatus == "Error")
-                _binding.itemScoreScoreValue.error = score.ScoreErrorMessage
-            else _binding.itemScoreScoreValue.error = null
+            with(_binding) {
+                this.score = score
+                scoreIndex = position
+                clickListener = listener
+                if (!score.ScoreErrorMessage.isBlank() && score.ScoreStatus == "Error")
+                    itemScoreScoreValue.error = score.ScoreErrorMessage
+                else itemScoreScoreValue.error = null
 
-            _binding.done = score.ScoreStatus == "Done"
-//            if (score.ScoreStatus == "Done")
-//                _binding.itemScoreScoreValue.setTextColor(_binding.root.resources.getColor(R.color.colorScoreValue_Done))
-//            else
-//                _binding.itemScoreScoreValue.setTextColor(_binding.root.resources.getColor(R.color.colorScoreValue_NonDone))
+                if (score.ScoreStatus == "Done")
+                    itemScoreScoreValue.setTextColor(
+                        ContextCompat.getColor(root.context, R.color.colorScoreValue_Done)
+                    )
+                else itemScoreScoreValue.setTextColor(
+                    ContextCompat.getColor(
+                        root.context,
+                        R.color.colorScoreValue_NonDone
+                    )
+                )
 
-            _binding.root.isSelected = viewModel.currentScoreIndex.value == position
-            // This is important, because it forces the data binding to execute immediately,
-            // which allows the RecyclerView to make the correct view size measurements
-            _binding.executePendingBindings()
+                root.isSelected = viewModel.currentScoreIndex.value == position
+                // This is important, because it forces the data binding to execute immediately,
+                // which allows the RecyclerView to make the correct view size measurements
+                executePendingBindings()
+            }
         }
 
         companion object {

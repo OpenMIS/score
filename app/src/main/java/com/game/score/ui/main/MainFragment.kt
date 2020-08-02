@@ -176,7 +176,10 @@ class MainFragment : Fragment() {
                                 //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
                                 (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
                                     nextIndex,
-                                    0
+                                    /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
+                                    这样方便看到之前打分与之后要打的分。
+                                    */
+                                    100
                                 )
 
                                 /*smoothScrollToPosition(position)和scrollToPosition(position)效果基本相似，
