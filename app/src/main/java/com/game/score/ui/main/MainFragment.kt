@@ -80,7 +80,10 @@ class MainFragment : Fragment() {
      * 按钮事件
      */
     private val _buttonListener = View.OnClickListener {
-        if (_viewModel.currentScore.value == null) //如果没有当前的分数模型，直接退出。
+        if (_viewModel.currentScore.value == null ||
+            _viewModel.currentScoreIndex.value == null ||
+            _viewModel.currentScoreIndex.value!! < 0
+        ) //如果没有当前的分数模型，直接退出本方法。
             return@OnClickListener
 
         ExceptionHandlerUtil.usingExceptionHandler {
