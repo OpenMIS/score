@@ -52,9 +52,9 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/item_score_scoreID"
             app:layout_constraintBottom_toTopOf="@+id/guideline13"
             app:layout_constraintEnd_toStartOf="@+id/item_score_scoreValue"
-            app:layout_constraintStart_toStartOf="@+id/guideline14"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="后肢旋转（左） (2)" />
+            tools:text="20 后肢旋转（左） (2)" />
 
         <TextView
             android:id="@+id/item_score_scoreValue"
