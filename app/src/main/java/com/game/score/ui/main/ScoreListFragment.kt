@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.game.score.core.ExceptionHandlerUtil
 import com.game.score.databinding.FragmentScoreListBinding
 
 
@@ -35,42 +36,44 @@ class ScoreListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentScoreListBinding.inflate(inflater, container, false)
+        ExceptionHandlerUtil.usingExceptionHandler {
+            _binding = FragmentScoreListBinding.inflate(inflater, container, false)
 
-        //region layout里的数据与数据模型关联
-        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        _binding.lifecycleOwner = this
+            //region layout里的数据与数据模型关联
+            // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+            _binding.lifecycleOwner = this
 
-        //使用MainActivity创建的MainViewModel实例
-        _viewModel = ViewModelProvider(activity as FragmentActivity)
-            .get<MainViewModel>(MainViewModel::class.java)
-        _binding.viewModel = _viewModel
-        //endregion
+            //使用MainActivity创建的MainViewModel实例
+            _viewModel = ViewModelProvider(activity as FragmentActivity)
+                .get<MainViewModel>(MainViewModel::class.java)
+            _binding.viewModel = _viewModel
+            //endregion
 
-        // region 设置适配器
-        _adapter = ScoreListAdapter(_viewModel, ScoreItemClickListener { score, position ->
-            if (!score.getOrder().isBlank()) {
-                _viewModel.currentScore.value = score
-                _viewModel.currentScoreIndex.value = position
+            // region 设置适配器
+            _adapter = ScoreListAdapter(_viewModel, ScoreItemClickListener { score, position ->
+                if (!score.getOrder().isBlank()) {
+                    _viewModel.currentScore.value = score
+                    _viewModel.currentScoreIndex.value = position
 
-                //【注意】此处需要通知刷新全部，这样选择行的样式才有效果。
-                _adapter.notifyDataSetChanged()
+                    //【注意】此处需要通知刷新全部，这样选择行的样式才有效果。
+                    _adapter.notifyDataSetChanged()
+                }
+            })
+
+            with(_binding.scoreList) {
+                val linearLayoutManager = LinearLayoutManager(context)
+
+                layoutManager = linearLayoutManager
+                adapter = _adapter
+
+                //加入分隔线
+                addItemDecoration(
+                    DividerItemDecoration(context, linearLayoutManager.orientation)
+                )
             }
-        })
-
-        with(_binding.scoreList) {
-            val linearLayoutManager = LinearLayoutManager(context)
-
-            layoutManager = linearLayoutManager
-            adapter = _adapter
-
-            //加入分隔线
-            addItemDecoration(
-                DividerItemDecoration(context, linearLayoutManager.orientation)
-            )
+            // endregion
         }
-        // endregion
-
+        
         return _binding.root
     }
 }

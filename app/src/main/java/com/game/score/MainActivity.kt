@@ -27,14 +27,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ExceptionHandlerUtil.usingExceptionHandler {
 
-        //请求写入内部 与 外部 SD卡。写入日志需要此权限。
-        this.requestPermissionIfNeed(WRITE_EXTERNAL_STORAGE)
+            //请求写入内部 与 外部 SD卡。写入日志需要此权限。
+            this.requestPermissionIfNeed(WRITE_EXTERNAL_STORAGE)
 
-        ExceptionHandlerUtil.setDefaultUncaughtExceptionHandler(this) //设置默认的异常处理器
+            ExceptionHandlerUtil.setDefaultUncaughtExceptionHandler(this) //设置默认的异常处理器
 
-        //使用数据绑定
-        _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+            //使用数据绑定
+            _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         //创建视图模型
         ViewModelProvider(this)[MainViewModel::class.java]
@@ -51,13 +52,15 @@ class MainActivity : AppCompatActivity() {
      * @see .getOnBackPressedDispatcher
      */
     override fun onBackPressed() {
-        if (SettingsFragment.isDisplaying) {
-            super.onBackPressed() //仅“设置”页面可以使用“返回”键，主页面不能使用“返回”退出app。
+        ExceptionHandlerUtil.usingExceptionHandler {
+            if (SettingsFragment.isDisplaying) {
+                super.onBackPressed() //仅“设置”页面可以使用“返回”键，主页面不能使用“返回”退出app。
 
-            GameSettingsUtil.reload() //重新载入设置
+                GameSettingsUtil.reload() //重新载入设置
 
-            if (GameSettings.isChangeSettingsForReceive())
-                _gameService?.restartReceiveThread()
+                if (GameSettings.isChangeSettingsForReceive())
+                    _gameService?.restartReceiveThread()
+            }
         }
     }
 }

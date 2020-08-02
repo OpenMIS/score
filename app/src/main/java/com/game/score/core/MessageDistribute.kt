@@ -3,7 +3,6 @@ package com.game.score.core
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import android.util.Log
 
 class MessageDistribute : IGameMessageHandler {
     //region 字段
@@ -18,22 +17,22 @@ class MessageDistribute : IGameMessageHandler {
          * the Handler receives a new Message to process.
          */
         override fun handleMessage(inputMessage: Message) {//在界面线程处理
-            // Gets the image task from the incoming Message object.
-            val messageModel = inputMessage.obj as IGameMessageModel
+            ExceptionHandlerUtil.usingExceptionHandler {
+                // Gets the image task from the incoming Message object.
+                val messageModel = inputMessage.obj as IGameMessageModel
 
-            //region 分发消息
-            _gameMessageHandlers.forEach {
-                try {
-                    it.handle(messageModel)
-                } catch (e2: Exception) {
-                    Log.e(
-                        javaClass.simpleName, """处理消息时错误。消息内容如下：
+                //region 分发消息
+                _gameMessageHandlers.forEach {
+                    ExceptionHandlerUtil.usingExceptionHandler(
+                        """处理消息时错误。消息内容如下：
 $messageModel
-""".trimMargin(), e2
-                    )
+""".trimMargin()
+                    ) {
+                        it.handle(messageModel)
+                    }
                 }
+                //endregion
             }
-            //endregion
         }
     }
     //endregion

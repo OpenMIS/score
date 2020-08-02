@@ -2,7 +2,6 @@ package com.game.score.core
 
 import android.app.Activity
 import android.content.pm.PackageManager
-import android.util.Log
 import androidx.core.app.ActivityCompat
 
 /**
@@ -25,7 +24,7 @@ class PermissionUtil {
             activity: Activity, permission: String,
             requestCode: Int = 0
         ) {
-            try {
+            ExceptionHandlerUtil.usingExceptionHandler {
                 //检测是否有写的权限
                 val permissionInt = ActivityCompat.checkSelfPermission(
                     activity, permission
@@ -39,8 +38,6 @@ class PermissionUtil {
                         requestCode
                     )
                 }
-            } catch (e: Throwable) {
-                Log.e(PermissionUtil::class.java.simpleName, "initLog: ", e)
             }
         }
         //endregion

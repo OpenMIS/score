@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.game.score.core.ExceptionHandlerUtil
 import com.game.score.databinding.FragmentScoreItemBinding
 import com.game.score.models.xml.receive.CompetitorInfo
 
@@ -35,8 +36,12 @@ class ScoreListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder.from(parent)
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(_viewModel, _clickListener, getItem(position), position)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        ExceptionHandlerUtil.usingExceptionHandler {
+            holder.bind(_viewModel, _clickListener, getItem(position), position)
+        }
+    }
+
 
     class ViewHolder(private var _binding: FragmentScoreItemBinding) :
         RecyclerView.ViewHolder(_binding.root) {
@@ -70,6 +75,9 @@ class ScoreListAdapter(
 }
 
 class ScoreItemClickListener(val clickListener: (score: CompetitorInfo.CompetitorInfoClass.Score, position: Int) -> Unit) {
-    fun onClick(score: CompetitorInfo.CompetitorInfoClass.Score, position: Int) =
-        clickListener(score, position)
+    fun onClick(score: CompetitorInfo.CompetitorInfoClass.Score, position: Int) {
+        ExceptionHandlerUtil.usingExceptionHandler {
+            clickListener(score, position)
+        }
+    }
 }

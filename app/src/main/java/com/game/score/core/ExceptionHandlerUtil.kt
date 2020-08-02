@@ -4,14 +4,11 @@ import android.app.Activity
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
-import org.slf4j.LoggerFactory
 import kotlin.system.exitProcess
 
 class ExceptionHandlerUtil {
     companion object {
         //region 字段
-        private val _logger = LoggerFactory.getLogger("default")
-
         private var _activity: Activity? = null
         //endregion
 
@@ -41,12 +38,48 @@ class ExceptionHandlerUtil {
         fun setDefaultUncaughtExceptionHandler(activity: Activity) {
             _activity = activity
             Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
-                _logger.error("错误：", throwable)
+                LogUtil.logger.error("使用默认异常处理", throwable)
 
                 //由于Android会退出程序，所以需要重启APP。
                 restartApp(_activity!!) //重启APP
             }
         }
+        //endregion
+
+        //region 使用异常处理
+        /**
+         * 使用异常处理。
+         *
+         * 在安卓体系的重载方法、事件（比如：点击事件等）都必须使用此方法。
+         *
+         * 否则当发生异常时，APP会退出。
+         */
+        fun usingExceptionHandler(msg: String = "", action: () -> Unit) {
+            try {
+                action()
+            } catch (e: Throwable) {
+                LogUtil.logger.error(msg, e)
+            }
+        }
+
+//        /**
+//         * 使用异常处理。
+//         *
+//         * 在安卓体系的重载方法、事件（比如：点击事件等）都必须使用此方法。
+//         *
+//         * 否则当发生异常时，APP会退出。
+//         */
+//        fun <T> usingExceptionHandlerReturn(msg: String = "", fun_: () -> T): T {
+//            //此次需要使用类似C#的默认值，比如：default(T)。目前未找到对应的语法。所以先注释掉方法。
+//            var result: T? = null
+//            try {
+//                result = fun_()
+//            } catch (e: Throwable) {
+//                _logger.error(msg, e)
+//            }
+//
+//            return result!!
+//        }
         //endregion
     }
 }
