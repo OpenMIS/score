@@ -10,10 +10,7 @@ import android.os.IBinder
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.game.score.core.GameSettingsUtil
-import com.game.score.core.GameUdp
-import com.game.score.core.MessageDistribute
-import com.game.score.core.requestPermissionIfNeed
+import com.game.score.core.*
 import com.game.score.databinding.ActivityMainBinding
 import com.game.score.models.GameSettings
 import com.game.score.ui.main.MainViewModel
@@ -33,6 +30,8 @@ class MainActivity : AppCompatActivity() {
 
         //请求写入内部 与 外部 SD卡。写入日志需要此权限。
         this.requestPermissionIfNeed(WRITE_EXTERNAL_STORAGE)
+
+        ExceptionHandlerUtil.setDefaultUncaughtExceptionHandler(this) //设置默认的异常处理器
 
         //使用数据绑定
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
