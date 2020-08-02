@@ -54,7 +54,7 @@ class ScoreListAdapter(
             _binding.score = score
             _binding.scoreIndex = position
             _binding.clickListener = listener
-            if (!score.ScoreErrorMessage.isBlank())
+            if (!score.ScoreErrorMessage.isBlank() && score.ScoreStatus == "Error")
                 _binding.itemScoreScoreValue.error = score.ScoreErrorMessage
             else _binding.itemScoreScoreValue.error = null
 

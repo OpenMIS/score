@@ -109,10 +109,11 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
                             change = true
                         }
 
-                        if (it.ScoreValue != score.ScoreValue) {
-                            it.ScoreValue = score.ScoreValue
-                            change = true
-                        }
+                        //【注意】由于服务端回应的分数为空的，所以不改写APP上的打分
+//                        if (it.ScoreValue != score.ScoreValue) {
+//                            it.ScoreValue = score.ScoreValue
+//                            change = true
+//                        }
                     }
                 }
 
