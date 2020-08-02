@@ -141,10 +141,11 @@ class MainFragment : Fragment() {
                                 !_viewModel.competitorInfo.value!!.CompetitorInfo.Scores.isNullOrEmpty()
                             )
                                 with(_viewModel.competitorInfo.value!!.CompetitorInfo) {
-                                    val scores = mutableListOf<ScoreList.ScoreListClass.Score>()
+                                    val scores =
+                                        mutableListOf<ScoreList.ScoreListClass.ScoreClass>()
                                     Scores?.forEach {
                                         scores.add(
-                                            ScoreList.ScoreListClass.Score(
+                                            ScoreList.ScoreListClass.ScoreClass(
                                                 it.ScoreID,
                                                 it.ScoreValue
                                             )
@@ -154,7 +155,7 @@ class MainFragment : Fragment() {
                                     ScoreList(
                                         ScoreList = ScoreList.ScoreListClass(
                                             CompetitorID = CompetitorID,
-                                            Scores = scores
+                                            Score = scores
                                         )
                                     ).sendInUI()
                                 }
@@ -192,7 +193,7 @@ class MainFragment : Fragment() {
                                 .setTitle(R.string.alertDialog_title_confirm)
                                 .setMessage(R.string.alertDialog_message_confirm)
                                 .setPositiveButton(R.string.button_text_no, null) //监听下方button点击事件
-                                .setNegativeButton(R.string.button_text_yes) { dialogInterface, i ->
+                                .setNegativeButton(R.string.button_text_yes) { _, _ ->
 
                                     Toast.makeText(it.context, "确认", Toast.LENGTH_SHORT).show()
 

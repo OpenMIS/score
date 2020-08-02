@@ -1,9 +1,11 @@
 package com.game.score.models.xml.send
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.game.score.core.IGameMessageModel
 import com.game.score.core.IGameSendMessageModel
-import javax.xml.bind.annotation.*
+import javax.xml.bind.annotation.XmlAccessType
+import javax.xml.bind.annotation.XmlAccessorType
+import javax.xml.bind.annotation.XmlAttribute
+import javax.xml.bind.annotation.XmlRootElement
 
 @XmlRootElement(name = "Body")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -35,12 +37,10 @@ data class ScoreList(
         @XmlAttribute
         val CompetitorID: String,
 
-        @JacksonXmlProperty(localName = "Score")
-        @XmlElement(name = "Score")
-        val Scores: MutableList<Score>
+        val Score: MutableList<ScoreClass>
     ) {
         @XmlAccessorType(XmlAccessType.FIELD)
-        data class Score(
+        data class ScoreClass(
             /**
              * 分数标识。
              *
