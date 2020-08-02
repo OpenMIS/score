@@ -7,8 +7,13 @@
     <!-- 成绩名称 -->
     <color name="colorScoreName">#0000FF</color>
 
-    <!-- 分数 -->
+    <!-- 打分的分数 -->
     <color name="colorScoreValue">#FF0000</color>
+
+    <!-- 列表里ScoreStatus=Done（状态为Done） 时的分数显示颜色 -->
+    <color name="colorScoreValue_Done">#008000</color>
+    <!-- 列表里ScoreStatus非Done（状态为Done） 时的分数显示颜色 000000 -->
+    <color name="colorScoreValue_NonDone">#000000</color>
 
     <!-- 消息文本 - 错误 -->
     <color name="colorMessageError">#FF0000</color>

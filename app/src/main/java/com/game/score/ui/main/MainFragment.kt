@@ -131,19 +131,19 @@ class MainFragment : Fragment() {
                     }
                     R.id.button_send -> {
                         //region 载入并定位到下一条记录
-                        if (_viewModel.competitorInfo.value?.CompetitorInfo?.Scores != null &&
+                        if (_viewModel.competitorInfo.value?.CompetitorInfo?.Score != null &&
                             _viewModel.currentScoreIndex.value != null &&
                             _viewModel.currentScoreIndex.value!! <
-                            _viewModel.competitorInfo.value?.CompetitorInfo?.Scores!!.count() - 1
+                            _viewModel.competitorInfo.value?.CompetitorInfo?.Score!!.count() - 1
                         ) {
                             //region 把分数列表发送给服务端。按键S
                             if (_viewModel.competitorInfo.value != null &&
-                                !_viewModel.competitorInfo.value!!.CompetitorInfo.Scores.isNullOrEmpty()
+                                !_viewModel.competitorInfo.value!!.CompetitorInfo.Score.isNullOrEmpty()
                             )
                                 with(_viewModel.competitorInfo.value!!.CompetitorInfo) {
                                     val scores =
                                         mutableListOf<ScoreList.ScoreListClass.ScoreClass>()
-                                    Scores?.forEach {
+                                    Score?.forEach {
                                         scores.add(
                                             ScoreList.ScoreListClass.ScoreClass(
                                                 it.ScoreID,
@@ -163,13 +163,13 @@ class MainFragment : Fragment() {
 
                             val nextIndex = _viewModel.currentScoreIndex.value!! + 1
                             val nextScore =
-                                _viewModel.competitorInfo.value?.CompetitorInfo?.Scores?.get(
+                                _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.get(
                                     nextIndex
                                 )
                             if (nextScore != null && nextScore.isScoring()) {
                                 _viewModel.currentScoreIndex.value = nextIndex
                                 _viewModel.currentScore.value =
-                                    _viewModel.competitorInfo.value?.CompetitorInfo?.Scores?.get(
+                                    _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.get(
                                         nextIndex
                                     )
 

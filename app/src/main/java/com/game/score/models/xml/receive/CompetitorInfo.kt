@@ -1,6 +1,5 @@
 package com.game.score.models.xml.receive
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.game.score.core.IGameMessageModel
 import com.game.score.core.ScoreUtil
 import javax.xml.bind.annotation.*
@@ -52,12 +51,10 @@ data class CompetitorInfo(
          *
          * 可能为空。
          */
-        @JacksonXmlProperty(localName = "Score")
-        @XmlElement(name = "Score")
-        var Scores: MutableList<Score>?
+        var Score: MutableList<ScoreClass>?
     ) {
         @XmlAccessorType(XmlAccessType.FIELD)
-        data class Score(
+        data class ScoreClass(
             /**
              * 分数标识。
              *
@@ -106,7 +103,7 @@ data class CompetitorInfo(
             fun isScoring(): Boolean = ScoreUtil.isScoring(ScoreID)
 
             companion object {
-                val emptyValueInstance = Score("", "", "", "", "")
+                val emptyValueInstance = ScoreClass("", "", "", "", "")
             }
         }
     }

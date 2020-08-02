@@ -54,7 +54,7 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
      * 当前分数模型
      *
      */
-    val currentScore = MutableLiveData<CompetitorInfo.CompetitorInfoClass.Score>()
+    val currentScore = MutableLiveData<CompetitorInfo.CompetitorInfoClass.ScoreClass>()
 
     //region 处理消息
     /**
@@ -74,13 +74,14 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
 
             judgeName.value = messageModel.CompetitorInfo.JudgeName
 
-            if (messageModel.CompetitorInfo.Scores != null &&
-                messageModel.CompetitorInfo.Scores!!.count() > 0
+            if (messageModel.CompetitorInfo.Score != null &&
+                messageModel.CompetitorInfo.Score!!.count() > 0
             ) {
-                currentScore.value = messageModel.CompetitorInfo.Scores!![0]
+                currentScore.value = messageModel.CompetitorInfo.Score!![0]
                 currentScoreIndex.value = 0
             } else {
-                currentScore.value = CompetitorInfo.CompetitorInfoClass.Score.emptyValueInstance
+                currentScore.value =
+                    CompetitorInfo.CompetitorInfoClass.ScoreClass.emptyValueInstance
                 currentScoreIndex.value = -1
             }
             //endregion
@@ -90,13 +91,13 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
         } else if (messageModel is ScoreResponse) {
             //region ScoreResponse消息处理
             if (competitorInfo.value != null &&
-                competitorInfo.value!!.CompetitorInfo.Scores != null &&
+                competitorInfo.value!!.CompetitorInfo.Score != null &&
                 competitorInfo.value!!.CompetitorInfo.CompetitorID ==
                 messageModel.CompetitorInfo.CompetitorID
             ) {//同一个运动员 或者 同一组（多人项目）
                 var change = false
-                messageModel.CompetitorInfo.Scores.forEach { score ->
-                    competitorInfo.value!!.CompetitorInfo.Scores!!.find {
+                messageModel.CompetitorInfo.Score.forEach { score ->
+                    competitorInfo.value!!.CompetitorInfo.Score!!.find {
                         it.ScoreID == score.ScoreID
                     }?.let {
                         if (it.ScoreStatus != score.ScoreStatus) {
@@ -109,11 +110,11 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
                             change = true
                         }
 
-                        //【注意】由于服务端回应的分数为空的，所以不改写APP上的打分
-//                        if (it.ScoreValue != score.ScoreValue) {
-//                            it.ScoreValue = score.ScoreValue
-//                            change = true
-//                        }
+                        //【注意】由于服务端回应的分数可能为空的，所以需要判断一下。
+                        if (!score.ScoreValue.isBlank() && it.ScoreValue != score.ScoreValue) {
+                            it.ScoreValue = score.ScoreValue
+                            change = true
+                        }
                     }
                 }
 

@@ -12,7 +12,7 @@ import com.game.score.ui.main.ScoreListAdapter
 @BindingAdapter("listData")
 fun bindRecyclerView(
     recyclerView: RecyclerView,
-    data: List<CompetitorInfo.CompetitorInfoClass.Score>?
+    data: List<CompetitorInfo.CompetitorInfoClass.ScoreClass>?
 ) {
     ExceptionHandlerUtil.usingExceptionHandler {
         val adapter = recyclerView.adapter as ScoreListAdapter

@@ -15,19 +15,21 @@ import com.game.score.models.xml.receive.CompetitorInfo
 class ScoreListAdapter(
     private val _viewModel: MainViewModel,
     private val _clickListener: ScoreItemClickListener
-) : ListAdapter<CompetitorInfo.CompetitorInfoClass.Score, ScoreListAdapter.ViewHolder>(DiffCallback) {
+) : ListAdapter<CompetitorInfo.CompetitorInfoClass.ScoreClass, ScoreListAdapter.ViewHolder>(
+    DiffCallback
+) {
     companion object DiffCallback :
-        DiffUtil.ItemCallback<CompetitorInfo.CompetitorInfoClass.Score>() {
+        DiffUtil.ItemCallback<CompetitorInfo.CompetitorInfoClass.ScoreClass>() {
         override fun areItemsTheSame(
-            oldItem: CompetitorInfo.CompetitorInfoClass.Score,
-            newItem: CompetitorInfo.CompetitorInfoClass.Score
+            oldItem: CompetitorInfo.CompetitorInfoClass.ScoreClass,
+            newItem: CompetitorInfo.CompetitorInfoClass.ScoreClass
         ): Boolean {
             return oldItem.ScoreID == newItem.ScoreID
         }
 
         override fun areContentsTheSame(
-            oldItem: CompetitorInfo.CompetitorInfoClass.Score,
-            newItem: CompetitorInfo.CompetitorInfoClass.Score
+            oldItem: CompetitorInfo.CompetitorInfoClass.ScoreClass,
+            newItem: CompetitorInfo.CompetitorInfoClass.ScoreClass
         ): Boolean {
             return oldItem == newItem
         }
@@ -48,7 +50,7 @@ class ScoreListAdapter(
         fun bind(
             viewModel: MainViewModel,
             listener: ScoreItemClickListener,
-            score: CompetitorInfo.CompetitorInfoClass.Score,
+            score: CompetitorInfo.CompetitorInfoClass.ScoreClass,
             position: Int
         ) {
             _binding.score = score
@@ -57,6 +59,12 @@ class ScoreListAdapter(
             if (!score.ScoreErrorMessage.isBlank() && score.ScoreStatus == "Error")
                 _binding.itemScoreScoreValue.error = score.ScoreErrorMessage
             else _binding.itemScoreScoreValue.error = null
+
+            _binding.done = score.ScoreStatus == "Done"
+//            if (score.ScoreStatus == "Done")
+//                _binding.itemScoreScoreValue.setTextColor(_binding.root.resources.getColor(R.color.colorScoreValue_Done))
+//            else
+//                _binding.itemScoreScoreValue.setTextColor(_binding.root.resources.getColor(R.color.colorScoreValue_NonDone))
 
             _binding.root.isSelected = viewModel.currentScoreIndex.value == position
             // This is important, because it forces the data binding to execute immediately,
@@ -74,8 +82,8 @@ class ScoreListAdapter(
     }
 }
 
-class ScoreItemClickListener(val clickListener: (score: CompetitorInfo.CompetitorInfoClass.Score, position: Int) -> Unit) {
-    fun onClick(score: CompetitorInfo.CompetitorInfoClass.Score, position: Int) {
+class ScoreItemClickListener(val clickListener: (score: CompetitorInfo.CompetitorInfoClass.ScoreClass, position: Int) -> Unit) {
+    fun onClick(score: CompetitorInfo.CompetitorInfoClass.ScoreClass, position: Int) {
         ExceptionHandlerUtil.usingExceptionHandler {
             clickListener(score, position)
         }

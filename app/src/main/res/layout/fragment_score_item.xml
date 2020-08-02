@@ -7,11 +7,15 @@
 
         <variable
             name="score"
-            type="com.game.score.models.xml.receive.CompetitorInfo.CompetitorInfoClass.Score" />
+            type="com.game.score.models.xml.receive.CompetitorInfo.CompetitorInfoClass.ScoreClass" />
 
         <variable
             name="scoreIndex"
             type="Integer" />
+
+        <variable
+            name="done"
+            type="Boolean" />
 
         <variable
             name="clickListener"
@@ -31,15 +35,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
+            android:text="@{score.scoreName}"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textSize="@dimen/textView_item_textSize"
-            android:text="@{score.scoreName}"
             app:layout_constraintBottom_toTopOf="@+id/guideline13"
             app:layout_constraintEnd_toStartOf="@+id/item_score_scoreValue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="20 后肢旋转（左） (2)" />
-
+        <!--
+             【注意】此次在此文件里绑定textColor无法达到效果，现在已经改成使用代码绑定。
+             android:textColor='@{score.scoreStatus=="Done"? @color/colorScoreValue_Done:@color/colorScoreValue_NonDone}'-->
         <TextView
             android:id="@+id/item_score_scoreValue"
             android:layout_width="wrap_content"
@@ -47,6 +53,7 @@
             android:layout_marginEnd="3dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textSize="@dimen/textView_item_textSize"
+            android:textColor='@{done? @color/colorScoreValue_Done:@color/colorScoreValue_NonDone}'
             android:text="@{score.scoreValue}"
             app:layout_constraintBaseline_toBaselineOf="@+id/item_score_scoreName"
             app:layout_constraintEnd_toEndOf="parent"

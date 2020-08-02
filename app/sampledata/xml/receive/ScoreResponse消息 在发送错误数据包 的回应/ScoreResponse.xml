@@ -3,7 +3,7 @@
     <CompetitorInfo CompetitorID="2-4982-1">
         <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_1" ScoreStatus="" ScoreValue="" />
         <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_2" ScoreStatus="" ScoreValue="" />
-        <Score ScoreErrorMessage="" ScoreID="F_3" ScoreStatus="Done" ScoreValue="1" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_3" ScoreStatus="" ScoreValue="" />
         <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_4" ScoreStatus="" ScoreValue="" />
         <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_5" ScoreStatus="" ScoreValue="" />
         <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_6" ScoreStatus="" ScoreValue="" />
@@ -31,6 +31,6 @@
         <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_28" ScoreStatus="" ScoreValue="" />
         <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_29" ScoreStatus="" ScoreValue="" />
         <Score ScoreErrorMessage="" ScoreID="F_Status" ScoreStatus="" ScoreValue="" />
-        <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreStatus="" ScoreValue="1" />
+        <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreStatus="" ScoreValue="0" />
     </CompetitorInfo>
 </Body>

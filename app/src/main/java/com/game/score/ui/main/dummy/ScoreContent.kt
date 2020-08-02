@@ -18,12 +18,12 @@ object ScoreContent {
     /**
      * 分数模型 列表（测试数据）
      */
-    private val _scores: MutableList<CompetitorInfo.CompetitorInfoClass.Score> = ArrayList()
+    private val _scores: MutableList<CompetitorInfo.CompetitorInfoClass.ScoreClass> = ArrayList()
 
     init {
         //region 分数列表
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_1",
                 "1 立定敬礼",
                 "6",
@@ -32,7 +32,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_2",
                 "2 快步 ",
                 "6.1",
@@ -41,7 +41,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_3",
                 "3 园（左）",
                 "",
@@ -50,7 +50,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_4",
                 "4 斜横步（左） (2)",
                 "11",
@@ -59,17 +59,17 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_5", "5 快步 ", "7", "", ""
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_6", "6 过渡 ", "5.1", "", ""
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_7",
                 "7 肩向内（右）",
                 "8",
@@ -78,7 +78,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_8",
                 "8 伸长跑步",
                 "7.8",
@@ -87,7 +87,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_9",
                 "9 空中变脚",
                 "8.6",
@@ -96,17 +96,17 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_10", "10 步法 ", "8.9", "", ""
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_11", "11 推进 ", "8.5", "", ""
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_12",
                 "12 顺从(2)",
                 "8.3",
@@ -115,7 +115,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_13",
                 "13 骑坐(2)",
                 "8.2",
@@ -124,17 +124,17 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_14", "14 过渡 ", "9.2", "", ""
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_15", "15 快步 ", "8", "", ""
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_16",
                 "16 伸长跑步",
                 "9.4",
@@ -143,7 +143,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_17",
                 "17 园（左）",
                 "6.3",
@@ -152,7 +152,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_18",
                 "17 后肢旋转（左） (2)",
                 "9.2",
@@ -161,7 +161,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_19",
                 "19 空中变脚",
                 "",
@@ -170,7 +170,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_20",
                 "20 后肢旋转（右） (2)",
                 "9.1",
@@ -179,7 +179,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_21",
                 "21 空中变脚",
                 "9.3",
@@ -188,7 +188,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_22",
                 "22 7个2步一换",
                 "9.4",
@@ -197,7 +197,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_23",
                 "23 伸长快步",
                 "",
@@ -206,7 +206,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_24",
                 "24 过渡",
                 "",
@@ -215,7 +215,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_25",
                 "25 立定敬礼",
                 "",
@@ -224,7 +224,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_Status",
                 "",
                 "",
@@ -233,7 +233,7 @@ object ScoreContent {
             )
         )
         _scores.add(
-            CompetitorInfo.CompetitorInfoClass.Score(
+            CompetitorInfo.CompetitorInfoClass.ScoreClass(
                 "F_TotalScore",
                 "TotalScore",
                 "",
@@ -262,7 +262,7 @@ object ScoreContent {
                  */
                 JudgeName = "E",
 
-                Scores = _scores
+                Score = _scores
             )
         )
     }

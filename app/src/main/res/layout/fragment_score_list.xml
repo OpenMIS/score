@@ -24,7 +24,7 @@
             app:layoutManager="LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:listData="@{viewModel.competitorInfo.competitorInfo.scores}"
+            app:listData="@{viewModel.competitorInfo.competitorInfo.score}"
             tools:listitem="@layout/fragment_score_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
