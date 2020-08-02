@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
+import android.util.Log
 import kotlin.system.exitProcess
 
 class ExceptionHandlerUtil {
@@ -40,6 +41,7 @@ class ExceptionHandlerUtil {
             Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
                 LogUtil.logger.error("使用默认异常处理", throwable)
 
+                Log.e("111111", "setDefaultUncaughtExceptionHandler: ", throwable)
                 //由于Android会退出程序，所以需要重启APP。
                 restartApp(_activity!!) //重启APP
             }

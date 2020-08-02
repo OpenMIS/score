@@ -18,6 +18,8 @@
         <lazy>true</lazy>
         <!--log追加到文件,否则覆盖文件-->
         <append>true</append>
+        <!-- set immediateFlush to false for much higher logging throughput -->
+        <immediateFlush>true</immediateFlush>
         <!--用来保存log的文件全路径-->
         <file>${LOG_DIR}/base.log.txt</file>
         <!--输出log的格式-->
@@ -31,6 +33,8 @@
     <appender name="BASE_ROLL_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_DIR}/base.roll.${today}.log.txt</file>
         <append>true</append>
+        <!-- set immediateFlush to false for much higher logging throughput -->
+        <immediateFlush>true</immediateFlush>
         <encoder>
             <pattern>%date %-5relative [%thread] %-5level %logger{36} [%file:%M:%line] - %msg%n
             </pattern>

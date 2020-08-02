@@ -82,7 +82,7 @@ class MainFragment : Fragment() {
     private val _buttonListener = View.OnClickListener {
         if (_viewModel.currentScore.value == null) //如果没有当前的分数模型，直接退出。
             return@OnClickListener
-
+        throw  Exception("bbbbb")
         ExceptionHandlerUtil.usingExceptionHandler {
             val recyclerView = it.rootView.findViewById<RecyclerView>(R.id.score_list)
             val scoreListAdapter = recyclerView.adapter as ScoreListAdapter

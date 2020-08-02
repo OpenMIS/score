@@ -35,6 +35,25 @@ android {
     }
 }
 
+/*
+Document\经验分享\技术\移动设备\移动开发\安卓\Android开发-经验.txt
+3、View$OnUnhandledKeyEventListener异常
+AndroidX:Appcompat I:art error android.view.View$OnUnhandledKeyEventListener https://stackoverflow.com/questions/51782548/androidxappcompat-iart-error-android-view-viewonunhandledkeyeventlistener
+完整的build.gradle https://gist.github.com/tianzhijiexian/2853c097762a203cd1d024c1f846dcc3
+*/
+
+// 处理support版本和build tools版本的问题，如果运行没有问题则无需配置
+//configurations.all {
+//    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+//        def requested = details.requested
+//        if (requested.group == "com.android.support") {
+//            if (!requested.name.startsWith("multidex")) {
+//                details.useVersion "26.+"
+//            }
+//        }
+//    }
+//}
+
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
