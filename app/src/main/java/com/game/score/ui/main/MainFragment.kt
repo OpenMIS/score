@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.R
+import com.game.score.ScoreConsts
 import com.game.score.core.ExceptionHandlerUtil
 import com.game.score.core.sendInUI
 import com.game.score.databinding.FragmentMainBinding
@@ -159,7 +160,7 @@ class MainFragment : Fragment() {
                     _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.get(
                         nextIndex
                     )
-   
+
                 //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
                 (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
                     nextIndex,
@@ -187,9 +188,9 @@ class MainFragment : Fragment() {
 
         val emptyScoreValueCount = _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.count {
             !arrayOf(
-                "F_0",
-                "F_Status",
-                "F_TotalScore"
+                ScoreConsts.Attribute_F_0,
+                ScoreConsts.Attribute_F_Status,
+                ScoreConsts.Attribute_F_TotalScore
             ).contains(it.ScoreID) && it.ScoreValue.isBlank()
         }
 
@@ -212,10 +213,10 @@ class MainFragment : Fragment() {
                 .setPositiveButton(R.string.button_text_no, null) //监听下方button点击事件
                 .setNegativeButton(R.string.button_text_yes) { _, _ ->
                     val validateRow = _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.find {
-                        it.ScoreID == "F_Status"
+                        it.ScoreID == ScoreConsts.Attribute_F_Status
                     }
                     if (validateRow != null) {
-                        validateRow.ScoreValue = "1" //表示确认成绩
+                        validateRow.ScoreValue = ScoreConsts.Status_ScoreValue_Validate //表示确认成绩
                         sendScoreList() //发送ScoreList分数列表给服务端
                     }
                 }.setCancelable(true) //设置对话框是可取消的

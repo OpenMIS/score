@@ -71,7 +71,7 @@ data class CompetitorInfo(
             /**
              * 分数的名称。
              *
-             * 比如：立定敬礼
+             * 比如：1 立定敬礼
              */
             @XmlAttribute
             val ScoreName: String,

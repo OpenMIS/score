@@ -1,5 +1,6 @@
 package com.game.score.ui.main.dummy
 
+import com.game.score.ScoreConsts
 import com.game.score.models.xml.receive.CompetitorInfo
 import java.util.*
 
@@ -55,7 +56,7 @@ object ScoreContent {
                 "4 斜横步（左） (2)",
                 "11",
                 "Score out of Range",
-                "Error"
+                ScoreConsts.ScoreStatus_Error
             )
         )
         _scores.add(
@@ -202,7 +203,7 @@ object ScoreContent {
                 "23 伸长快步",
                 "",
                 "Please Enter Score",
-                "Error"
+                ScoreConsts.ScoreStatus_Error
             )
         )
         _scores.add(
@@ -225,7 +226,7 @@ object ScoreContent {
         )
         _scores.add(
             CompetitorInfo.CompetitorInfoClass.ScoreClass(
-                "F_Status",
+                ScoreConsts.Attribute_F_Status,
                 "",
                 "",
                 "",
@@ -234,7 +235,7 @@ object ScoreContent {
         )
         _scores.add(
             CompetitorInfo.CompetitorInfoClass.ScoreClass(
-                "F_TotalScore",
+                ScoreConsts.Attribute_F_TotalScore,
                 "TotalScore",
                 "",
                 "",

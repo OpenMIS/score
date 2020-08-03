@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.R
+import com.game.score.ScoreConsts
 import com.game.score.core.ExceptionHandlerUtil
 import com.game.score.databinding.FragmentScoreItemBinding
 import com.game.score.models.xml.receive.CompetitorInfo
@@ -59,11 +60,11 @@ class ScoreListAdapter(
                 this.score = score
                 scoreIndex = position
                 clickListener = listener
-                if (!score.ScoreErrorMessage.isBlank() && score.ScoreStatus == "Error")
+                if (!score.ScoreErrorMessage.isBlank() && score.ScoreStatus == ScoreConsts.ScoreStatus_Error)
                     itemScoreScoreValue.error = score.ScoreErrorMessage
                 else itemScoreScoreValue.error = null
 
-                if (score.ScoreStatus == "Done")
+                if (score.ScoreStatus == ScoreConsts.ScoreStatus_Done)
                     itemScoreScoreValue.setTextColor(
                         ContextCompat.getColor(root.context, R.color.colorScoreValue_Done)
                     )

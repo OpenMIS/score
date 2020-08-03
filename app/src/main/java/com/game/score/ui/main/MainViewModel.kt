@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.game.score.R
+import com.game.score.ScoreConsts
 import com.game.score.core.IGameMessageHandler
 import com.game.score.core.IGameMessageModel
 import com.game.score.core.sendInUI
@@ -165,7 +166,7 @@ class MainViewModel(application: Application) : IGameMessageHandler, AndroidView
 
                 //region 确认成绩的回应
                 val validateRowInApp = competitorInfo.value?.CompetitorInfo?.Score?.find {
-                    it.ScoreID == "F_Status" && it.ScoreValue == "1"
+                    it.ScoreID == ScoreConsts.Attribute_F_Status && it.ScoreValue == ScoreConsts.Status_ScoreValue_Validate
                 }
 
                 if (validateRowInApp != null) {
@@ -182,6 +183,10 @@ class MainViewModel(application: Application) : IGameMessageHandler, AndroidView
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {//服务端确认成绩失败
+                        messageModel.CompetitorInfo.Score.any {
+                            it.ScoreStatus == ScoreConsts.ScoreStatus_Error
+                        }
+
                         validateRowInApp.ScoreValue = "" //清空确认，表示未确认成绩。
 
                         Toast.makeText(
