@@ -8,7 +8,7 @@
     <string name="app_name">Scoring</string>
     <string name="alertDialog_title_confirm">Validate</string>
     <string name="alertDialog_message_confirm">Are you sure to validate result?</string>
-    <string name="alertDialog_message_confirm_NoScoreValueCount">%1$d items have not been scored, </string>
+    <string name="alertDialog_message_confirm_NoScoreValueCount">"%1$d items have not been scored, "</string>
     <string name="button_text_yes">Yes</string>
     <string name="button_text_no">No</string>
 

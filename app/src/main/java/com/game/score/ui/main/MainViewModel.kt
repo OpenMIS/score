@@ -51,7 +51,7 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
      *
      * 【注意】此处默认必须为空格，否则在初始化时，无法长按进入“设置”页面。
      */
-    val judgeName = MutableLiveData<String>(" ")
+    val judgeName = MutableLiveData<String>("   ")
 
     /**
      * CompetitorInfo 数据模型
