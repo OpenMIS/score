@@ -16,7 +16,10 @@ fun bindRecyclerView(
 ) {
     ExceptionHandlerUtil.usingExceptionHandler {
         val adapter = recyclerView.adapter as ScoreListAdapter
-        adapter.submitList(data) {
+        val filterData = data?.filter {
+            it.ScoreID != "F_Status" //不显示ScoreID=F_Status的数据行。此行ScoreName一般为Validate。
+        }
+        adapter.submitList(filterData) {
             // scroll the list to the top after the diffs are calculated and posted
             recyclerView.scrollToPosition(0)
         }

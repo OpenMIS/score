@@ -9,6 +9,9 @@
     <!-- 场次信息、裁判名（E、M、C） 字体大小 -->
     <dimen name="textView_textSize">30sp</dimen>
 
+    <!-- 在场次信息位置显示确认成绩成功 字体大小 -->
+    <dimen name="textView_validate_success_textSize">35sp</dimen>
+
     <!-- CompetitorName（运动员与队名） 字体大小 -->
     <dimen name="textView_competitorName_small_textSize">25sp</dimen>
     <dimen name="textView_competitorName_big_textSize">30sp</dimen>

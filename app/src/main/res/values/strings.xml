@@ -1,10 +1,21 @@
 <resources>
     <string name="app_name">打分器</string>
 
+    <!-- 确认成绩 begin -->
+    <!-- 确认成绩成功后在 eventAndPhase 位置显示的文本 -->
+    <string name="validate_success_eventAndPhase">休息一下!</string>
+
+    <!-- Toast 提示 -->
+    <string name="validate_success">确认成绩成功</string>
+    <string name="validate_Fail">确认成绩失败：请检查分数是否有错误或空</string>
+    <!-- 确认成绩 end -->
+
+    <!-- alertDialog 相关 begin -->
     <string name="alertDialog_title_confirm">确认</string>
     <string name="alertDialog_message_confirm">是否确认成绩？</string>
     <string name="button_text_yes">是</string>
     <string name="button_text_no">否</string>
+    <!-- alertDialog 相关 end -->
 
     <!-- 按钮上面的文本 begin -->
     <string name="buttonDot" translatable="false">.</string>

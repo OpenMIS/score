@@ -25,7 +25,12 @@ data class ScoreResponse(
         @XmlAttribute
         val CompetitorID: String,
 
-        val Score: MutableList<ScoreClass>
+        /**
+         * 分数列表。
+         *
+         * 可能为空。
+         */
+        val Score: MutableList<ScoreClass>?
     ) {
         @XmlAccessorType(XmlAccessType.FIELD)
         data class ScoreClass(

@@ -93,9 +93,11 @@ dependencies {
     Kotlin – Convert Object to/from XML File (XML String) by Jackson https://grokonez.com/kotlin/kotlin-convert-kotlin-object-xml-file-xml-string-jackson
     Kotlin – Convert Object to/from JSON with Jackson 2.x https://grokonez.com/kotlin/kotlin-convert-object-tofrom-json-jackson-2-x
     */
+    //noinspection GradleDependency
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.4'
-    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.11.0'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.11.1'
 
+    //noinspection GradleDependency
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
     /*
     val send =
@@ -105,9 +107,10 @@ dependencies {
     在安卓模拟器非调试状态正常，在调试状态报错：java.lang.NoClassDefFoundError: Failed resolution of: Ljavax/xml/stream/XMLInputFactory;
     引用包stax-api包可以解决此问题
     */
+    //noinspection GradleDependency
     implementation 'javax.xml.stream:stax-api:1.0-2'
 
     // logback - android
-    implementation 'org.slf4j:slf4j-api:1.7.25'
+    implementation 'org.slf4j:slf4j-api:1.7.30'
     implementation 'com.github.tony19:logback-android:2.0.0'
 }

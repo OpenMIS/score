@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="validate_success_eventAndPhase">Have a break!</string>
+
+    <string name="validate_success">Validate results success</string>
+    <string name="validate_Fail">Failed to validate results: Please check whether the score is wrong or empty</string>
+
     <string name="app_name">Scoring</string>
     <string name="alertDialog_title_confirm">Validate</string>
     <string name="alertDialog_message_confirm">Are you sure to validate result?</string>
