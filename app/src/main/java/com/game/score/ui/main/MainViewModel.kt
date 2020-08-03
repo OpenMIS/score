@@ -103,7 +103,10 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
                 competitorInfo.value = messageModel
                 eventAndPhase_Normal.value = true
                 (messageModel.CompetitorInfo.Event + messageModel.CompetitorInfo.Phase).let {
-                    if (it.isNotBlank()) eventAndPhase.value = it
+                    if (it.isNotBlank() || appCompatActivity != null &&
+                        eventAndPhase.value == appCompatActivity!!.getString(R.string.validate_success_eventAndPhase)
+                    )
+                        eventAndPhase.value = it
                 }
 
                 messageModel.CompetitorInfo.CompetitorName.let {
