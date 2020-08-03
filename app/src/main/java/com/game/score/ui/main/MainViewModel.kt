@@ -35,7 +35,7 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
      *
      * false：表示显示确认成绩成功的提示。
      */
-    val eventAndPhase_Normal = MutableLiveData<Boolean>(true)
+    val eventAndPhase_Normal = MutableLiveData<Boolean>(false)
 
     /**
      * 运动员与队名。
@@ -83,7 +83,7 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
         competitorName.value = null
         competitorInfo.value = null
         currentScoreIndex.value = -1
-        currentScore.value = null
+        currentScore.value = CompetitorInfo.CompetitorInfoClass.ScoreClass.emptyValueInstance
     }
     //endregion
     //endregion
@@ -112,10 +112,6 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
 
                 currentScore.value = messageModel.CompetitorInfo.Score!![0]
                 currentScoreIndex.value = 0
-            } else {
-                currentScore.value =
-                    CompetitorInfo.CompetitorInfoClass.ScoreClass.emptyValueInstance
-                currentScoreIndex.value = -1
             }
             //endregion
 
