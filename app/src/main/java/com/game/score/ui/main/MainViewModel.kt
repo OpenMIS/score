@@ -2,7 +2,6 @@ package com.game.score.ui.main
 
 import android.app.Application
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.game.score.R
@@ -16,9 +15,6 @@ import com.game.score.models.xml.send.CompetitorInfoResponse
 class MainViewModel(application: Application) : IGameMessageHandler, AndroidViewModel(application) {
 
     private var _application: Application = application
-
-    //region 属性
-    var appCompatActivity: AppCompatActivity? = null
 
     /**
      * 分数列表改变
@@ -107,8 +103,8 @@ class MainViewModel(application: Application) : IGameMessageHandler, AndroidView
                 competitorInfo.value = messageModel
                 eventAndPhase_Normal.value = true
                 (messageModel.CompetitorInfo.Event + messageModel.CompetitorInfo.Phase).let {
-                    if (it.isNotBlank() || appCompatActivity != null &&
-                        eventAndPhase.value == appCompatActivity!!.getString(R.string.validate_success_eventAndPhase)
+                    if (it.isNotBlank() ||
+                        eventAndPhase.value == _application.getString(R.string.validate_success_eventAndPhase)
                     )
                         eventAndPhase.value = it
                 }
@@ -176,12 +172,12 @@ class MainViewModel(application: Application) : IGameMessageHandler, AndroidView
                     if (messageModel.CompetitorInfo.Score == null) {//服务端确认成绩成功
                         clearAll() //清除所有信息
                         eventAndPhase_Normal.value = false //表示在eventAndPhase文本框显示“服务端确认成绩成功”相关消息
-                        if (appCompatActivity != null)
-                            eventAndPhase.value =
-                                appCompatActivity!!.getString(R.string.validate_success_eventAndPhase)
+
+                        eventAndPhase.value =
+                            _application.getString(R.string.validate_success_eventAndPhase)
 
                         Toast.makeText(
-                            appCompatActivity,
+                            _application,
                             R.string.validate_success,
                             Toast.LENGTH_SHORT
                         ).show()
@@ -189,7 +185,7 @@ class MainViewModel(application: Application) : IGameMessageHandler, AndroidView
                         validateRowInApp.ScoreValue = "" //清空确认，表示未确认成绩。
 
                         Toast.makeText(
-                            appCompatActivity,
+                            _application,
                             R.string.validate_Fail,
                             Toast.LENGTH_LONG
                         ).show()
