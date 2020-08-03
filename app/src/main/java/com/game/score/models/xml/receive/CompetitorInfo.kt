@@ -53,6 +53,7 @@ data class CompetitorInfo(
          */
         var Score: MutableList<ScoreClass>?
     ) {
+        //region ScoreClass
         @XmlAccessorType(XmlAccessType.FIELD)
         data class ScoreClass(
             /**
@@ -106,5 +107,6 @@ data class CompetitorInfo(
                 val emptyValueInstance = ScoreClass("", "", "", "", "")
             }
         }
+        //endregion
     }
 }

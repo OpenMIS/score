@@ -98,6 +98,8 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
             if (messageModel.CompetitorInfo.Score != null &&
                 messageModel.CompetitorInfo.Score!!.count() > 0
             ) {//服务端发来带分数列表的xml视为需要打分操作
+                //当裁判本场被打分完时，先保存其他场需要的打分
+
                 competitorInfo.value = messageModel
                 eventAndPhase_Normal.value = true
                 (messageModel.CompetitorInfo.Event + messageModel.CompetitorInfo.Phase).let {
@@ -110,8 +112,15 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
 
                 judgeName.value = messageModel.CompetitorInfo.JudgeName
 
-                currentScore.value = messageModel.CompetitorInfo.Score!![0]
-                currentScoreIndex.value = 0
+                var changeIndex = 0
+                if (currentScoreIndex.value != null &&
+                    currentScoreIndex.value!! >= 0 &&
+                    currentScoreIndex.value!! < messageModel.CompetitorInfo.Score!!.count()
+                )
+                    changeIndex = currentScoreIndex.value!!
+
+                currentScore.value = messageModel.CompetitorInfo.Score!![changeIndex]
+                currentScoreIndex.value = changeIndex
             }
             //endregion
 
@@ -171,13 +180,6 @@ class MainViewModel : IGameMessageHandler, ViewModel() {
                         ).show()
                     } else {//服务端确认成绩失败
                         validateRowInApp.ScoreValue = "" //清空确认，表示未确认成绩。
-
-                        // test begin
-                        eventAndPhase_Normal.value = false //表示在eventAndPhase文本框显示“服务端确认成绩成功”相关消息
-                        if (appCompatActivity != null)
-                            eventAndPhase.value =
-                                appCompatActivity!!.getString(R.string.validate_success_eventAndPhase)
-                        // test end
 
                         Toast.makeText(
                             appCompatActivity,

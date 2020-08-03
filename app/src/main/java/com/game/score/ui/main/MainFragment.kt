@@ -185,10 +185,30 @@ class MainFragment : Fragment() {
      */
     private fun validate(button: View) {
 
+        val emptyScoreValueCount = _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.count {
+            !arrayOf(
+                "F_0",
+                "F_Status",
+                "F_TotalScore"
+            ).contains(it.ScoreID) && it.ScoreValue.isBlank()
+        }
+
+        val emptyScoreValueCountString =
+            if (emptyScoreValueCount != null && emptyScoreValueCount > 0)
+                getString(
+                    R.string.alertDialog_message_confirm_NoScoreValueCount,
+                    emptyScoreValueCount
+                )
+            else ""
+
+        val message = emptyScoreValueCountString + getString(
+            R.string.alertDialog_message_confirm
+        )
+
         val builder =
             AlertDialog.Builder(button.context)
                 .setTitle(R.string.alertDialog_title_confirm)
-                .setMessage(R.string.alertDialog_message_confirm)
+                .setMessage(message)
                 .setPositiveButton(R.string.button_text_no, null) //监听下方button点击事件
                 .setNegativeButton(R.string.button_text_yes) { _, _ ->
                     val validateRow = _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.find {

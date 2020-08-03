@@ -8,8 +8,10 @@
     <string name="app_name">Scoring</string>
     <string name="alertDialog_title_confirm">Validate</string>
     <string name="alertDialog_message_confirm">Are you sure to validate result?</string>
+    <string name="alertDialog_message_confirm_NoScoreValueCount">%1$d items have not been scored, </string>
     <string name="button_text_yes">Yes</string>
     <string name="button_text_no">No</string>
+
     <string name="settings_network_server_port">Server Port</string>
     <string name="settings_network_server_host">Server Host</string>
     <string name="settings_network_local_port">Local Port</string>

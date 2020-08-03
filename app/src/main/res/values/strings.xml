@@ -13,6 +13,7 @@
     <!-- alertDialog 相关 begin -->
     <string name="alertDialog_title_confirm">确认</string>
     <string name="alertDialog_message_confirm">是否确认成绩？</string>
+    <string name="alertDialog_message_confirm_NoScoreValueCount">有%1$d项未打分，</string>
     <string name="button_text_yes">是</string>
     <string name="button_text_no">否</string>
     <!-- alertDialog 相关 end -->
