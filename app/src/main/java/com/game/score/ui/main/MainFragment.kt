@@ -159,7 +159,7 @@ class MainFragment : Fragment() {
                     _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.get(
                         nextIndex
                     )
-
+   
                 //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
                 (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
                     nextIndex,

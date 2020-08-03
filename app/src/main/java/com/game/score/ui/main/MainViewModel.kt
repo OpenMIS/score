@@ -1,9 +1,10 @@
 package com.game.score.ui.main
 
+import android.app.Application
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.game.score.R
 import com.game.score.core.IGameMessageHandler
 import com.game.score.core.IGameMessageModel
@@ -12,7 +13,10 @@ import com.game.score.models.xml.receive.CompetitorInfo
 import com.game.score.models.xml.receive.ScoreResponse
 import com.game.score.models.xml.send.CompetitorInfoResponse
 
-class MainViewModel : IGameMessageHandler, ViewModel() {
+class MainViewModel(application: Application) : IGameMessageHandler, AndroidViewModel(application) {
+
+    private var _application: Application = application
+
     //region 属性
     var appCompatActivity: AppCompatActivity? = null
 
