@@ -3,6 +3,8 @@ package com.game.score
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.game.score.core.IGameMessageHandler
 import com.game.score.core.IGameMessageModel
 import com.game.score.core.sendInUI
@@ -36,7 +38,7 @@ object GameMessageHandler : IGameMessageHandler {
                 val remainMustScoredCount = competitorInfo.value?.remainMustScoredCount()
                 if (remainMustScoredCount == null || remainMustScoredCount == 0 ||
                     messageModel.CompetitorInfo.CompetitorID == competitorInfo.value?.CompetitorInfo?.CompetitorID
-                ) { //说明没有正在打分 或者 是 同一个场次里的
+                ) { //说明没有正在打分 或者 是 同一个场次里的运动员或组合
                     eventAndPhase_Normal.value = true
                     (messageModel.CompetitorInfo.Event + messageModel.CompetitorInfo.Phase).let {
                         if (it.isNotBlank() ||
@@ -83,10 +85,13 @@ object GameMessageHandler : IGameMessageHandler {
         with(_mainViewModel) {
             //region ScoreResponse消息处理
             if (competitorInfo.value != null &&
-                competitorInfo.value!!.CompetitorInfo.Score != null &&
-                competitorInfo.value!!.CompetitorInfo.CompetitorID ==
-                messageModel.CompetitorInfo.CompetitorID
-            ) {//同一个运动员 或者 同一组（多人项目）
+                competitorInfo.value!!.CompetitorInfo.Score != null //&& 表示需要打分
+
+            //同一个运动员 或者 同一组（多人项目）
+            //TODO：以后等服务端支持不用等待一个打分慢的裁判时，再把下面条件打开。
+//                competitorInfo.value!!.CompetitorInfo.CompetitorID ==
+//                messageModel.CompetitorInfo.CompetitorID
+            ) {
                 var change = false
                 messageModel.CompetitorInfo.Score?.forEach { score ->
                     competitorInfo.value!!.CompetitorInfo.Score!!.find {
@@ -140,13 +145,33 @@ object GameMessageHandler : IGameMessageHandler {
                             Toast.LENGTH_LONG
                         ).show()
 
-                        val hasError = messageModel.CompetitorInfo.Score.any {
+                        val firstErrorScore = messageModel.CompetitorInfo.Score.find {
                             it.ScoreStatus == ScoreConsts.ScoreStatus_Error
                         }
 
-                        if (hasError)
+                        if (firstErrorScore != null) { //说明分数有错误
                             validateRowInApp.ScoreValue = "" //清空确认，表示未确认成绩。
-                        else {
+
+                            val errorIndex =
+                                competitorInfo.value?.CompetitorInfo?.Score?.indexOfFirst {
+                                    it.ScoreID == firstErrorScore.ScoreID
+                                }
+
+                            if (errorIndex != null) { //找到错误的分数
+                                //region 定位到错误的分数上
+                                val recyclerView =
+                                    _appCompatActivity.findViewById<RecyclerView>(R.id.score_list)
+                                //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
+                                (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
+                                    errorIndex,
+                                    /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
+                                    这样方便看到之前打分与之后要打的分。
+                                    */
+                                    100
+                                )
+                                //endregion
+                            }
+                        } else {
                             //region 提示是否强制跳过打分
                             val remainMustScoredCount =
                                 competitorInfo.value?.remainMustScoredCount()
