@@ -78,4 +78,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         currentScore.value = CompetitorInfo.CompetitorInfoClass.ScoreClass.emptyValueInstance
     }
     //endregion
+
+
 }

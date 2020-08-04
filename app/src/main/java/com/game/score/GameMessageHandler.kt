@@ -31,11 +31,10 @@ object GameMessageHandler : IGameMessageHandler {
      */
     private fun handleCompetitorInfo(messageModel: CompetitorInfo) {
         with(_mainViewModel) {
-            //region CompetitorInfo消息处理
             if (messageModel.CompetitorInfo.Score != null &&
                 messageModel.CompetitorInfo.Score!!.count() > 0
             ) {//服务端发来带分数列表的xml视为需要打分操作
-
+                //region 服务端发来带分数列表的xml视为需要打分操作
                 //TODO：以后等服务端支持不用等待一个打分慢的裁判时，再把下面条件打开。
 //                val remainMustScoredCount = competitorInfo.value?.remainMustScoredCount()
 //                if (remainMustScoredCount == null || remainMustScoredCount == 0 ||
@@ -71,8 +70,12 @@ object GameMessageHandler : IGameMessageHandler {
 //                else {//说明正在打分
 //                    //当裁判本场被打分完时，先保存其他场需要的打分
 //                }
+                //endregion
+            } else if (messageModel.CompetitorInfo.CompetitorID.isBlank()) {//视为 服务端在打分器监控台 点击Break
+                //region 休息一下
+                haveABreak(this) //休息一下
+                //endregion
             }
-            //endregion
 
             //回应收到消息
             CompetitorInfoResponse().sendInUI()
@@ -161,12 +164,7 @@ object GameMessageHandler : IGameMessageHandler {
 
                 if (validateRowInApp != null) {
                     if (messageModel.CompetitorInfo.Score == null) {//服务端确认成绩成功
-                        clearAll() //清除所有信息
-                        eventAndPhase_Normal.value =
-                            false //表示在eventAndPhase文本框显示“服务端确认成绩成功”相关消息
-
-                        eventAndPhase.value =
-                            _appCompatActivity.getString(R.string.validate_success_eventAndPhase)
+                        haveABreak(this) //休息一下
 
                         Toast.makeText(
                             _appCompatActivity,
@@ -267,6 +265,22 @@ object GameMessageHandler : IGameMessageHandler {
                 //endregion
             }
             //endregion
+        }
+    }
+    //endregion
+
+    //region 休息一下
+    /**
+     * 休息一下
+     */
+    private fun haveABreak(viewModel: MainViewModel) {
+        with(viewModel) {
+            clearAll() //清除所有信息
+            eventAndPhase_Normal.value =
+                false //表示在eventAndPhase文本框显示“服务端确认成绩成功”相关消息
+
+            eventAndPhase.value =
+                _appCompatActivity.getString(R.string.validate_success_eventAndPhase)
         }
     }
     //endregion
