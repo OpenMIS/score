@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.game.score.core.ExceptionHandlerUtil
 import com.game.score.core.IGameMessageHandler
 import com.game.score.core.IGameMessageModel
 import com.game.score.core.sendInUI
@@ -119,6 +120,40 @@ object GameMessageHandler : IGameMessageHandler {
                     scoreListChangeListener!!.invoke(this)
                 }
 
+                val firstErrorScore = messageModel.CompetitorInfo.Score?.find {
+                    it.ScoreStatus == ScoreConsts.ScoreStatus_Error
+                }
+
+                //region 分数有错误时，定位到错误的记录上。
+                if (firstErrorScore != null) { //说明分数有错误
+                    val errorIndex =
+                        competitorInfo.value?.CompetitorInfo?.Score?.indexOfFirst {
+                            it.ScoreID == firstErrorScore.ScoreID
+                        }
+
+                    if (errorIndex != null) { //找到错误的分数
+                        currentScoreIndex.value = errorIndex
+                        currentScore.value =
+                            competitorInfo.value!!.CompetitorInfo.Score!![errorIndex]
+
+                        //region 定位到第一条错误的分数上
+                        val recyclerView =
+                            _appCompatActivity.findViewById<RecyclerView>(R.id.score_list)
+                        //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
+                        (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
+                            errorIndex,
+                            /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
+                            这样方便看到之前打分与之后要打的分。
+                            */
+                            100
+                        )
+                        //endregion
+
+                        recyclerView.adapter?.notifyDataSetChanged()
+                    }
+                }
+                //endregion
+
                 //region 确认成绩的回应
                 val validateRowInApp = competitorInfo.value?.CompetitorInfo?.Score?.find {
                     it.ScoreID == ScoreConsts.Attribute_F_Status && it.ScoreValue == ScoreConsts.Status_ScoreValue_Validate
@@ -145,33 +180,9 @@ object GameMessageHandler : IGameMessageHandler {
                             Toast.LENGTH_LONG
                         ).show()
 
-                        val firstErrorScore = messageModel.CompetitorInfo.Score.find {
-                            it.ScoreStatus == ScoreConsts.ScoreStatus_Error
-                        }
-
-                        if (firstErrorScore != null) { //说明分数有错误
+                        if (firstErrorScore != null)  //说明分数有错误
                             validateRowInApp.ScoreValue = "" //清空确认，表示未确认成绩。
-
-                            val errorIndex =
-                                competitorInfo.value?.CompetitorInfo?.Score?.indexOfFirst {
-                                    it.ScoreID == firstErrorScore.ScoreID
-                                }
-
-                            if (errorIndex != null) { //找到错误的分数
-                                //region 定位到第一条错误的分数上
-                                val recyclerView =
-                                    _appCompatActivity.findViewById<RecyclerView>(R.id.score_list)
-                                //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
-                                (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
-                                    errorIndex,
-                                    /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
-                                    这样方便看到之前打分与之后要打的分。
-                                    */
-                                    100
-                                )
-                                //endregion
-                            }
-                        } else {
+                        else {
                             //region 提示是否强制跳过打分
                             val remainMustScoredCount =
                                 competitorInfo.value?.remainMustScoredCount()
@@ -187,39 +198,64 @@ object GameMessageHandler : IGameMessageHandler {
                                 emptyScoreValueCountString + _appCompatActivity.getString(
                                     R.string.alertDialog_message_ForceSkipScoring
                                 )
+                            val recyclerView =
+                                _appCompatActivity.findViewById<RecyclerView>(R.id.score_list)
 
                             val builder =
                                 AlertDialog.Builder(_appCompatActivity)
                                     .setTitle(R.string.alertDialog_title_confirm)
                                     .setMessage(message)
                                     .setPositiveButton(
-                                        R.string.button_text_no,
-                                        null
-                                    )
+                                        R.string.button_text_no
+                                    ) { _, _ ->
+                                        ExceptionHandlerUtil.usingExceptionHandler {
+                                            validateRowInApp.ScoreValue = "" //清空确认，表示未确认成绩。
+                                            //定位到第一条分数为空的记录上，并设置此记录为当前记录。
+                                            Controller.goToFirstEmptyAndSetCurrent(
+                                                this,
+                                                recyclerView
+                                            )
+                                            recyclerView.adapter?.notifyDataSetChanged()
+                                        }
+                                    }
                                     //监听下方button点击事件
                                     .setNegativeButton(R.string.button_text_yes) { _, _ ->
+                                        ExceptionHandlerUtil.usingExceptionHandler {
+                                            //region 再次确认
+                                            val builder2 =
+                                                AlertDialog.Builder(_appCompatActivity)
+                                                    .setTitle(R.string.alertDialog_title_confirmAgain)
+                                                    .setMessage(message)
+                                                    .setPositiveButton(
+                                                        R.string.button_text_no
+                                                    ) { _, _ ->
+                                                        ExceptionHandlerUtil.usingExceptionHandler {
+                                                            validateRowInApp.ScoreValue =
+                                                                "" //清空确认，表示未确认成绩。
+                                                            //定位到第一条分数为空的记录上，并设置此记录为当前记录。
+                                                            Controller.goToFirstEmptyAndSetCurrent(
+                                                                this,
+                                                                recyclerView
+                                                            )
+                                                            recyclerView.adapter?.notifyDataSetChanged()
+                                                        }
+                                                    }
+                                                    //监听下方button点击事件
+                                                    .setNegativeButton(R.string.button_text_yes) { _, _ ->
+                                                        ExceptionHandlerUtil.usingExceptionHandler {
+                                                            clearAll() //清除所有信息
+                                                            eventAndPhase_Normal.value =
+                                                                false //表示在eventAndPhase文本框显示“服务端确认成绩成功”相关消息
 
-                                        //region 再次确认
-                                        val builder2 =
-                                            AlertDialog.Builder(_appCompatActivity)
-                                                .setTitle(R.string.alertDialog_title_confirmAgain)
-                                                .setMessage(message)
-                                                .setPositiveButton(
-                                                    R.string.button_text_no,
-                                                    null
-                                                ) //监听下方button点击事件
-                                                .setNegativeButton(R.string.button_text_yes) { _, _ ->
-                                                    clearAll() //清除所有信息
-                                                    eventAndPhase_Normal.value =
-                                                        false //表示在eventAndPhase文本框显示“服务端确认成绩成功”相关消息
+                                                            eventAndPhase.value =
+                                                                _appCompatActivity.getString(R.string.validate_success_eventAndPhase)
+                                                        }
+                                                    }.setCancelable(true) //设置对话框是可取消的
 
-                                                    eventAndPhase.value =
-                                                        _appCompatActivity.getString(R.string.validate_success_eventAndPhase)
-                                                }.setCancelable(true) //设置对话框是可取消的
-
-                                        val dialog2 = builder2.create()
-                                        dialog2.show()
-                                        //endregion
+                                            val dialog2 = builder2.create()
+                                            dialog2.show()
+                                            //endregion
+                                        }
                                     }.setCancelable(true) //设置对话框是可取消的
 
                             val dialog = builder.create()

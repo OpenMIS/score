@@ -10,6 +10,8 @@ import android.os.IBinder
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.game.score.core.*
 import com.game.score.databinding.ActivityMainBinding
 import com.game.score.models.GameSettings

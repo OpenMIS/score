@@ -205,37 +205,22 @@ class MainFragment : Fragment() {
                 .setTitle(R.string.alertDialog_title_confirmResult)
                 .setMessage(message)
                 .setPositiveButton(R.string.button_text_no) { _, _ ->
-                    //定位到第一条分数为空的记录上，并设置此记录为当前记录。
-                    Controller.goToFirstEmptyAndSetCurrent(_viewModel, recyclerView)
-                    //region 定位到第一条分数为空的记录上，并设置此记录为当前记录。
-                    val index =
-                        _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.indexOfFirst {
-                            it.ScoreValue.isBlank()
-                        }
-
-                    if (index != null) {
-                        _viewModel.currentScoreIndex.value = index
-                        _viewModel.currentScore.value =
-                            _viewModel.competitorInfo.value!!.CompetitorInfo.Score!![index]
-
-                        (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
-                            index,
-                            /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
-                            这样方便看到之前打分与之后要打的分。
-                            */
-                            100
-                        )
+                    ExceptionHandlerUtil.usingExceptionHandler {
+                        //定位到第一条分数为空的记录上，并设置此记录为当前记录。
+                        Controller.goToFirstEmptyAndSetCurrent(_viewModel, recyclerView)
                     }
-                    //endregion
                 }
                 //监听下方button点击事件
                 .setNegativeButton(R.string.button_text_yes) { _, _ ->
-                    val validateRow = _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.find {
-                        it.ScoreID == ScoreConsts.Attribute_F_Status
-                    }
-                    if (validateRow != null) {
-                        validateRow.ScoreValue = ScoreConsts.Status_ScoreValue_Validate //表示确认成绩
-                        sendScoreList() //发送ScoreList分数列表给服务端
+                    ExceptionHandlerUtil.usingExceptionHandler {
+                        val validateRow =
+                            _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.find {
+                                it.ScoreID == ScoreConsts.Attribute_F_Status
+                            }
+                        if (validateRow != null) {
+                            validateRow.ScoreValue = ScoreConsts.Status_ScoreValue_Validate //表示确认成绩
+                            sendScoreList() //发送ScoreList分数列表给服务端
+                        }
                     }
                 }.setCancelable(true) //设置对话框是可取消的
 
