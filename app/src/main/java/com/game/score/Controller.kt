@@ -12,12 +12,17 @@ class Controller {
          */
         fun goToFirstEmptyAndSetCurrent(viewModel: MainViewModel, recyclerView: RecyclerView) {
             //region 定位到第一条分数为空的记录上，并设置此记录为当前记录。
+            //【注意】indexOfFirst如果找不到对应的，会返回-1。
             val index =
                 viewModel.competitorInfo.value?.CompetitorInfo?.Score?.indexOfFirst {
-                    it.ScoreValue.isBlank()
+                    !arrayOf(
+                        ScoreConsts.Attribute_F_0,
+                        ScoreConsts.Attribute_F_Status,
+                        ScoreConsts.Attribute_F_TotalScore
+                    ).contains(it.ScoreID) && it.ScoreValue.isBlank()
                 }
 
-            if (index != null) {
+            if (index != null && index >= 0) {
                 viewModel.currentScoreIndex.value = index
                 viewModel.currentScore.value =
                     viewModel.competitorInfo.value!!.CompetitorInfo.Score!![index]

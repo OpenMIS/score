@@ -129,12 +129,13 @@ object GameMessageHandler : IGameMessageHandler {
 
                 //region 分数有错误时，定位到错误的记录上。
                 if (firstErrorScore != null) { //说明分数有错误
+                    //【注意】indexOfFirst如果找不到对应的，会返回-1。
                     val errorIndex =
                         competitorInfo.value?.CompetitorInfo?.Score?.indexOfFirst {
                             it.ScoreID == firstErrorScore.ScoreID
                         }
 
-                    if (errorIndex != null) { //找到错误的分数
+                    if (errorIndex != null && errorIndex >= 0) { //找到错误的分数
                         currentScoreIndex.value = errorIndex
                         currentScore.value =
                             competitorInfo.value!!.CompetitorInfo.Score!![errorIndex]
