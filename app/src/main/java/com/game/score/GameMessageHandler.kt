@@ -32,32 +32,41 @@ object GameMessageHandler : IGameMessageHandler {
             if (messageModel.CompetitorInfo.Score != null &&
                 messageModel.CompetitorInfo.Score!!.count() > 0
             ) {//服务端发来带分数列表的xml视为需要打分操作
-                //当裁判本场被打分完时，先保存其他场需要的打分
 
-                competitorInfo.value = messageModel
-                eventAndPhase_Normal.value = true
-                (messageModel.CompetitorInfo.Event + messageModel.CompetitorInfo.Phase).let {
-                    if (it.isNotBlank() ||
-                        eventAndPhase.value == _appCompatActivity.getString(R.string.validate_success_eventAndPhase)
+                val remainMustScoredCount = competitorInfo.value?.remainMustScoredCount()
+                if (remainMustScoredCount == null || remainMustScoredCount == 0 ||
+                    messageModel.CompetitorInfo.CompetitorID == competitorInfo.value?.CompetitorInfo?.CompetitorID
+                ) { //说明没有正在打分 或者 是 同一个场次里的
+                    eventAndPhase_Normal.value = true
+                    (messageModel.CompetitorInfo.Event + messageModel.CompetitorInfo.Phase).let {
+                        if (it.isNotBlank() ||
+                            eventAndPhase.value == _appCompatActivity.getString(R.string.validate_success_eventAndPhase)
+                        )
+                            eventAndPhase.value = it
+                    }
+
+                    messageModel.CompetitorInfo.CompetitorName.let {
+                        if (it.isNotBlank()) competitorName.value = it
+                    }
+
+                    judgeName.value = messageModel.CompetitorInfo.JudgeName
+
+                    var changeIndex = 0
+                    if (currentScoreIndex.value != null &&
+                        currentScoreIndex.value!! >= 0 &&
+                        currentScoreIndex.value!! < messageModel.CompetitorInfo.Score!!.count()
                     )
-                        eventAndPhase.value = it
+                        changeIndex = currentScoreIndex.value!!
+
+                    currentScore.value = messageModel.CompetitorInfo.Score!![changeIndex]
+                    currentScoreIndex.value = changeIndex
+
+                    //【注意】必须先设置currentScoreIndex，因为下句会触发分数List绑定。 List绑定时，使用到currentScoreIndex。
+                    competitorInfo.value = messageModel
                 }
-
-                messageModel.CompetitorInfo.CompetitorName.let {
-                    if (it.isNotBlank()) competitorName.value = it
-                }
-
-                judgeName.value = messageModel.CompetitorInfo.JudgeName
-
-                var changeIndex = 0
-                if (currentScoreIndex.value != null &&
-                    currentScoreIndex.value!! >= 0 &&
-                    currentScoreIndex.value!! < messageModel.CompetitorInfo.Score!!.count()
-                )
-                    changeIndex = currentScoreIndex.value!!
-
-                currentScore.value = messageModel.CompetitorInfo.Score!![changeIndex]
-                currentScoreIndex.value = changeIndex
+//                else {//说明正在打分
+//                    //当裁判本场被打分完时，先保存其他场需要的打分
+//                }
             }
             //endregion
 

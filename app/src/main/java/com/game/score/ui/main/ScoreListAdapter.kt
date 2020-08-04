@@ -64,6 +64,22 @@ class ScoreListAdapter(
                     itemScoreScoreValue.error = score.ScoreErrorMessage
                 else itemScoreScoreValue.error = null
 
+                //region 设置颜色
+                //region itemScoreScoreName
+                if (score.ScoreValue.isBlank()) //无分数
+                    itemScoreScoreName.setTextColor(
+                        ContextCompat.getColor(root.context, R.color.colorScoreName_NoScore)
+                    )
+                else //有分数
+                    itemScoreScoreName.setTextColor(
+                        ContextCompat.getColor(
+                            root.context,
+                            R.color.colorScoreName_HasScore
+                        )
+                    )
+                //endregion
+
+                //region itemScoreScoreValue
                 if (score.ScoreStatus == ScoreConsts.ScoreStatus_Done)
                     itemScoreScoreValue.setTextColor(
                         ContextCompat.getColor(root.context, R.color.colorScoreValue_Done)
@@ -74,6 +90,8 @@ class ScoreListAdapter(
                         R.color.colorScoreValue_NonDone
                     )
                 )
+                //endregion
+                //endregion
 
                 root.isSelected = viewModel.currentScoreIndex.value == position
                 // This is important, because it forces the data binding to execute immediately,
