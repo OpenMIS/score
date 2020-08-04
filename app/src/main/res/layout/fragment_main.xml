@@ -301,6 +301,7 @@
             android:background="@android:drawable/editbox_background_normal"
             android:gravity="center_vertical"
             android:text="@{viewModel.competitorName}"
+            android:textColor="@color/colorCompetitorName"
             android:textSize="@{viewModel.competitorName.length() >= Integer.valueOf(@integer/competitorName_name_big_size)?@dimen/textView_competitorName_small_textSize:@dimen/textView_competitorName_big_textSize}"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline10"
@@ -311,15 +312,17 @@
 
         <TextView
             android:id="@+id/textView_judgeName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_margin="3dp"
+            android:gravity="center"
             android:text="@{viewModel.judgeName}"
             android:textSize="@dimen/textView_textSize"
             app:autoSizeTextType="uniform"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView_competitorName"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline90"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
             tools:text="E" />
 
         <TextView

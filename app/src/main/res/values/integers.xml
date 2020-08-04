@@ -3,6 +3,6 @@
     <!-- ScoreName（分数名称） 的长度大于等于此值，则需要使用小号字体。 -->
     <integer name="score_name_big_size">9</integer>
 
-    <!--  CompetitorName（运动员与队名）的长度大于等于此值，则需要使用小号字体。 -->
+    <!-- 【注意】 目前使用自动缩放，此常量将来会被删除掉。 CompetitorName（运动员与队名）的长度大于等于此值，则需要使用小号字体。 -->
     <integer name="competitorName_name_big_size">9</integer>
 </resources>

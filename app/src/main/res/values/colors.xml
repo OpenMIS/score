@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
+    <!-- 运动员（队名） -->
+    <color name="colorCompetitorName">#000000</color>
+
     <!-- 成绩名称 -->
     <color name="colorScoreName">#0000FF</color>
 
