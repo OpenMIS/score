@@ -35,37 +35,38 @@ object GameMessageHandler : IGameMessageHandler {
                 messageModel.CompetitorInfo.Score!!.count() > 0
             ) {//服务端发来带分数列表的xml视为需要打分操作
 
-                val remainMustScoredCount = competitorInfo.value?.remainMustScoredCount()
-                if (remainMustScoredCount == null || remainMustScoredCount == 0 ||
-                    messageModel.CompetitorInfo.CompetitorID == competitorInfo.value?.CompetitorInfo?.CompetitorID
-                ) { //说明没有正在打分 或者 是 同一个场次里的运动员或组合
-                    eventAndPhase_Normal.value = true
-                    (messageModel.CompetitorInfo.Event + messageModel.CompetitorInfo.Phase).let {
-                        if (it.isNotBlank() ||
-                            eventAndPhase.value == _appCompatActivity.getString(R.string.validate_success_eventAndPhase)
-                        )
-                            eventAndPhase.value = it
-                    }
-
-                    messageModel.CompetitorInfo.CompetitorName.let {
-                        if (it.isNotBlank()) competitorName.value = it
-                    }
-
-                    judgeName.value = messageModel.CompetitorInfo.JudgeName
-
-                    var changeIndex = 0
-                    if (currentScoreIndex.value != null &&
-                        currentScoreIndex.value!! >= 0 &&
-                        currentScoreIndex.value!! < messageModel.CompetitorInfo.Score!!.count()
+                //TODO：以后等服务端支持不用等待一个打分慢的裁判时，再把下面条件打开。
+//                val remainMustScoredCount = competitorInfo.value?.remainMustScoredCount()
+//                if (remainMustScoredCount == null || remainMustScoredCount == 0 ||
+//                messageModel.CompetitorInfo.CompetitorID == competitorInfo.value?.CompetitorInfo?.CompetitorID
+//                ) { //说明没有正在打分 或者 是 同一个场次里的运动员或组合
+                eventAndPhase_Normal.value = true
+                (messageModel.CompetitorInfo.Event + messageModel.CompetitorInfo.Phase).let {
+                    if (it.isNotBlank() ||
+                        eventAndPhase.value == _appCompatActivity.getString(R.string.validate_success_eventAndPhase)
                     )
-                        changeIndex = currentScoreIndex.value!!
-
-                    currentScore.value = messageModel.CompetitorInfo.Score!![changeIndex]
-                    currentScoreIndex.value = changeIndex
-
-                    //【注意】必须先设置currentScoreIndex，因为下句会触发分数List绑定。 List绑定时，使用到currentScoreIndex。
-                    competitorInfo.value = messageModel
+                        eventAndPhase.value = it
                 }
+
+                messageModel.CompetitorInfo.CompetitorName.let {
+                    if (it.isNotBlank()) competitorName.value = it
+                }
+
+                judgeName.value = messageModel.CompetitorInfo.JudgeName
+
+                var changeIndex = 0
+                if (currentScoreIndex.value != null &&
+                    currentScoreIndex.value!! >= 0 &&
+                    currentScoreIndex.value!! < messageModel.CompetitorInfo.Score!!.count()
+                )
+                    changeIndex = currentScoreIndex.value!!
+
+                currentScore.value = messageModel.CompetitorInfo.Score!![changeIndex]
+                currentScoreIndex.value = changeIndex
+
+                //【注意】必须先设置currentScoreIndex，因为下句会触发分数List绑定。 List绑定时，使用到currentScoreIndex。
+                competitorInfo.value = messageModel
+//                }
 //                else {//说明正在打分
 //                    //当裁判本场被打分完时，先保存其他场需要的打分
 //                }
@@ -85,12 +86,11 @@ object GameMessageHandler : IGameMessageHandler {
         with(_mainViewModel) {
             //region ScoreResponse消息处理
             if (competitorInfo.value != null &&
-                competitorInfo.value!!.CompetitorInfo.Score != null //&& 表示需要打分
+                competitorInfo.value!!.CompetitorInfo.Score != null && //表示需要打分
 
-            //同一个运动员 或者 同一组（多人项目）
-            //TODO：以后等服务端支持不用等待一个打分慢的裁判时，再把下面条件打开。
-//                competitorInfo.value!!.CompetitorInfo.CompetitorID ==
-//                messageModel.CompetitorInfo.CompetitorID
+                //同一个运动员 或者 同一组（多人项目）
+                competitorInfo.value!!.CompetitorInfo.CompetitorID ==
+                messageModel.CompetitorInfo.CompetitorID
             ) {
                 var change = false
                 messageModel.CompetitorInfo.Score?.forEach { score ->
@@ -158,7 +158,7 @@ object GameMessageHandler : IGameMessageHandler {
                                 }
 
                             if (errorIndex != null) { //找到错误的分数
-                                //region 定位到错误的分数上
+                                //region 定位到第一条错误的分数上
                                 val recyclerView =
                                     _appCompatActivity.findViewById<RecyclerView>(R.id.score_list)
                                 //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
@@ -195,7 +195,8 @@ object GameMessageHandler : IGameMessageHandler {
                                     .setPositiveButton(
                                         R.string.button_text_no,
                                         null
-                                    ) //监听下方button点击事件
+                                    )
+                                    //监听下方button点击事件
                                     .setNegativeButton(R.string.button_text_yes) { _, _ ->
 
                                         //region 再次确认

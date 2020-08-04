@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.game.score.Controller
 import com.game.score.R
 import com.game.score.ScoreConsts
 import com.game.score.core.ExceptionHandlerUtil
@@ -85,7 +86,7 @@ class MainFragment : Fragment() {
                         }
                     }
                     R.id.button_send -> send(recyclerView)
-                    R.id.button_V -> validate(it)
+                    R.id.button_V -> validate(it, recyclerView)
                 }
             }
 
@@ -184,7 +185,7 @@ class MainFragment : Fragment() {
     /**
      * 确认成绩(V)按钮内部调用此方法
      */
-    private fun validate(button: View) {
+    private fun validate(button: View, recyclerView: RecyclerView) {
 
         val remainMustScoredCount = _viewModel.competitorInfo.value?.remainMustScoredCount()
         val emptyScoreValueCountString =
@@ -203,7 +204,31 @@ class MainFragment : Fragment() {
             AlertDialog.Builder(button.context)
                 .setTitle(R.string.alertDialog_title_confirmResult)
                 .setMessage(message)
-                .setPositiveButton(R.string.button_text_no, null) //监听下方button点击事件
+                .setPositiveButton(R.string.button_text_no) { _, _ ->
+                    //定位到第一条分数为空的记录上，并设置此记录为当前记录。
+                    Controller.goToFirstEmptyAndSetCurrent(_viewModel, recyclerView)
+                    //region 定位到第一条分数为空的记录上，并设置此记录为当前记录。
+                    val index =
+                        _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.indexOfFirst {
+                            it.ScoreValue.isBlank()
+                        }
+
+                    if (index != null) {
+                        _viewModel.currentScoreIndex.value = index
+                        _viewModel.currentScore.value =
+                            _viewModel.competitorInfo.value!!.CompetitorInfo.Score!![index]
+
+                        (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
+                            index,
+                            /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
+                            这样方便看到之前打分与之后要打的分。
+                            */
+                            100
+                        )
+                    }
+                    //endregion
+                }
+                //监听下方button点击事件
                 .setNegativeButton(R.string.button_text_yes) { _, _ ->
                     val validateRow = _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.find {
                         it.ScoreID == ScoreConsts.Attribute_F_Status
