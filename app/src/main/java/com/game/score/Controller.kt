@@ -1,7 +1,10 @@
 package com.game.score
 
+import android.content.Context
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.game.score.core.NetworkUtil
 import com.game.score.ui.main.MainViewModel
 
 class Controller {
@@ -36,6 +39,23 @@ class Controller {
                 )
             }
             //endregion
+        }
+        //endregion
+
+        //region 是否有Wifi网络
+        /**
+         * 是否有Wifi网络
+         */
+        fun isWifiNetworkAvailable(context: Context): Boolean {
+            val result = NetworkUtil.isWifiNetworkAvailable(context)
+            if (!result)
+                Toast.makeText(
+                    context,
+                    context.getString(R.string.toast_noWifi),
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            return result
         }
         //endregion
     }

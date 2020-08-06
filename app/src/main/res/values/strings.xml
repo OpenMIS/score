@@ -2,8 +2,8 @@
     <string name="app_name">打分器</string>
 
     <!-- 确认成绩 begin -->
-    <!-- 确认成绩成功后在 eventAndPhase 位置显示的文本 -->
-    <string name="validate_success_eventAndPhase">休息一下!</string>
+    <!-- 确认成绩成功后在 competitorName 位置显示的文本 -->
+    <string name="validate_success_competitorName">休息一下!</string>
 
     <!-- Toast 提示 -->
     <string name="validate_success">确认成绩成功</string>
@@ -62,6 +62,7 @@
 
     <string name="settings_client_id">客户端ID</string>
     <string name="settings_client_id_key" translatable="false">client_id</string>
+    <string name="toast_noWifi">无Wifi网络</string>
     <!-- 客户端 end -->
     <!-- 设置页面 end -->
 </resources>

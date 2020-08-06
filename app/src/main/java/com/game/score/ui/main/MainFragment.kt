@@ -186,6 +186,8 @@ class MainFragment : Fragment() {
      * 确认成绩(V)按钮内部调用此方法
      */
     private fun validate(button: View, recyclerView: RecyclerView) {
+        if (!Controller.isWifiNetworkAvailable(requireContext()))
+            return //无Wifi直接退出本方法
 
         val remainMustScoredCount = _viewModel.competitorInfo.value?.remainMustScoredCount()
         val emptyScoreValueCountString =
@@ -227,8 +229,8 @@ class MainFragment : Fragment() {
         val dialog = builder.create()
         dialog.show()
     }
-    //endregion
-    //endregion
+//endregion
+//endregion
 
     //region 复写方法
     override fun onCreateView(
@@ -274,27 +276,27 @@ class MainFragment : Fragment() {
                 //endregion
                 //val a =
                 if (lifecycleOwner != null)
-                    _viewModel.eventAndPhase_Normal.observe(lifecycleOwner!!, Observer<Boolean> {
+                    _viewModel.competitorName_Normal.observe(lifecycleOwner!!, Observer<Boolean> {
                         if (it) {//普通显示 情况
-                            textViewEventAndPhase.setCompoundDrawablesWithIntrinsicBounds(
+                            textViewCompetitorName.setCompoundDrawablesWithIntrinsicBounds(
                                 0,
                                 0,
                                 0,
                                 0
                             )
 
-                            textViewEventAndPhase.setTextSize(
+                            textViewCompetitorName.setTextSize(
                                 TypedValue.COMPLEX_UNIT_PX,
                                 resources.getDimension(R.dimen.textView_textSize)
                             )
                         } else {//显示成绩确认成功的提示消息 情况
-                            textViewEventAndPhase.setCompoundDrawablesWithIntrinsicBounds(
+                            textViewCompetitorName.setCompoundDrawablesWithIntrinsicBounds(
                                 R.drawable.ic_baseline_sentiment_satisfied_alt_24,
                                 0,
                                 0,
                                 0
                             )
-                            textViewEventAndPhase.setTextSize(
+                            textViewCompetitorName.setTextSize(
                                 TypedValue.COMPLEX_UNIT_PX,
                                 resources.getDimension(R.dimen.textView_validate_success_textSize)
                             )
@@ -305,5 +307,5 @@ class MainFragment : Fragment() {
 
         return _binding.root
     }
-    //endregion
+//endregion
 }

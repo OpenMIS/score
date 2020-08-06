@@ -22,20 +22,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val eventAndPhase = MutableLiveData<String>("")
 
     /**
+     * 运动员与队名。
+     *
+     * 比如：贾海涛(浙江队)
+     */
+    val competitorName = MutableLiveData<String>("")
+
+    /**
      * 是否显示常规数据。
      *
      * true：是
      *
      * false：表示显示确认成绩成功的提示。
      */
-    val eventAndPhase_Normal = MutableLiveData<Boolean>(false)
-
-    /**
-     * 运动员与队名。
-     *
-     * 比如：贾海涛(浙江队)
-     */
-    val competitorName = MutableLiveData<String>("")
+    val competitorName_Normal = MutableLiveData<Boolean>(false)
 
     /**
      * 裁判位置代码。

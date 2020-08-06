@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
+    <!-- 场次与阶段 -->
+    <color name="colorEventAndPhase">#3700B3</color>
+
     <!-- 运动员（队名） -->
     <color name="colorCompetitorName">#000000</color>
 

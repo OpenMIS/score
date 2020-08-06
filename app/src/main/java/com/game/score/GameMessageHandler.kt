@@ -32,24 +32,26 @@ object GameMessageHandler : IGameMessageHandler {
     private fun handleCompetitorInfo(messageModel: CompetitorInfo) {
         with(_mainViewModel) {
             if (messageModel.CompetitorInfo.Score != null &&
-                messageModel.CompetitorInfo.Score!!.count() > 0
-            ) {//服务端发来带分数列表的xml视为需要打分操作
+                messageModel.CompetitorInfo.Score!!.count() > 0 &&
+                //仅在本地没有打分的情况下，才把从服务端收到的分数列表更新到app。
+                competitorInfo.value?.CompetitorInfo?.Score == null
+            ) {//服务端发来带分数列表的xml视为需要打分操作。并且 仅在本地没有打分的情况下，才把从服务端收到的分数列表更新到app。
                 //region 服务端发来带分数列表的xml视为需要打分操作
                 //TODO：以后等服务端支持不用等待一个打分慢的裁判时，再把下面条件打开。
 //                val remainMustScoredCount = competitorInfo.value?.remainMustScoredCount()
 //                if (remainMustScoredCount == null || remainMustScoredCount == 0 ||
 //                messageModel.CompetitorInfo.CompetitorID == competitorInfo.value?.CompetitorInfo?.CompetitorID
 //                ) { //说明没有正在打分 或者 是 同一个场次里的运动员或组合
-                eventAndPhase_Normal.value = true
+                competitorName_Normal.value = true
                 (messageModel.CompetitorInfo.Event + messageModel.CompetitorInfo.Phase).let {
-                    if (it.isNotBlank() ||
-                        eventAndPhase.value == _appCompatActivity.getString(R.string.validate_success_eventAndPhase)
-                    )
-                        eventAndPhase.value = it
+                    if (it.isNotBlank()) eventAndPhase.value = it
                 }
 
                 messageModel.CompetitorInfo.CompetitorName.let {
-                    if (it.isNotBlank()) competitorName.value = it
+                    if (it.isNotBlank() ||
+                        competitorName.value == _appCompatActivity.getString(R.string.validate_success_competitorName)
+                    )
+                        competitorName.value = it
                 }
 
                 judgeName.value = messageModel.CompetitorInfo.JudgeName
@@ -243,11 +245,11 @@ object GameMessageHandler : IGameMessageHandler {
                                                     .setNegativeButton(R.string.button_text_yes) { _, _ ->
                                                         ExceptionHandlerUtil.usingExceptionHandler {
                                                             clearAll() //清除所有信息
-                                                            eventAndPhase_Normal.value =
-                                                                false //表示在eventAndPhase文本框显示“服务端确认成绩成功”相关消息
+                                                            competitorName_Normal.value =
+                                                                false //表示在competitorName文本框显示“服务端确认成绩成功”相关消息
 
-                                                            eventAndPhase.value =
-                                                                _appCompatActivity.getString(R.string.validate_success_eventAndPhase)
+                                                            competitorName.value =
+                                                                _appCompatActivity.getString(R.string.validate_success_competitorName)
                                                         }
                                                     }.setCancelable(true) //设置对话框是可取消的
 
@@ -277,11 +279,11 @@ object GameMessageHandler : IGameMessageHandler {
     private fun haveABreak(viewModel: MainViewModel) {
         with(viewModel) {
             clearAll() //清除所有信息
-            eventAndPhase_Normal.value =
-                false //表示在eventAndPhase文本框显示“服务端确认成绩成功”相关消息
+            competitorName_Normal.value =
+                false //表示在competitorName文本框显示“服务端确认成绩成功”相关消息
 
-            eventAndPhase.value =
-                _appCompatActivity.getString(R.string.validate_success_eventAndPhase)
+            competitorName.value =
+                _appCompatActivity.getString(R.string.validate_success_competitorName)
         }
     }
     //endregion

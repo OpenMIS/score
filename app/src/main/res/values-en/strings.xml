@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="validate_success_eventAndPhase">Have a break!</string>
+    <string name="validate_success_competitorName">Have a break!</string>
 
     <string name="validate_success">Validate results success</string>
     <string name="validate_Fail">Failed to validate results: Please check whether the score is wrong or empty</string>
@@ -24,6 +24,7 @@
     <string name="settings_network_header">Network</string>
     <string name="settings_client_header">Client</string>
     <string name="settings_client_id">Client ID</string>
+    <string name="toast_noWifi">No Wifi network</string>
     <!--    <string name="button_send">Send</string>-->
     <!--    <string name="buttonV">Check\nV</string>-->
 </resources>

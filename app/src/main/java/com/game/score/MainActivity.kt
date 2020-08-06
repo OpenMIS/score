@@ -39,8 +39,17 @@ class MainActivity : AppCompatActivity() {
             //使用数据绑定
             _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        //创建视图模型
-        ViewModelProvider(this)[MainViewModel::class.java]
+            //创建视图模型
+            _mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+            //region MainViewModel默认值
+            if (_mainViewModel.competitorName.value.isNullOrBlank()) {
+                _mainViewModel.competitorName.value =
+                    getString(R.string.validate_success_competitorName)
+                _mainViewModel.competitorName_Normal.value = false
+            }
+            //endregion
+
+            GameMessageHandler.init(this, _mainViewModel)
 
         supportActionBar?.hide() //隐藏头部动作栏
     }
