@@ -37,6 +37,7 @@ class Controller {
                     */
                     100
                 )
+                recyclerView.adapter?.notifyDataSetChanged()
             }
             //endregion
         }

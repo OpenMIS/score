@@ -216,7 +216,6 @@ object GameMessageHandler : IGameMessageHandler {
                                                 this,
                                                 recyclerView
                                             )
-                                            recyclerView.adapter?.notifyDataSetChanged()
                                         }
                                     }
                                     //监听下方button点击事件
@@ -238,7 +237,6 @@ object GameMessageHandler : IGameMessageHandler {
                                                                 this,
                                                                 recyclerView
                                                             )
-                                                            recyclerView.adapter?.notifyDataSetChanged()
                                                         }
                                                     }
                                                     //监听下方button点击事件
