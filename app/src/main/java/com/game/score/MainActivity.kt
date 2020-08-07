@@ -25,6 +25,41 @@ class MainActivity : AppCompatActivity() {
      * 数据绑定
      */
     private lateinit var _binding: ActivityMainBinding
+
+    private lateinit var _mainViewModel: MainViewModel
+
+    //region 与Android 本地服务对接 的字段
+    /**
+     * Android本地服务
+     */
+    private var _gameService: GameService? = null
+
+    /**
+     * 是否已经绑定到Android本地服务
+     */
+    private var _isBoundService = false
+
+    /**
+     * Android本地服务连接
+     */
+    private val _serviceConnection: ServiceConnection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName, service: IBinder) {
+            ExceptionHandlerUtil.usingExceptionHandler {
+                val gameBinder: GameService.GameBinder = service as GameService.GameBinder
+                _gameService = gameBinder.service
+                _isBoundService = true
+
+                MessageDistribute.registerGameMessageHandlerIfNeed(GameMessageHandler)
+                //把消息分发器传给Android本地服务
+                _gameService?.setGameMessageHandler(MessageDistribute.instance)
+            }
+        }
+
+        override fun onServiceDisconnected(name: ComponentName) {
+            _isBoundService = false
+        }
+    }
+    //endregion
     //endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +86,44 @@ class MainActivity : AppCompatActivity() {
 
             GameMessageHandler.init(this, _mainViewModel)
 
-        supportActionBar?.hide() //隐藏头部动作栏
+            supportActionBar?.hide() //隐藏头部动作栏
+
+            //载入设置
+            GameSettingsUtil.loadSettings(this)
+
+            GameUdp.initForUI(this)
+
+            //绑定到Android本地服务
+            val intent = Intent(this, GameService::class.java)
+            bindService(intent, _serviceConnection, Context.BIND_AUTO_CREATE)
+        }
+    }
+
+    /**
+     * Dispatch onResume() to fragments.  Note that for better inter-operation
+     * with older versions of the platform, at the point of this call the
+     * fragments attached to the activity are *not* resumed.
+     */
+    override fun onResume() {
+        super.onResume()
+
+        ExceptionHandlerUtil.usingExceptionHandler {
+            _mainViewModel.currentScoreIndex.value.let { index ->
+                if (index != null && index >= 0 &&
+                    _mainViewModel.competitorInfo.value?.CompetitorInfo?.Score != null &&
+                    index < _mainViewModel.competitorInfo.value!!.CompetitorInfo.Score!!.count()
+                ) {
+                    val recyclerView = findViewById<RecyclerView>(R.id.score_list)
+                    (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
+                        index,
+                        /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
+                        这样方便看到之前打分与之后要打的分。
+                        */
+                        100
+                    )
+                }
+            }
+        }
     }
 
     /**
@@ -74,4 +146,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ExceptionHandlerUtil.usingExceptionHandler {
+            if (_isBoundService) {
+                unbindService(_serviceConnection)
+                _isBoundService = false
+            }
+        }
+    }
+    //endregion
 }
