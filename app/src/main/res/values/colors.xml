@@ -31,8 +31,14 @@
     <!-- 消息文本 - 错误 -->
     <color name="colorMessageError">#FF0000</color>
 
+    <!-- 按钮 begin -->
+    <!-- 上个、下个 按钮 -->
+    <color name="colorPN">#0000CD</color>
+
     <!-- 提交按钮 -->
     <color name="colorSubmit">#FF0000</color>
+
+    <!-- 按钮 begin -->
 
     <!--
     绿豆沙色能有效的减轻长时间用电脑的用眼疲劳！

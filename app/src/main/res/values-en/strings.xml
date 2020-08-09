@@ -18,6 +18,7 @@
     <string name="button_text_no">No</string>
     <!-- alertDialog 相关 end -->
 
+    <!-- 按钮上面的文本 begin -->
     <string name="settings_network_server_port">Server Port</string>
     <string name="settings_network_server_host">Server Host</string>
     <string name="settings_network_local_port">Local Port</string>
@@ -25,6 +26,9 @@
     <string name="settings_client_header">Client</string>
     <string name="settings_client_id">Client ID</string>
     <string name="toast_noWifi">No Wifi network</string>
-    <!--    <string name="button_send">Send</string>-->
-    <!--    <string name="buttonV">Check\nV</string>-->
+    <string name="button_send">Send</string>
+    <string name="buttonP">Prev</string>
+    <string name="buttonN">Next</string>
+    <string name="buttonV">Validate</string>
+    <!-- 按钮上面的文本 begin -->
 </resources>
