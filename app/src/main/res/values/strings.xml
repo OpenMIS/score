@@ -38,8 +38,8 @@
 
     <string name="imageButton_back_contentDescription" translatable="false">Back</string>
     <!--    <string name="buttonX" translatable="false">🔙</string>-->
-    <string name="buttonP">上个</string>
-    <string name="buttonN">下个</string>
+    <string name="buttonP">上一人</string>
+    <string name="buttonN">下一人</string>
     <string name="button_send">发送</string>
     <!--<string name="button_send" translatable="false">S</string>-->
     <!-- 按钮上面的文本 end -->
