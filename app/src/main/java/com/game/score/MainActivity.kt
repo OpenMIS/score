@@ -5,10 +5,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.os.Bundle
-import android.os.Handler
-import android.os.IBinder
-import android.os.Message
+import android.os.*
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -32,20 +29,19 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var _mainViewModel: MainViewModel
 
-    //Looper.getMainLooper()
-    inner class AppOfflineStatusHandler(
-        private val _mainActivity: MainActivity,
-        private val _mainViewModel: MainViewModel
-    ) : Handler() {
+    //region 当离线时更新界面
+    /**
+     * 当离线时更新界面
+     */
+    val appOfflineStatusHandler = object : Handler(Looper.getMainLooper()) {
         /*
      * handleMessage() defines the operations to perform when
      * the Handler receives a new Message to process.
      */
         override fun handleMessage(inputMessage: Message) {//在界面线程处理
             ExceptionHandlerUtil.usingExceptionHandler {
-                with(_mainActivity.findViewById<TextView>(R.id.textView_appStatus)) {
-                    val aa = _mainActivity.getString(R.string.app_status_offline)
-                    _mainViewModel.appStatus.value = aa
+                with(findViewById<TextView>(R.id.textView_appStatus)) {
+                    _mainViewModel.appStatus.value = getString(R.string.app_status_offline)
                     setTextColor(
                         ContextCompat.getColor(
                             context,
@@ -56,8 +52,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    lateinit var handleAppOfflineStatus: Handler
+    //endregion
 
 //region 与Android 本地服务对接 的字段
     /**
@@ -131,8 +126,6 @@ class MainActivity : AppCompatActivity() {
             //绑定到Android本地服务
             val intent = Intent(this, GameService::class.java)
             bindService(intent, _serviceConnection, Context.BIND_AUTO_CREATE)
-
-            handleAppOfflineStatus = AppOfflineStatusHandler(this, _mainViewModel)
         }
     }
 

@@ -115,7 +115,8 @@ dependencies {
     //noinspection GradleDependency
     implementation 'javax.xml.stream:stax-api:1.0-2'
 
-    implementation 'org.apache.commons:commons-lang3:3.6'
+    //noinspection GradleDependency
+    implementation 'org.apache.commons:commons-lang3:3.8.1'
 
     // logback - android
     implementation 'org.slf4j:slf4j-api:1.7.30'

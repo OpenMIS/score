@@ -445,6 +445,7 @@
             android:layout_marginEnd="3dp"
             android:text="@{viewModel.appStatus}"
             android:textColor="@color/colorAppStatus_Offline"
+            tools:text="@string/app_status_offline"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline15"
             app:layout_constraintEnd_toEndOf="parent"

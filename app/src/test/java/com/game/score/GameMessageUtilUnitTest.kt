@@ -22,7 +22,3 @@ class GameMessageUtilUnitTest {
         Assert.assertEquals("CompetitorInfo", testResult)
     }
 }
-
-data class Test2(
-    var MessageType: String
-)

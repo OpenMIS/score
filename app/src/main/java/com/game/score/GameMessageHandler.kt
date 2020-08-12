@@ -21,7 +21,6 @@ import kotlinx.coroutines.launch
 import org.apache.commons.lang3.time.DurationFormatUtils
 import java.util.*
 
-
 /**
  * 竞赛消息处理
  */
@@ -50,14 +49,15 @@ object GameMessageHandler : IGameMessageHandler {
                             )
                                 .toInt() > 7 //7秒钟以上没有收到心跳回应包
                         )
-                            _mainActivity.handleAppOfflineStatus.sendEmptyMessage(0)
+                            _mainActivity.appOfflineStatusHandler.sendEmptyMessage(0)
                     }
                 }
             }
         }
     }
 
-//region 处理CompetitorInfo消息
+    //region 处理消息
+    //region 处理CompetitorInfo消息
     /**
      * 处理CompetitorInfo消息
      */
@@ -115,6 +115,7 @@ object GameMessageHandler : IGameMessageHandler {
             CompetitorInfoResponse().sendInUI()
         }
     }
+    //endregion
 
 //region 处理ScoreResponse消息
     /**
@@ -306,7 +307,7 @@ object GameMessageHandler : IGameMessageHandler {
     /**
      * 处理HeartBeatResponse消息
      */
-    private fun handleHeartBeatResponse(messageModel: HeartBeatResponse) {
+    private fun handleHeartBeatResponse() {
         _lastHeartBeat = Date()
 
         with(_mainActivity.findViewById<TextView>(R.id.textView_appStatus)) {
@@ -315,6 +316,8 @@ object GameMessageHandler : IGameMessageHandler {
         }
     }
 //endregion
+    //endregion
+
 //region 休息一下
     /**
      * 休息一下
@@ -355,7 +358,7 @@ object GameMessageHandler : IGameMessageHandler {
         when (messageModel) {
             is CompetitorInfo -> handleCompetitorInfo(messageModel)
             is ScoreResponse -> handleScoreResponse(messageModel)
-            is HeartBeatResponse -> handleHeartBeatResponse(messageModel)
+            is HeartBeatResponse -> handleHeartBeatResponse()
         }
     }
 //endregion
