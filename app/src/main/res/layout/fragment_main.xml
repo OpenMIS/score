@@ -426,5 +426,29 @@
             app:layout_constraintTop_toTopOf="@+id/guideline9"
             tools:text="发送消息失败" />
 
+        <TextView
+            android:id="@+id/textView_navText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="3dp"
+            android:textColor="@color/colorCompetitorName"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toTopOf="@+id/guideline15"
+            app:layout_constraintEnd_toStartOf="@id/textView_appStatus"
+            app:layout_constraintTop_toTopOf="@+id/guideline9"
+            tools:text="11/35" />
+
+        <TextView
+            android:id="@+id/textView_appStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="3dp"
+            android:text="@{viewModel.appStatus}"
+            android:textColor="@color/colorAppStatus_Offline"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toTopOf="@+id/guideline15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline9" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

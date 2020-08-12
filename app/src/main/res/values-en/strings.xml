@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="validate_success_competitorName">Have a break!</string>
+    <string name="app_status_online">Online</string>
+    <string name="app_status_offline">Offline</string>
 
     <string name="validate_success">Validate results success</string>
     <string name="validate_Fail">Failed to validate results: Please check whether the score is wrong or empty</string>

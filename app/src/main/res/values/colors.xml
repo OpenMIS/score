@@ -4,6 +4,11 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
+    <!-- 状态 begin -->
+    <color name="colorAppStatus_Offline">#FF0000</color>
+    <color name="colorAppStatus_Online">#008000</color>
+    <!-- 状态 end -->
+
     <!-- 场次与阶段 -->
     <color name="colorEventAndPhase">#3700B3</color>
 

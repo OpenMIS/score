@@ -47,6 +47,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val judgeName = MutableLiveData<String>("   ")
 
     /**
+     * App状态。
+     *
+     * 在线/离线
+     */
+    val appStatus = MutableLiveData<String>()
+
+    /**
      * CompetitorInfo 数据模型
      *
      */

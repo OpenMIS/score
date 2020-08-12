@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">打分器</string>
 
+    <string name="app_status_online">在线</string>
+    <string name="app_status_offline">离线</string>
     <!-- 确认成绩 begin -->
     <!-- 确认成绩成功后在 competitorName 位置显示的文本 -->
     <string name="validate_success_competitorName">休息一下!</string>

@@ -9,9 +9,13 @@ import com.game.score.models.GameSettings
 import com.game.score.models.xml.send.HeartBeat
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetAddress
+import java.util.zip.GZIPInputStream
+import java.util.zip.GZIPOutputStream
 import kotlin.concurrent.thread
 
 /**
@@ -105,83 +109,114 @@ class GameUdp(private val _context: ContextWrapper) {
                             if (inPacket.address != serverAddr) {
                                 LogUtil.logger.warn("从未知服务端[{}]收到报文", inPacket.address)
                             } else {
-                                //收到的二进制转字符串
-                                var xmlContent: String? = null
-                                usingExceptionHandler("收到的二进制转字符串时错误") {
-                                    with(inPacket) {
-                                        xmlContent = String(data, 0, length, Charsets.UTF_8)
-                                    }
-                                }
-                                //endregion
-
-                                var messageType: String? = null
-
-                                if (xmlContent != null) {
-                                    //region 消息转换
-                                    usingExceptionHandler(
-                                        """获取消息类型错误。消息内容如下：
-$xmlContent
-""".trimMargin()
-                                    ) {
-                                        messageType = GameMessageUtil.getMessageType(xmlContent!!)
-                                    }
-                                    //endregion
-
-                                    if (messageType != null) {
-                                        var gameMessageModel: IGameMessageModel? = null
-                                        //region 解析消息
-                                        usingExceptionHandler(
-                                            """解析消息时错误。消息内容如下：
-$xmlContent
-""".trimMargin()
-                                        ) {
-                                            with(XmlMappers) {
-                                                val class1 =
-                                                    Class.forName("com.game.score.models.xml.receive.$messageType")
-                                                //动态类型
-                                                gameMessageModel = receive.readValue(
-                                                    xmlContent,
-                                                    class1
-                                                ) as IGameMessageModel
+                                ByteArrayInputStream(
+                                    inPacket.data,
+                                    0,
+                                    inPacket.length
+                                ).use { inStream ->
+                                    ByteArrayOutputStream().use { byteArrayOutputStream ->
+                                        usingExceptionHandler("收到的二进制解压时错误") {
+                                            GZIPInputStream(inStream).use {
+                                                it.copyTo(byteArrayOutputStream)
                                             }
-                                        }
-                                        //endregion
+                                            val bytes = byteArrayOutputStream.toByteArray()
 
-                                        if (gameMessageModel != null) {
-                                            //region 发送广播
-                                            GlobalScope.launch {
-                                                usingExceptionHandler("从服务端收到信息，转发UDP广播错误。") {
-                                                    val broadcastAddressString =
-                                                        getBroadcastAddress(network_server_host)
-                                                    val broadcastAddress =
-                                                        InetAddress.getByName(broadcastAddressString)
-                                                    with(inPacket) {
-                                                        val datagramPacket2 = DatagramPacket(
-                                                            data,
-                                                            0,
-                                                            length,
-                                                            broadcastAddress,
-                                                            broadcastPort
-                                                        )
-                                                        _sendBroadcastSocket.send(datagramPacket2)
-                                                    }
-                                                }
+                                            //region 解压后的二进制转字符串时错误
+                                            var xmlContent: String? = null
+                                            usingExceptionHandler("解压后的二进制转字符串时错误") {
+                                                xmlContent =
+                                                    String(
+                                                        bytes,
+                                                        0,
+                                                        bytes.count(),
+                                                        Charsets.UTF_8
+                                                    )
                                             }
                                             //endregion
 
-                                            if (_context.gameMessageHandler != null)
-                                            //region 处理消息
+                                            var messageType: String? = null
+
+                                            if (xmlContent != null) {
+                                                //region 消息转换
                                                 usingExceptionHandler(
-                                                    """处理消息时错误。消息内容如下：
+                                                    """获取消息类型错误。消息内容如下：
 $xmlContent
 """.trimMargin()
                                                 ) {
-                                                    _context.gameMessageHandler!!.handle(
-                                                        gameMessageModel!!
-                                                    )
+                                                    messageType =
+                                                        GameMessageUtil.getMessageType(
+                                                            xmlContent!!
+                                                        )
                                                 }
-                                            //endregion
-                                            else _context.messages.push(gameMessageModel)
+                                                //endregion
+
+                                                if (messageType != null) {
+                                                    var gameMessageModel: IGameMessageModel? =
+                                                        null
+                                                    //region 解析消息
+                                                    usingExceptionHandler(
+                                                        """解析消息时错误。消息内容如下：
+$xmlContent
+""".trimMargin()
+                                                    ) {
+                                                        with(XmlMappers) {
+                                                            val class1 =
+                                                                Class.forName("com.game.score.models.xml.receive.$messageType")
+                                                            //动态类型
+                                                            gameMessageModel =
+                                                                receive.readValue(
+                                                                    xmlContent,
+                                                                    class1
+                                                                ) as IGameMessageModel
+                                                        }
+                                                    }
+                                                    //endregion
+
+                                                    if (gameMessageModel != null) {
+                                                        //region 发送广播
+                                                        GlobalScope.launch {
+                                                            usingExceptionHandler("从服务端收到信息，转发UDP广播错误。") {
+                                                                val broadcastAddressString =
+                                                                    getBroadcastAddress(
+                                                                        network_server_host
+                                                                    )
+                                                                val broadcastAddress =
+                                                                    InetAddress.getByName(
+                                                                        broadcastAddressString
+                                                                    )
+                                                                val datagramPacket2 =
+                                                                    DatagramPacket(
+                                                                        bytes,
+                                                                        0,
+                                                                        bytes.count(),
+                                                                        broadcastAddress,
+                                                                        broadcastPort
+                                                                    )
+                                                                _sendBroadcastSocket.send(
+                                                                    datagramPacket2
+                                                                )
+                                                            }
+                                                        }
+                                                        //endregion
+
+                                                        if (_context.gameMessageHandler != null)
+                                                        //region 处理消息
+                                                            usingExceptionHandler(
+                                                                """处理消息时错误。消息内容如下：
+$xmlContent
+""".trimMargin()
+                                                            ) {
+                                                                _context.gameMessageHandler!!.handle(
+                                                                    gameMessageModel!!
+                                                                )
+                                                            }
+                                                        //endregion
+                                                        else _context.messages.push(
+                                                            gameMessageModel
+                                                        )
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -241,48 +276,70 @@ $xmlContent
             with(GameSettings.current!!) {
                 gameSendMessageModel.JudgeID = client_id
                 val xmlContent = XmlMappers.send.writeValueAsString(gameSendMessageModel)
-                val bytes = xmlContent.toByteArray(Charsets.UTF_8)
+                val bytesOriginal = xmlContent.toByteArray(Charsets.UTF_8)
                 val serverAddr = InetAddress.getByName(network_server_host)
 
-                val datagramPacket = DatagramPacket(
-                    bytes,
-                    0,
-                    bytes.count(),
-                    serverAddr,
-                    network_server_port
-                )
+                ByteArrayInputStream(bytesOriginal).use { inStream ->
+                    ByteArrayOutputStream().use { byteArrayOutputStream ->
+                        //region 资料
+                        /*
+Document\经验分享\技术\移动设备\移动开发\安卓\android开发-经验.txt
+21、TCP/IP
+UDP:
+【已知问题】
+	1）android 发送 udp 使用Deflate压缩，.net收到时少1个字节，无法解压。
+	使用gzip压缩，.net收到字节个数正确，解压正确。
+                         */
+                        //endregion
+                        GZIPOutputStream(byteArrayOutputStream).use {
+                            inStream.copyTo(it)
+                        }
 
-                //region 资料
-                /*
-Document\经验分享\技术\移动设备\移动开发\安卓\Android体系-经验.txt
-24、从SDK3.0开始，google不再允许网络请求（HTTP、Socket）等相关操作直接在主线程中
-Android 异常 android.os.NetworkOnMainThreadException https://blog.csdn.net/a78270528/article/details/47131683
-【Android开发那点破事】解决android.os.NetworkOnMainThreadException https://blog.csdn.net/huxiweng/article/details/19908679
-啰嗦一下android中的NetworkOnMainThreadException https://droidyue.com/blog/2014/11/08/look-into-android-dot-os-dot-networkonmainthreadexception/
-                */
-                //endregion
-                GlobalScope.launch {
-                    usingExceptionHandler("发送UDP消息错误") {
-                        datagramSocket.send(datagramPacket)
-                    }
-                }
+                        val bytes = byteArrayOutputStream.toByteArray()
 
-                //region 发送广播
-                GlobalScope.launch {
-                    usingExceptionHandler("发送UDP广播错误") {
-                        val broadcastAddressString = getBroadcastAddress(network_server_host)
-                        val broadcastAddress = InetAddress.getByName(broadcastAddressString)
-                        val datagramPacket2 = DatagramPacket(
+                        val datagramPacket = DatagramPacket(
                             bytes,
                             0,
                             bytes.count(),
-                            broadcastAddress,
-                            broadcastPort
+                            serverAddr,
+                            network_server_port
                         )
-                        datagramSocketForBroadcast.send(datagramPacket2)
+
+                        //region 资料
+                        /*
+        Document\经验分享\技术\移动设备\移动开发\安卓\Android体系-经验.txt
+        24、从SDK3.0开始，google不再允许网络请求（HTTP、Socket）等相关操作直接在主线程中
+        Android 异常 android.os.NetworkOnMainThreadException https://blog.csdn.net/a78270528/article/details/47131683
+        【Android开发那点破事】解决android.os.NetworkOnMainThreadException https://blog.csdn.net/huxiweng/article/details/19908679
+        啰嗦一下android中的NetworkOnMainThreadException https://droidyue.com/blog/2014/11/08/look-into-android-dot-os-dot-networkonmainthreadexception/
+                        */
+                        //endregion
+                        GlobalScope.launch {
+                            usingExceptionHandler("发送UDP消息错误") {
+                                datagramSocket.send(datagramPacket)
+                            }
+                        }
+
+                        //region 发送广播
+                        GlobalScope.launch {
+                            usingExceptionHandler("发送UDP广播错误") {
+                                val broadcastAddressString =
+                                    getBroadcastAddress(network_server_host)
+                                val broadcastAddress =
+                                    InetAddress.getByName(broadcastAddressString)
+                                val datagramPacket2 = DatagramPacket(
+                                    bytes,
+                                    0,
+                                    bytes.count(),
+                                    broadcastAddress,
+                                    broadcastPort
+                                )
+                                datagramSocketForBroadcast.send(datagramPacket2)
+                            }
+                        }
+                        //endregion
                     }
                 }
-                //endregion
             }
         }
         //endregion

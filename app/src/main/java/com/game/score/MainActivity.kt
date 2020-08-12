@@ -6,8 +6,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
+import android.os.Handler
 import android.os.IBinder
+import android.os.Message
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,7 +32,34 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var _mainViewModel: MainViewModel
 
-    //region 与Android 本地服务对接 的字段
+    //Looper.getMainLooper()
+    inner class AppOfflineStatusHandler(
+        private val _mainActivity: MainActivity,
+        private val _mainViewModel: MainViewModel
+    ) : Handler() {
+        /*
+     * handleMessage() defines the operations to perform when
+     * the Handler receives a new Message to process.
+     */
+        override fun handleMessage(inputMessage: Message) {//在界面线程处理
+            ExceptionHandlerUtil.usingExceptionHandler {
+                with(_mainActivity.findViewById<TextView>(R.id.textView_appStatus)) {
+                    val aa = _mainActivity.getString(R.string.app_status_offline)
+                    _mainViewModel.appStatus.value = aa
+                    setTextColor(
+                        ContextCompat.getColor(
+                            context,
+                            R.color.colorAppStatus_Offline
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    lateinit var handleAppOfflineStatus: Handler
+
+//region 与Android 本地服务对接 的字段
     /**
      * Android本地服务
      */
@@ -59,8 +90,8 @@ class MainActivity : AppCompatActivity() {
             _isBoundService = false
         }
     }
-    //endregion
-    //endregion
+//endregion
+//endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +113,10 @@ class MainActivity : AppCompatActivity() {
                     getString(R.string.validate_success_competitorName)
                 _mainViewModel.competitorName_Normal.value = false
             }
+
+            if (_mainViewModel.appStatus.value.isNullOrBlank()) {
+                _mainViewModel.appStatus.value = getString(R.string.app_status_offline)
+            }
             //endregion
 
             GameMessageHandler.init(this, _mainViewModel)
@@ -96,6 +131,8 @@ class MainActivity : AppCompatActivity() {
             //绑定到Android本地服务
             val intent = Intent(this, GameService::class.java)
             bindService(intent, _serviceConnection, Context.BIND_AUTO_CREATE)
+
+            handleAppOfflineStatus = AppOfflineStatusHandler(this, _mainViewModel)
         }
     }
 
@@ -156,5 +193,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    //endregion
+//endregion
 }

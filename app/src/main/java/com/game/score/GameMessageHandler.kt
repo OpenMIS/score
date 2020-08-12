@@ -1,8 +1,9 @@
 package com.game.score
 
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.core.ExceptionHandlerUtil
@@ -10,22 +11,53 @@ import com.game.score.core.IGameMessageHandler
 import com.game.score.core.IGameMessageModel
 import com.game.score.core.sendInUI
 import com.game.score.models.xml.receive.CompetitorInfo
+import com.game.score.models.xml.receive.HeartBeatResponse
 import com.game.score.models.xml.receive.ScoreResponse
 import com.game.score.models.xml.send.CompetitorInfoResponse
 import com.game.score.ui.main.MainViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.apache.commons.lang3.time.DurationFormatUtils
+import java.util.*
+
 
 /**
  * 竞赛消息处理
  */
 object GameMessageHandler : IGameMessageHandler {
-
     //region 字段
-    private lateinit var _appCompatActivity: AppCompatActivity
+    private lateinit var _mainActivity: MainActivity
     private lateinit var _mainViewModel: MainViewModel
-    //endregion
+    private var _lastHeartBeat: Date? = null
+    private var _startStatusCheck = false
+//endregion
 
     //region 工具集
-    //region 处理CompetitorInfo消息
+    private fun startStatusCheckIfNeed() {
+        if (!_startStatusCheck) {
+            _startStatusCheck = true
+
+            GlobalScope.launch {
+                while (true) {
+                    delay(3000L)
+                    ExceptionHandlerUtil.usingExceptionHandler {
+                        if (_lastHeartBeat == null ||
+                            DurationFormatUtils.formatPeriod(
+                                _lastHeartBeat!!.time,
+                                Date().time,
+                                "s"
+                            )
+                                .toInt() > 7 //7秒钟以上没有收到心跳回应包
+                        )
+                            _mainActivity.handleAppOfflineStatus.sendEmptyMessage(0)
+                    }
+                }
+            }
+        }
+    }
+
+//region 处理CompetitorInfo消息
     /**
      * 处理CompetitorInfo消息
      */
@@ -49,7 +81,7 @@ object GameMessageHandler : IGameMessageHandler {
 
                 messageModel.CompetitorInfo.CompetitorName.let {
                     if (it.isNotBlank() ||
-                        competitorName.value == _appCompatActivity.getString(R.string.validate_success_competitorName)
+                        competitorName.value == _mainActivity.getString(R.string.validate_success_competitorName)
                     )
                         competitorName.value = it
                 }
@@ -84,7 +116,7 @@ object GameMessageHandler : IGameMessageHandler {
         }
     }
 
-    //region 处理ScoreResponse消息
+//region 处理ScoreResponse消息
     /**
      * 处理ScoreResponse消息
      */
@@ -144,7 +176,7 @@ object GameMessageHandler : IGameMessageHandler {
 
                         //region 定位到第一条错误的分数上
                         val recyclerView =
-                            _appCompatActivity.findViewById<RecyclerView>(R.id.score_list)
+                            _mainActivity.findViewById<RecyclerView>(R.id.score_list)
                         //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
                         (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
                             errorIndex,
@@ -170,13 +202,13 @@ object GameMessageHandler : IGameMessageHandler {
                         haveABreak(this) //休息一下
 
                         Toast.makeText(
-                            _appCompatActivity,
+                            _mainActivity,
                             R.string.validate_success,
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {//服务端确认成绩失败
                         Toast.makeText(
-                            _appCompatActivity,
+                            _mainActivity,
                             R.string.validate_Fail,
                             Toast.LENGTH_LONG
                         ).show()
@@ -189,21 +221,21 @@ object GameMessageHandler : IGameMessageHandler {
                                 competitorInfo.value?.remainMustScoredCount()
                             val emptyScoreValueCountString =
                                 if (remainMustScoredCount != null && remainMustScoredCount > 0)
-                                    _appCompatActivity.getString(
+                                    _mainActivity.getString(
                                         R.string.alertDialog_message_confirm_NoScoreValueCount,
                                         remainMustScoredCount
                                     )
                                 else ""
 
                             val message =
-                                emptyScoreValueCountString + _appCompatActivity.getString(
+                                emptyScoreValueCountString + _mainActivity.getString(
                                     R.string.alertDialog_message_ForceSkipScoring
                                 )
                             val recyclerView =
-                                _appCompatActivity.findViewById<RecyclerView>(R.id.score_list)
+                                _mainActivity.findViewById<RecyclerView>(R.id.score_list)
 
                             val builder =
-                                AlertDialog.Builder(_appCompatActivity)
+                                AlertDialog.Builder(_mainActivity)
                                     .setTitle(R.string.alertDialog_title_confirm)
                                     .setMessage(message)
                                     .setPositiveButton(
@@ -223,7 +255,7 @@ object GameMessageHandler : IGameMessageHandler {
                                         ExceptionHandlerUtil.usingExceptionHandler {
                                             //region 再次确认
                                             val builder2 =
-                                                AlertDialog.Builder(_appCompatActivity)
+                                                AlertDialog.Builder(_mainActivity)
                                                     .setTitle(R.string.alertDialog_title_confirmAgain)
                                                     .setMessage(message)
                                                     .setPositiveButton(
@@ -247,7 +279,7 @@ object GameMessageHandler : IGameMessageHandler {
                                                                 false //表示在competitorName文本框显示“服务端确认成绩成功”相关消息
 
                                                             competitorName.value =
-                                                                _appCompatActivity.getString(R.string.validate_success_competitorName)
+                                                                _mainActivity.getString(R.string.validate_success_competitorName)
                                                         }
                                                     }.setCancelable(true) //设置对话框是可取消的
 
@@ -268,9 +300,22 @@ object GameMessageHandler : IGameMessageHandler {
             //endregion
         }
     }
-    //endregion
+//endregion
 
-    //region 休息一下
+//region 处理HeartBeatResponse消息
+    /**
+     * 处理HeartBeatResponse消息
+     */
+    private fun handleHeartBeatResponse(messageModel: HeartBeatResponse) {
+        _lastHeartBeat = Date()
+
+        with(_mainActivity.findViewById<TextView>(R.id.textView_appStatus)) {
+            _mainViewModel.appStatus.value = _mainActivity.getString(R.string.app_status_online)
+            setTextColor(ContextCompat.getColor(_mainActivity, R.color.colorAppStatus_Online))
+        }
+    }
+//endregion
+//region 休息一下
     /**
      * 休息一下
      */
@@ -281,26 +326,28 @@ object GameMessageHandler : IGameMessageHandler {
                 false //表示在competitorName文本框显示“服务端确认成绩成功”相关消息
 
             competitorName.value =
-                _appCompatActivity.getString(R.string.validate_success_competitorName)
+                _mainActivity.getString(R.string.validate_success_competitorName)
         }
     }
-    //endregion
-    //endregion
+//endregion
+//endregion
 
-    //region 初始化
+//region 初始化
     /**
      * 初始化
      */
     fun init(
-        appCompatActivity: AppCompatActivity,
+        appCompatActivity: MainActivity,
         mainViewModel: MainViewModel
     ) {
-        _appCompatActivity = appCompatActivity
+        _mainActivity = appCompatActivity
         _mainViewModel = mainViewModel
-    }
-    //endregion
 
-    //region 处理消息
+        startStatusCheckIfNeed()
+    }
+//endregion
+
+//region 处理消息
     /**
      * 处理消息
      */
@@ -308,7 +355,8 @@ object GameMessageHandler : IGameMessageHandler {
         when (messageModel) {
             is CompetitorInfo -> handleCompetitorInfo(messageModel)
             is ScoreResponse -> handleScoreResponse(messageModel)
+            is HeartBeatResponse -> handleHeartBeatResponse(messageModel)
         }
     }
-    //endregion
+//endregion
 }
