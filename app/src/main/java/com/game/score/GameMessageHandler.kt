@@ -65,6 +65,8 @@ object GameMessageHandler : IGameMessageHandler {
         with(_mainViewModel) {
             if (messageModel.CompetitorInfo.Score != null &&
                 messageModel.CompetitorInfo.Score!!.count() > 0 &&
+                !messageModel.CompetitorInfo.Event.isBlank() &&
+                !messageModel.CompetitorInfo.CompetitorName.isBlank() &&
                 //仅在本地没有打分的情况下，才把从服务端收到的分数列表更新到app。
                 competitorInfo.value?.CompetitorInfo?.Score == null
             ) {//服务端发来带分数列表的xml视为需要打分操作。并且 仅在本地没有打分的情况下，才把从服务端收到的分数列表更新到app。
