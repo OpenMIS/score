@@ -1,0 +1,694 @@
+<Body MessageType="CompetitorInfoAll">
+    <CompetitorInfo CompetitorID="2-4958-2" CompetitorName="1 贾海涛(浙江队)" Event="" JudgeName="C"
+        Phase="">
+        <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_2" ScoreName="2 快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_3" ScoreName="3 肩向内（右）" ScoreStatus="Done"
+            ScoreValue="1" />
+        <Score ScoreErrorMessage="" ScoreID="F_4" ScoreName="4 8米圆（右）" ScoreStatus="Done"
+            ScoreValue="2" />
+        <Score ScoreErrorMessage="" ScoreID="F_5" ScoreName="5 斜横步（右）(2)" ScoreStatus="Done"
+            ScoreValue="8" />
+        <Score ScoreErrorMessage="" ScoreID="F_6" ScoreName="6 立定后退5步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_7" ScoreName="7 斜横步（左）(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_8" ScoreName="8 8米圆（左）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_9" ScoreName="9 肩向内（左）" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_10" ScoreName="10 中间快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_11" ScoreName="11 缩短慢步(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_12" ScoreName="12 伸长慢步(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_13" ScoreName="13 慢步跑步快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_14" ScoreName="14 3个斜横步(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_15" ScoreName="15 伸长跑步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_16" ScoreName="16 空中变脚缩短跑步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_17" ScoreName="17 5个3步一换" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_18" ScoreName="18 后肢旋转（左）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_19" ScoreName="19 空中变脚" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_20" ScoreName="20 后肢旋转（右）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_21" ScoreName="21 空中变脚" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_22" ScoreName="22 7个2步一换" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_23" ScoreName="23 伸长快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_24" ScoreName="24 过渡" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_25" ScoreName="25 立定敬礼" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_26" ScoreName="26 步法" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_27" ScoreName="27 推进" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_28" ScoreName="28 顺从(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_29" ScoreName="29 骑坐(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_0" ScoreName="Penalty"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_Status" ScoreName="Validate" ScoreStatus=""
+            ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
+            ScoreValue="229" />
+    </CompetitorInfo>
+    <CompetitorInfo CompetitorID="2-4966-2" CompetitorName="2 包哈斯图力古尔(江苏队)" Event="" JudgeName="C"
+        Phase="" />
+    <CompetitorInfo CompetitorID="2-4961-2" CompetitorName="3 王超(北京队)" Event="" JudgeName="C"
+        Phase="">
+        <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_2" ScoreName="2 快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_3" ScoreName="3 肩向内（右）" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_4" ScoreName="4 8米圆（右）" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_5" ScoreName="5 斜横步（右）(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_6" ScoreName="6 立定后退5步" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_7" ScoreName="7 斜横步（左）(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_8" ScoreName="8 8米圆（左）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_9" ScoreName="9 肩向内（左）" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_10" ScoreName="10 中间快步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_11" ScoreName="11 缩短慢步(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_12" ScoreName="12 伸长慢步(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_13" ScoreName="13 慢步跑步快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_14" ScoreName="14 3个斜横步(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_15" ScoreName="15 伸长跑步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_16" ScoreName="16 空中变脚缩短跑步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_17" ScoreName="17 5个3步一换" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_18" ScoreName="18 后肢旋转（左）(2)" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_19" ScoreName="19 空中变脚" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_20" ScoreName="20 后肢旋转（右）(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_21" ScoreName="21 空中变脚" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_22" ScoreName="22 7个2步一换" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_23" ScoreName="23 伸长快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_24" ScoreName="24 过渡" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_25" ScoreName="25 立定敬礼" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_26" ScoreName="26 步法" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_27" ScoreName="27 推进" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_28" ScoreName="28 顺从(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_29" ScoreName="29 骑坐(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_0" ScoreName="Penalty"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_Status" ScoreName="Validate" ScoreStatus=""
+            ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
+            ScoreValue="228" />
+    </CompetitorInfo>
+    <CompetitorInfo CompetitorID="2-4973-2" CompetitorName="4 和兵兵(江苏队)" Event="" JudgeName="C"
+        Phase="">
+        <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_2" ScoreName="2 快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_3" ScoreName="3 肩向内（右）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_4" ScoreName="4 8米圆（右）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_5" ScoreName="5 斜横步（右）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_6" ScoreName="6 立定后退5步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_7" ScoreName="7 斜横步（左）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_8" ScoreName="8 8米圆（左）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_9" ScoreName="9 肩向内（左）" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_10" ScoreName="10 中间快步" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_11" ScoreName="11 缩短慢步(2)" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_12" ScoreName="12 伸长慢步(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_13" ScoreName="13 慢步跑步快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_14" ScoreName="14 3个斜横步(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_15" ScoreName="15 伸长跑步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_16" ScoreName="16 空中变脚缩短跑步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_17" ScoreName="17 5个3步一换" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_18" ScoreName="18 后肢旋转（左）(2)" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_19" ScoreName="19 空中变脚" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_20" ScoreName="20 后肢旋转（右）(2)" ScoreStatus="Done"
+            ScoreValue="3" />
+        <Score ScoreErrorMessage="" ScoreID="F_21" ScoreName="21 空中变脚" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_22" ScoreName="22 7个2步一换" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_23" ScoreName="23 伸长快步" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_24" ScoreName="24 过渡" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_25" ScoreName="25 立定敬礼" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_26" ScoreName="26 步法" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_27" ScoreName="27 推进" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_28" ScoreName="28 顺从(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_29" ScoreName="29 骑坐(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_0" ScoreName="Penalty"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_Status" ScoreName="Validate" ScoreStatus=""
+            ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
+            ScoreValue="221" />
+    </CompetitorInfo>
+    <CompetitorInfo CompetitorID="2-4967-2" CompetitorName="5 李兵(北京队)" Event="" JudgeName="C"
+        Phase="" />
+    <CompetitorInfo CompetitorID="2-4963-2" CompetitorName="6 柯艳霞(四川队)" Event="" JudgeName="C"
+        Phase="" />
+    <CompetitorInfo CompetitorID="2-4960-2" CompetitorName="7 支忠信(浙江队)" Event="" JudgeName="C"
+        Phase="" />
+    <CompetitorInfo CompetitorID="2-4962-2" CompetitorName="8 张红钊(新疆队)" Event="" JudgeName="C"
+        Phase="" />
+    <CompetitorInfo CompetitorID="2-4970-2" CompetitorName="9 海米提·地力木热提(新疆队)" Event="" JudgeName="C"
+        Phase="">
+        <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_2" ScoreName="2 快步" ScoreStatus=""
+            ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_3" ScoreName="3 肩向内（右）"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_4" ScoreName="4 8米圆（右）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_5" ScoreName="5 斜横步（右）(2)"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_6" ScoreName="6 立定后退5步"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_7" ScoreName="7 斜横步（左）(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_8" ScoreName="8 8米圆（左）" ScoreStatus="Done"
+            ScoreValue="2" />
+        <Score ScoreErrorMessage="" ScoreID="F_9" ScoreName="9 肩向内（左）" ScoreStatus="Done"
+            ScoreValue="1" />
+        <Score ScoreErrorMessage="" ScoreID="F_10" ScoreName="10 中间快步" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_11" ScoreName="11 缩短慢步(2)" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_12" ScoreName="12 伸长慢步(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_13" ScoreName="13 慢步跑步快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_14" ScoreName="14 3个斜横步(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_15" ScoreName="15 伸长跑步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_16" ScoreName="16 空中变脚缩短跑步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_17" ScoreName="17 5个3步一换" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_18" ScoreName="18 后肢旋转（左）(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_19" ScoreName="19 空中变脚" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_20" ScoreName="20 后肢旋转（右）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_21" ScoreName="21 空中变脚" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_22" ScoreName="22 7个2步一换" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_23" ScoreName="23 伸长快步" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_24" ScoreName="24 过渡" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_25" ScoreName="25 立定敬礼" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_26" ScoreName="26 步法" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_27" ScoreName="27 推进" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_28" ScoreName="28 顺从(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_29" ScoreName="29 骑坐(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_0" ScoreName="Penalty"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_Status" ScoreName="Validate" ScoreStatus=""
+            ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
+            ScoreValue="193" />
+    </CompetitorInfo>
+    <CompetitorInfo CompetitorID="2-4975-2" CompetitorName="10 王越陇(北京队)" Event="" JudgeName="C"
+        Phase="" />
+    <CompetitorInfo CompetitorID="2-4964-2" CompetitorName="11 谭志勤(广东队)" Event="" JudgeName="C"
+        Phase="" />
+    <CompetitorInfo CompetitorID="2-4974-2" CompetitorName="12 张立军(浙江队)" Event="" JudgeName="C"
+        Phase="">
+        <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_2" ScoreName="2 快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_3" ScoreName="3 肩向内（右）" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_4" ScoreName="4 8米圆（右）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_5" ScoreName="5 斜横步（右）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_6" ScoreName="6 立定后退5步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_7" ScoreName="7 斜横步（左）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_8" ScoreName="8 8米圆（左）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_9" ScoreName="9 肩向内（左）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_10" ScoreName="10 中间快步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_11" ScoreName="11 缩短慢步(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_12" ScoreName="12 伸长慢步(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_13" ScoreName="13 慢步跑步快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_14" ScoreName="14 3个斜横步(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_15" ScoreName="15 伸长跑步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_16" ScoreName="16 空中变脚缩短跑步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_17" ScoreName="17 5个3步一换" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_18" ScoreName="18 后肢旋转（左）(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_19" ScoreName="19 空中变脚" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_20" ScoreName="20 后肢旋转（右）(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_21" ScoreName="21 空中变脚" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_22" ScoreName="22 7个2步一换" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_23" ScoreName="23 伸长快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_24" ScoreName="24 过渡" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_25" ScoreName="25 立定敬礼" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_26" ScoreName="26 步法" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_27" ScoreName="27 推进" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_28" ScoreName="28 顺从(2)" ScoreStatus="Done"
+            ScoreValue="1" />
+        <Score ScoreErrorMessage="" ScoreID="F_29" ScoreName="29 骑坐(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_0" ScoreName="Penalty"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_Status" ScoreName="Validate" ScoreStatus=""
+            ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
+            ScoreValue="227" />
+    </CompetitorInfo>
+    <CompetitorInfo CompetitorID="2-4959-2" CompetitorName="13 黄丽兴(广东队)" Event="" JudgeName="C"
+        Phase="">
+        <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"
+            ScoreValue="9" />
+        <Score ScoreErrorMessage="" ScoreID="F_2" ScoreName="2 快步" ScoreStatus="Done"
+            ScoreValue="8" />
+        <Score ScoreErrorMessage="" ScoreID="F_3" ScoreName="3 肩向内（右）" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_4" ScoreName="4 8米圆（右）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_5" ScoreName="5 斜横步（右）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_6" ScoreName="6 立定后退5步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_7" ScoreName="7 斜横步（左）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_8" ScoreName="8 8米圆（左）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_9" ScoreName="9 肩向内（左）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_10" ScoreName="10 中间快步" ScoreStatus="Done"
+            ScoreValue="1" />
+        <Score ScoreErrorMessage="" ScoreID="F_11" ScoreName="11 缩短慢步(2)" ScoreStatus="Done"
+            ScoreValue="1" />
+        <Score ScoreErrorMessage="" ScoreID="F_12" ScoreName="12 伸长慢步(2)" ScoreStatus="Done"
+            ScoreValue="1" />
+        <Score ScoreErrorMessage="" ScoreID="F_13" ScoreName="13 慢步跑步快步" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_14" ScoreName="14 3个斜横步(2)" ScoreStatus="Done"
+            ScoreValue="2" />
+        <Score ScoreErrorMessage="" ScoreID="F_15" ScoreName="15 伸长跑步" ScoreStatus="Done"
+            ScoreValue="3" />
+        <Score ScoreErrorMessage="" ScoreID="F_16" ScoreName="16 空中变脚缩短跑步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_17" ScoreName="17 5个3步一换" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_18" ScoreName="18 后肢旋转（左）(2)" ScoreStatus="Done"
+            ScoreValue="3" />
+        <Score ScoreErrorMessage="" ScoreID="F_19" ScoreName="19 空中变脚" ScoreStatus="Done"
+            ScoreValue="3" />
+        <Score ScoreErrorMessage="" ScoreID="F_20" ScoreName="20 后肢旋转（右）(2)" ScoreStatus="Done"
+            ScoreValue="3" />
+        <Score ScoreErrorMessage="" ScoreID="F_21" ScoreName="21 空中变脚" ScoreStatus="Done"
+            ScoreValue="2" />
+        <Score ScoreErrorMessage="" ScoreID="F_22" ScoreName="22 7个2步一换" ScoreStatus="Done"
+            ScoreValue="2" />
+        <Score ScoreErrorMessage="" ScoreID="F_23" ScoreName="23 伸长快步" ScoreStatus="Done"
+            ScoreValue="1" />
+        <Score ScoreErrorMessage="" ScoreID="F_24" ScoreName="24 过渡" ScoreStatus="Done"
+            ScoreValue="3" />
+        <Score ScoreErrorMessage="" ScoreID="F_25" ScoreName="25 立定敬礼" ScoreStatus="Done"
+            ScoreValue="3" />
+        <Score ScoreErrorMessage="" ScoreID="F_26" ScoreName="26 步法" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_27" ScoreName="27 推进" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_28" ScoreName="28 顺从(2)" ScoreStatus="Done"
+            ScoreValue="4" />
+        <Score ScoreErrorMessage="" ScoreID="F_29" ScoreName="29 骑坐(2)" ScoreStatus="Done"
+            ScoreValue="3" />
+        <Score ScoreErrorMessage="" ScoreID="F_0" ScoreName="Penalty" ScoreStatus="Done"
+            ScoreValue="3" />
+        <Score ScoreErrorMessage="" ScoreID="F_Status" ScoreName="Validate" ScoreStatus=""
+            ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
+            ScoreValue="152" />
+    </CompetitorInfo>
+    <CompetitorInfo CompetitorID="2-4980-2" CompetitorName="14 贾海涛(浙江队)" Event="" JudgeName="C"
+        Phase="" />
+    <CompetitorInfo CompetitorID="2-4965-2" CompetitorName="15 格日勒(浙江队)" Event="" JudgeName="C"
+        Phase="" />
+    <CompetitorInfo CompetitorID="2-4976-2" CompetitorName="16 刘丽娜(新疆队)" Event="" JudgeName="C"
+        Phase="">
+        <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_2" ScoreName="2 快步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_3" ScoreName="3 肩向内（右）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_4" ScoreName="4 8米圆（右）" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_5" ScoreName="5 斜横步（右）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_6" ScoreName="6 立定后退5步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_7" ScoreName="7 斜横步（左）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_8" ScoreName="8 8米圆（左）" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_9" ScoreName="9 肩向内（左）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_10" ScoreName="10 中间快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_11" ScoreName="11 缩短慢步(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_12" ScoreName="12 伸长慢步(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_13" ScoreName="13 慢步跑步快步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_14" ScoreName="14 3个斜横步(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_15" ScoreName="15 伸长跑步" ScoreStatus="Done"
+            ScoreValue="8" />
+        <Score ScoreErrorMessage="" ScoreID="F_16" ScoreName="16 空中变脚缩短跑步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_17" ScoreName="17 5个3步一换" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_18" ScoreName="18 后肢旋转（左）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_19" ScoreName="19 空中变脚" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_20" ScoreName="20 后肢旋转（右）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_21" ScoreName="21 空中变脚" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_22" ScoreName="22 7个2步一换" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_23" ScoreName="23 伸长快步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_24" ScoreName="24 过渡" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_25" ScoreName="25 立定敬礼" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_26" ScoreName="26 步法" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_27" ScoreName="27 推进" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_28" ScoreName="28 顺从(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_29" ScoreName="29 骑坐(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_0" ScoreName="Penalty"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_Status" ScoreName="Validate" ScoreStatus=""
+            ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
+            ScoreValue="262" />
+    </CompetitorInfo>
+    <CompetitorInfo CompetitorID="2-4983-2" CompetitorName="17 刘涛(新疆队)" Event="" JudgeName="C"
+        Phase="">
+        <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_2" ScoreName="2 快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_3" ScoreName="3 肩向内（右）" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_4" ScoreName="4 8米圆（右）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_5" ScoreName="5 斜横步（右）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_6" ScoreName="6 立定后退5步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_7" ScoreName="7 斜横步（左）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_8" ScoreName="8 8米圆（左）" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_9" ScoreName="9 肩向内（左）" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_10" ScoreName="10 中间快步" ScoreStatus="Done"
+            ScoreValue="8" />
+        <Score ScoreErrorMessage="" ScoreID="F_11" ScoreName="11 缩短慢步(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_12" ScoreName="12 伸长慢步(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_13" ScoreName="13 慢步跑步快步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_14" ScoreName="14 3个斜横步(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_15" ScoreName="15 伸长跑步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_16" ScoreName="16 空中变脚缩短跑步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_17" ScoreName="17 5个3步一换" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_18" ScoreName="18 后肢旋转（左）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_19" ScoreName="19 空中变脚" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_20" ScoreName="20 后肢旋转（右）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_21" ScoreName="21 空中变脚" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_22" ScoreName="22 7个2步一换" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_23" ScoreName="23 伸长快步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_24" ScoreName="24 过渡" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_25" ScoreName="25 立定敬礼" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_26" ScoreName="26 步法" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_27" ScoreName="27 推进" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_28" ScoreName="28 顺从(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_29" ScoreName="29 骑坐(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_0" ScoreName="Penalty"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_Status" ScoreName="Validate" ScoreStatus=""
+            ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
+            ScoreValue="263" />
+    </CompetitorInfo>
+    <CompetitorInfo CompetitorID="2-4979-2" CompetitorName="18 黄焯钦(广东队)" Event="" JudgeName="C"
+        Phase="">
+        <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_2" ScoreName="2 快步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_3" ScoreName="3 肩向内（右）"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_4" ScoreName="4 8米圆（右）" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_5" ScoreName="5 斜横步（右）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_6" ScoreName="6 立定后退5步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_7" ScoreName="7 斜横步（左）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_8" ScoreName="8 8米圆（左）" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_9" ScoreName="9 肩向内（左）" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_10" ScoreName="10 中间快步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_11" ScoreName="11 缩短慢步(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_12" ScoreName="12 伸长慢步(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_13" ScoreName="13 慢步跑步快步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_14" ScoreName="14 3个斜横步(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_15" ScoreName="15 伸长跑步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_16" ScoreName="16 空中变脚缩短跑步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_17" ScoreName="17 5个3步一换" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_18" ScoreName="18 后肢旋转（左）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_19" ScoreName="19 空中变脚" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_20" ScoreName="20 后肢旋转（右）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_21" ScoreName="21 空中变脚" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_22" ScoreName="22 7个2步一换" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_23" ScoreName="23 伸长快步" ScoreStatus="Done"
+            ScoreValue="8" />
+        <Score ScoreErrorMessage="" ScoreID="F_24" ScoreName="24 过渡" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_25" ScoreName="25 立定敬礼" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_26" ScoreName="26 步法" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_27" ScoreName="27 推进" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_28" ScoreName="28 顺从(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_29" ScoreName="29 骑坐(2)"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_0" ScoreName="Penalty"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_Status" ScoreName="Validate" ScoreStatus=""
+            ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
+            ScoreValue="242" />
+    </CompetitorInfo>
+    <CompetitorInfo CompetitorID="2-4968-2" CompetitorName="19 兰超(新疆队)" Event="" JudgeName="C"
+        Phase="">
+        <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_2" ScoreName="2 快步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_3" ScoreName="3 肩向内（右）" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_4" ScoreName="4 8米圆（右）" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_5" ScoreName="5 斜横步（右）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_6" ScoreName="6 立定后退5步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_7" ScoreName="7 斜横步（左）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_8" ScoreName="8 8米圆（左）" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_9" ScoreName="9 肩向内（左）" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_10" ScoreName="10 中间快步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_11" ScoreName="11 缩短慢步(2)" ScoreStatus="Done"
+            ScoreValue="5" />
+        <Score ScoreErrorMessage="" ScoreID="F_12" ScoreName="12 伸长慢步(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_13" ScoreName="13 慢步跑步快步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_14" ScoreName="14 3个斜横步(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_15" ScoreName="15 伸长跑步" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_16" ScoreName="16 空中变脚缩短跑步" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_17" ScoreName="17 5个3步一换" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_18" ScoreName="18 后肢旋转（左）(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_19" ScoreName="19 空中变脚" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_20" ScoreName="20 后肢旋转（右）(2)" ScoreStatus="Done"
+            ScoreValue="6" />
+        <Score ScoreErrorMessage="" ScoreID="F_21" ScoreName="21 空中变脚" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_22" ScoreName="22 7个2步一换" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_23" ScoreName="23 伸长快步" ScoreStatus="Done"
+            ScoreValue="8" />
+        <Score ScoreErrorMessage="" ScoreID="F_24" ScoreName="24 过渡" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_25" ScoreName="25 立定敬礼" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_26" ScoreName="26 步法" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_27" ScoreName="27 推进" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_28" ScoreName="28 顺从(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="" ScoreID="F_29" ScoreName="29 骑坐(2)" ScoreStatus="Done"
+            ScoreValue="7" />
+        <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_0" ScoreName="Penalty"
+            ScoreStatus="" ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_Status" ScoreName="Validate" ScoreStatus=""
+            ScoreValue="" />
+        <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
+            ScoreValue="254" />
+    </CompetitorInfo>
+    <CompetitorInfo CompetitorID="2-4972-2" CompetitorName="20 顾兵(广东队)" Event="" JudgeName="C"
+        Phase="" />
+    <CompetitorInfo CompetitorID="2-4982-2" CompetitorName="20 米尔扎提·吐尔洪(新疆队)" Event="" JudgeName="C"
+        Phase="" />
+</Body>

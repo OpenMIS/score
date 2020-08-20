@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Body MessageType="CompetitorInfo">
-    <CompetitorInfo CompetitorID="2-4982-2" CompetitorName="米尔扎提·吐尔洪(新疆队)" Event="盛装舞步个人赛预赛"
+    <CompetitorInfo CompetitorID="2-4982-2" CompetitorName="1.米尔扎提·吐尔洪(新疆队)" Event="盛装舞步个人赛预赛"
         JudgeName="C" Phase="">
         <Score ScoreErrorMessage="Please Enter Score" ScoreID="F_1" ScoreName="1 立定敬礼"
             ScoreStatus="" ScoreValue="" />
