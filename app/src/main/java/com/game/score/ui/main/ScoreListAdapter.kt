@@ -11,6 +11,7 @@ import com.game.score.ScoreConsts
 import com.game.score.core.ExceptionHandlerUtil
 import com.game.score.databinding.FragmentScoreItemBinding
 import com.game.score.models.xml.receive.CompetitorInfo
+import com.game.score.models.xml.receive.CompetitorInfoAll
 
 /**
  * [RecyclerView.Adapter] that can display a [CompetitorInfo.CompetitorInfoClass.Score].
@@ -18,21 +19,21 @@ import com.game.score.models.xml.receive.CompetitorInfo
 class ScoreListAdapter(
     private val _viewModel: MainViewModel,
     private val _clickListener: ScoreItemClickListener
-) : ListAdapter<CompetitorInfo.CompetitorInfoClass.ScoreClass, ScoreListAdapter.ViewHolder>(
+) : ListAdapter<CompetitorInfoAll.CompetitorInfoClass.ScoreClass, ScoreListAdapter.ViewHolder>(
     DiffCallback
 ) {
     companion object DiffCallback :
-        DiffUtil.ItemCallback<CompetitorInfo.CompetitorInfoClass.ScoreClass>() {
+        DiffUtil.ItemCallback<CompetitorInfoAll.CompetitorInfoClass.ScoreClass>() {
         override fun areItemsTheSame(
-            oldItem: CompetitorInfo.CompetitorInfoClass.ScoreClass,
-            newItem: CompetitorInfo.CompetitorInfoClass.ScoreClass
+            oldItem: CompetitorInfoAll.CompetitorInfoClass.ScoreClass,
+            newItem: CompetitorInfoAll.CompetitorInfoClass.ScoreClass
         ): Boolean {
             return oldItem.ScoreID == newItem.ScoreID
         }
 
         override fun areContentsTheSame(
-            oldItem: CompetitorInfo.CompetitorInfoClass.ScoreClass,
-            newItem: CompetitorInfo.CompetitorInfoClass.ScoreClass
+            oldItem: CompetitorInfoAll.CompetitorInfoClass.ScoreClass,
+            newItem: CompetitorInfoAll.CompetitorInfoClass.ScoreClass
         ): Boolean {
             return oldItem == newItem
         }
@@ -53,7 +54,7 @@ class ScoreListAdapter(
         fun bind(
             viewModel: MainViewModel,
             listener: ScoreItemClickListener,
-            score: CompetitorInfo.CompetitorInfoClass.ScoreClass,
+            score: CompetitorInfoAll.CompetitorInfoClass.ScoreClass,
             position: Int
         ) {
             with(_binding) {
@@ -110,8 +111,8 @@ class ScoreListAdapter(
     }
 }
 
-class ScoreItemClickListener(val clickListener: (score: CompetitorInfo.CompetitorInfoClass.ScoreClass, position: Int) -> Unit) {
-    fun onClick(score: CompetitorInfo.CompetitorInfoClass.ScoreClass, position: Int) {
+class ScoreItemClickListener(val clickListener: (score: CompetitorInfoAll.CompetitorInfoClass.ScoreClass, position: Int) -> Unit) {
+    fun onClick(score: CompetitorInfoAll.CompetitorInfoClass.ScoreClass, position: Int) {
         ExceptionHandlerUtil.usingExceptionHandler {
             clickListener(score, position)
         }

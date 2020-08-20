@@ -10,12 +10,14 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.core.*
 import com.game.score.databinding.ActivityMainBinding
 import com.game.score.models.GameSettings
+import com.game.score.models.xml.receive.CompetitorInfoAll
 import com.game.score.ui.main.MainViewModel
 
 
@@ -31,30 +33,44 @@ class MainActivity : AppCompatActivity() {
 
     //region 当离线时更新界面
     /**
-     * 当离线时更新界面
+     * 更新界面。
+     *
+     * 当离线时，what传1。
+     *
+     * 当从SD卡载入xml时，obj传CompetitorInfoAll的实例。
      */
-    val appOfflineStatusHandler = object : Handler(Looper.getMainLooper()) {
-        /*
-     * handleMessage() defines the operations to perform when
-     * the Handler receives a new Message to process.
-     */
+    val handler = object : Handler(Looper.getMainLooper()) {
         override fun handleMessage(inputMessage: Message) {//在界面线程处理
             ExceptionHandlerUtil.usingExceptionHandler {
-                with(findViewById<TextView>(R.id.textView_appStatus)) {
-                    _mainViewModel.appStatus.value = getString(R.string.app_status_offline)
-                    setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            R.color.colorAppStatus_Offline
+                if (inputMessage.what == 1) {
+                    with(findViewById<TextView>(R.id.textView_appStatus)) {
+                        _mainViewModel.appStatus.value = getString(R.string.app_status_offline)
+                        setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.colorAppStatus_Offline
+                            )
                         )
-                    )
+                    }
+                } else {
+                    if (inputMessage.obj is CompetitorInfoAll) {
+                        _mainViewModel.competitorInfoAll.value =
+                            inputMessage.obj as CompetitorInfoAll
+                        Controller.updateMainUI(
+                            CompetitorInfoAllManager.MainViewModel!!,
+                            CompetitorInfoAllManager.MainActivity!!
+                        )
+
+                        //根据CurrentScoreIndex设置分数列表的位置
+                        gotoByCurrentScoreIndex()
+                    }
                 }
             }
         }
     }
     //endregion
 
-//region 与Android 本地服务对接 的字段
+    //region 与Android 本地服务对接 的字段
     /**
      * Android本地服务
      */
@@ -85,8 +101,35 @@ class MainActivity : AppCompatActivity() {
             _isBoundService = false
         }
     }
-//endregion
-//endregion
+    //endregion
+    //endregion
+
+    //region 工具集
+    //region 根据CurrentScoreIndex设置分数列表的位置
+    /**
+     * 根据CurrentScoreIndex设置分数列表的位置
+     */
+    private fun gotoByCurrentScoreIndex() {
+        _mainViewModel.currentScoreIndex.value.let { index ->
+            if (index != null && index >= 0 &&
+                _mainViewModel.currentCompetitorInfo.value?.Score != null &&
+                index < _mainViewModel.currentCompetitorInfo.value!!.Score!!.count()
+            ) {
+                val recyclerView = findViewById<RecyclerView>(R.id.score_list)
+
+                (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
+                    index,
+                    /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
+                        这样方便看到之前打分与之后要打的分。
+                        */
+                    100
+                )
+            }
+        }
+    }
+
+    //endregion
+    //endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,6 +157,20 @@ class MainActivity : AppCompatActivity() {
             }
             //endregion
 
+            //region 监听index变化
+            _mainViewModel.currentCompetitorInfoIndex.observe(this, Observer<Int> {
+                GameSettingsUtil.setCurrentCompetitorInfoIndexAsync(this, it)
+            })
+
+            _mainViewModel.currentScoreIndex.observe(this, Observer<Int> {
+                GameSettingsUtil.setCurrentScoreIndexAsync(this, it)
+            })
+
+            _mainViewModel.haveABreak.observe(this, Observer<Boolean> {
+                GameSettingsUtil.setHaveABreakAsync(this, it)
+            })
+            //endregion
+
             GameMessageHandler.init(this, _mainViewModel)
 
             supportActionBar?.hide() //隐藏头部动作栏
@@ -123,6 +180,8 @@ class MainActivity : AppCompatActivity() {
 
             GameUdp.initForUI(this)
             CompetitorInfoAllManager.MainActivity = this
+            CompetitorInfoAllManager.MainViewModel = _mainViewModel
+            CompetitorInfoAllManager.loadIfNeedAsync(handler)
 
             //绑定到Android本地服务
             val intent = Intent(this, GameService::class.java)
@@ -139,21 +198,8 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 
         ExceptionHandlerUtil.usingExceptionHandler {
-            _mainViewModel.currentScoreIndex.value.let { index ->
-                if (index != null && index >= 0 &&
-                    _mainViewModel.competitorInfo.value?.CompetitorInfo?.Score != null &&
-                    index < _mainViewModel.competitorInfo.value!!.CompetitorInfo.Score!!.count()
-                ) {
-                    val recyclerView = findViewById<RecyclerView>(R.id.score_list)
-                    (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
-                        index,
-                        /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
-                        这样方便看到之前打分与之后要打的分。
-                        */
-                        100
-                    )
-                }
-            }
+            //根据CurrentScoreIndex设置分数列表的位置
+            gotoByCurrentScoreIndex()
         }
     }
 

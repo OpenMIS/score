@@ -3,7 +3,7 @@ package com.game.score
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.core.ExceptionHandlerUtil
-import com.game.score.models.xml.receive.CompetitorInfo
+import com.game.score.models.xml.receive.CompetitorInfoAll
 import com.game.score.ui.main.ScoreListAdapter
 
 /**
@@ -12,7 +12,7 @@ import com.game.score.ui.main.ScoreListAdapter
 @BindingAdapter("listData")
 fun bindRecyclerView(
     recyclerView: RecyclerView,
-    data: List<CompetitorInfo.CompetitorInfoClass.ScoreClass>?
+    data: List<CompetitorInfoAll.CompetitorInfoClass.ScoreClass>?
 ) {
     ExceptionHandlerUtil.usingExceptionHandler {
         val adapter = recyclerView.adapter as ScoreListAdapter

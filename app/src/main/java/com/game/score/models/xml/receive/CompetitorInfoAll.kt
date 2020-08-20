@@ -14,7 +14,7 @@ data class CompetitorInfoAll(
     @XmlAttribute
     override val MessageType: String,
 
-    var CompetitorInfo: MutableList<CompetitorInfoClass>?
+    var CompetitorInfo: MutableList<CompetitorInfoClass>
 ) : IGameMessageModel {
     @XmlAccessorType(XmlAccessType.FIELD)
     data class CompetitorInfoClass(
@@ -22,16 +22,16 @@ data class CompetitorInfoAll(
          * 比如：盛装舞步个人赛资格赛
          */
         @XmlAttribute
-        val Event: String,
+        var Event: String,
 
         /**
          * 可能空字符串
          */
         @XmlAttribute
-        val Phase: String,
+        var Phase: String,
 
         @XmlAttribute
-        val CompetitorName: String,
+        var CompetitorName: String,
 
         /**
          * 【注意】此处含字符，所以使用字符串。
@@ -45,7 +45,7 @@ data class CompetitorInfoAll(
          * 马术比如：E、M、C
          */
         @XmlAttribute
-        val JudgeName: String,
+        var JudgeName: String,
 
         /**
          * 分数列表。
@@ -75,7 +75,7 @@ data class CompetitorInfoAll(
              * 比如：1 立定敬礼
              */
             @XmlAttribute
-            val ScoreName: String,
+            var ScoreName: String,
 
             /**
              * 得分。

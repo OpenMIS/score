@@ -12,13 +12,13 @@ import com.game.score.models.xml.receive.CompetitorInfo
 import com.game.score.models.xml.receive.CompetitorInfoAll
 import com.game.score.models.xml.receive.HeartBeatResponse
 import com.game.score.models.xml.receive.ScoreResponse
+import com.game.score.models.xml.send.CompetitorInfoAllResponse
 import com.game.score.models.xml.send.CompetitorInfoResponse
 import com.game.score.ui.main.MainViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.apache.commons.lang3.time.DurationFormatUtils
-import java.io.File
 import java.util.*
 
 /**
@@ -49,7 +49,7 @@ object GameMessageHandler : IGameMessageHandler {
                             )
                                 .toInt() > 7 //7秒钟以上没有收到心跳回应包
                         )
-                            _mainActivity.appOfflineStatusHandler.sendEmptyMessage(0)
+                            _mainActivity.handler.sendEmptyMessage(1)
                     }
                 }
             }
@@ -63,25 +63,11 @@ object GameMessageHandler : IGameMessageHandler {
      */
     @SuppressLint("SdCardPath")
     private fun handleCompetitorInfoAll(messageModel: CompetitorInfoAll) {
+        //把收到的CompetitorInfoAll消息更新到视图模型与SD卡里的CompetitorInfoAll.xml
+        CompetitorInfoAllManager.update(messageModel)
 
-        val filePath =
-            String.format(
-                "/sdcard/Android/data/%s/%s.xml",
-                _mainActivity.packageName, messageModel.javaClass.simpleName
-            )
-        val file = File(filePath)
-
-
-        val xmlContent: String
-        if (file.exists()) {
-            xmlContent = file.readText(Charsets.UTF_8)
-        } else {
-            //for
-            xmlContent = XmlMappers.send.writeValueAsString(messageModel)
-            file.writeText(xmlContent, Charsets.UTF_8)
-        }
-
-        //messageModel
+        //回应收到消息
+        CompetitorInfoAllResponse().sendInUI()
     }
     //endregion
 
@@ -91,54 +77,13 @@ object GameMessageHandler : IGameMessageHandler {
      */
     private fun handleCompetitorInfo(messageModel: CompetitorInfo) {
         with(_mainViewModel) {
-            if (messageModel.CompetitorInfo.Score != null &&
-                messageModel.CompetitorInfo.Score!!.count() > 0 &&
-                !messageModel.CompetitorInfo.Event.isBlank() &&
-                !messageModel.CompetitorInfo.CompetitorName.isBlank() &&
-                //仅在本地没有打分的情况下，才把从服务端收到的分数列表更新到app。
-                competitorInfo.value?.CompetitorInfo?.Score == null
-            ) {//服务端发来带分数列表的xml视为需要打分操作。并且 仅在本地没有打分的情况下，才把从服务端收到的分数列表更新到app。
-                //region 服务端发来带分数列表的xml视为需要打分操作
-                //TODO：以后等服务端支持不用等待一个打分慢的裁判时，再把下面条件打开。
-//                val remainMustScoredCount = competitorInfo.value?.remainMustScoredCount()
-//                if (remainMustScoredCount == null || remainMustScoredCount == 0 ||
-//                messageModel.CompetitorInfo.CompetitorID == competitorInfo.value?.CompetitorInfo?.CompetitorID
-//                ) { //说明没有正在打分 或者 是 同一个场次里的运动员或组合
-                competitorName_Normal.value = true
-                (messageModel.CompetitorInfo.Event + messageModel.CompetitorInfo.Phase).let {
-                    if (it.isNotBlank()) eventAndPhase.value = it
-                }
-
-                messageModel.CompetitorInfo.CompetitorName.let {
-                    if (it.isNotBlank() ||
-                        competitorName.value == _mainActivity.getString(R.string.validate_success_competitorName)
-                    )
-                        competitorName.value = it
-                }
-
-                judgeName.value = messageModel.CompetitorInfo.JudgeName
-
-                var changeIndex = 0
-                if (currentScoreIndex.value != null &&
-                    currentScoreIndex.value!! >= 0 &&
-                    currentScoreIndex.value!! < messageModel.CompetitorInfo.Score!!.count()
-                )
-                    changeIndex = currentScoreIndex.value!!
-
-                currentScore.value = messageModel.CompetitorInfo.Score!![changeIndex]
-                currentScoreIndex.value = changeIndex
-
-                //【注意】必须先设置currentScoreIndex，因为下句会触发分数List绑定。 List绑定时，使用到currentScoreIndex。
-                competitorInfo.value = messageModel
-//                }
-//                else {//说明正在打分
-//                    //当裁判本场被打分完时，先保存其他场需要的打分
-//                }
-                //endregion
-            } else if (messageModel.CompetitorInfo.CompetitorID.isBlank()) {//视为 服务端在打分器监控台 点击Break
+            if (messageModel.CompetitorInfo.CompetitorID.isBlank()) {//视为 服务端在打分器监控台 点击Break
                 //region 休息一下
                 haveABreak(this) //休息一下
                 //endregion
+            } else {
+                haveABreak.value = false
+                Controller.updateMainUI(_mainViewModel, _mainActivity)
             }
 
             //回应收到消息
@@ -154,32 +99,34 @@ object GameMessageHandler : IGameMessageHandler {
     private fun handleScoreResponse(messageModel: ScoreResponse) {
         with(_mainViewModel) {
             //region ScoreResponse消息处理
-            if (competitorInfo.value != null &&
-                competitorInfo.value!!.CompetitorInfo.Score != null && //表示需要打分
+            if (currentCompetitorInfo.value != null &&
+                currentCompetitorInfo.value!!.Score != null && //表示需要打分
 
                 //同一个运动员 或者 同一组（多人项目）
-                competitorInfo.value!!.CompetitorInfo.CompetitorID ==
+                currentCompetitorInfo.value!!.CompetitorID ==
                 messageModel.CompetitorInfo.CompetitorID
             ) {
                 var change = false
                 messageModel.CompetitorInfo.Score?.forEach { score ->
-                    competitorInfo.value!!.CompetitorInfo.Score!!.find {
+                    currentCompetitorInfo.value!!.Score!!.find {
                         it.ScoreID == score.ScoreID
-                    }?.let {
-                        if (it.ScoreStatus != score.ScoreStatus) {
-                            it.ScoreStatus = score.ScoreStatus
-                            change = true
-                        }
+                    }.let { findResult ->
+                        if (findResult != null) {
+                            if (findResult.ScoreStatus != score.ScoreStatus) {
+                                findResult.ScoreStatus = score.ScoreStatus
+                                change = true
+                            }
 
-                        if (it.ScoreErrorMessage != score.ScoreErrorMessage) {
-                            it.ScoreErrorMessage = score.ScoreErrorMessage
-                            change = true
-                        }
+                            if (findResult.ScoreErrorMessage != score.ScoreErrorMessage) {
+                                findResult.ScoreErrorMessage = score.ScoreErrorMessage
+                                change = true
+                            }
 
-                        //【注意】由于服务端回应的分数可能为空的，所以需要判断一下。
-                        if (!score.ScoreValue.isBlank() && it.ScoreValue != score.ScoreValue) {
-                            it.ScoreValue = score.ScoreValue
-                            change = true
+                            //【注意】由于服务端回应的分数可能为空的，所以需要判断一下。
+                            if (!score.ScoreValue.isBlank() && findResult.ScoreValue != score.ScoreValue) {
+                                findResult.ScoreValue = score.ScoreValue
+                                change = true
+                            }
                         }
                     }
                 }
@@ -196,14 +143,14 @@ object GameMessageHandler : IGameMessageHandler {
                 if (firstErrorScore != null) { //说明分数有错误
                     //【注意】indexOfFirst如果找不到对应的，会返回-1。
                     val errorIndex =
-                        competitorInfo.value?.CompetitorInfo?.Score?.indexOfFirst {
+                        currentCompetitorInfo.value?.Score?.indexOfFirst {
                             it.ScoreID == firstErrorScore.ScoreID
                         }
 
                     if (errorIndex != null && errorIndex >= 0) { //找到错误的分数
                         currentScoreIndex.value = errorIndex
                         currentScore.value =
-                            competitorInfo.value!!.CompetitorInfo.Score!![errorIndex]
+                            currentCompetitorInfo.value!!.Score!![errorIndex]
 
                         //region 定位到第一条错误的分数上
                         val recyclerView =
@@ -224,7 +171,7 @@ object GameMessageHandler : IGameMessageHandler {
                 //endregion
 
                 //region 确认成绩的回应
-                val validateRowInApp = competitorInfo.value?.CompetitorInfo?.Score?.find {
+                val validateRowInApp = currentCompetitorInfo.value?.Score?.find {
                     it.ScoreID == ScoreConsts.Attribute_F_Status && it.ScoreValue == ScoreConsts.Status_ScoreValue_Validate
                 }
 
@@ -249,7 +196,7 @@ object GameMessageHandler : IGameMessageHandler {
                         else {
                             //region 提示是否强制跳过打分
                             val remainMustScoredCount =
-                                competitorInfo.value?.remainMustScoredCount()
+                                currentCompetitorInfo.value?.remainMustScoredCount()
                             val emptyScoreValueCountString =
                                 if (remainMustScoredCount != null && remainMustScoredCount > 0)
                                     _mainActivity.getString(
@@ -354,7 +301,8 @@ object GameMessageHandler : IGameMessageHandler {
      */
     private fun haveABreak(viewModel: MainViewModel) {
         with(viewModel) {
-            clearAll() //清除所有信息
+            haveABreak.value = true
+            clearAll(false) //清除所有信息
             competitorName_Normal.value =
                 false //表示在competitorName文本框显示“服务端确认成绩成功”相关消息
 

@@ -59,6 +59,10 @@
     <string name="settings_network_server_host_key" translatable="false">network_server_host</string>
     <string name="settings_network_server_port">服务端端口</string>
     <string name="settings_network_server_port_key" translatable="false">network_server_port</string>
+
+    <string name="settings_currentCompetitorInfoIndex" translatable="false">currentCompetitorInfoIndex</string>
+    <string name="settings_currentScoreIndex" translatable="false">currentScoreIndex</string>
+    <string name="settings_haveABreak" translatable="false">haveABreak</string>
     <!-- 网络 end -->
 
     <!-- 客户端 begin -->

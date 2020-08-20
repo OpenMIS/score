@@ -111,10 +111,10 @@ class MainFragment : Fragment() {
      * 发送ScoreList分数列表给服务端
      */
     private fun sendScoreList() {
-        if (_viewModel.competitorInfo.value != null &&
-            !_viewModel.competitorInfo.value!!.CompetitorInfo.Score.isNullOrEmpty()
+        if (_viewModel.currentCompetitorInfo.value != null &&
+            !_viewModel.currentCompetitorInfo.value!!.Score.isNullOrEmpty()
         )
-            with(_viewModel.competitorInfo.value!!.CompetitorInfo) {
+            with(_viewModel.currentCompetitorInfo.value!!) {
                 val scores =
                     mutableListOf<ScoreList.ScoreListClass.ScoreClass>()
                 Score?.forEach {
@@ -145,20 +145,20 @@ class MainFragment : Fragment() {
     ) {
         sendScoreList() //发送ScoreList分数列表给服务端
         //region 载入并定位到下一条记录
-        if (_viewModel.competitorInfo.value?.CompetitorInfo?.Score != null &&
+        if (_viewModel.currentCompetitorInfo.value?.Score != null &&
             _viewModel.currentScoreIndex.value != null &&
             _viewModel.currentScoreIndex.value!! <
-            _viewModel.competitorInfo.value?.CompetitorInfo?.Score!!.count() - 1
+            _viewModel.currentCompetitorInfo.value?.Score!!.count() - 1
         ) {
             val nextIndex = _viewModel.currentScoreIndex.value!! + 1
             val nextScore =
-                _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.get(
+                _viewModel.currentCompetitorInfo.value?.Score?.get(
                     nextIndex
                 )
             if (nextScore != null && nextScore.isScoring()) {
                 _viewModel.currentScoreIndex.value = nextIndex
                 _viewModel.currentScore.value =
-                    _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.get(
+                    _viewModel.currentCompetitorInfo.value?.Score?.get(
                         nextIndex
                     )
 
@@ -189,7 +189,7 @@ class MainFragment : Fragment() {
         if (!Controller.isWifiNetworkAvailable(requireContext()))
             return //无Wifi直接退出本方法
 
-        val remainMustScoredCount = _viewModel.competitorInfo.value?.remainMustScoredCount()
+        val remainMustScoredCount = _viewModel.currentCompetitorInfo.value?.remainMustScoredCount()
         val emptyScoreValueCountString =
             if (remainMustScoredCount != null && remainMustScoredCount > 0)
                 getString(
@@ -216,7 +216,7 @@ class MainFragment : Fragment() {
                 .setNegativeButton(R.string.button_text_yes) { _, _ ->
                     ExceptionHandlerUtil.usingExceptionHandler {
                         val validateRow =
-                            _viewModel.competitorInfo.value?.CompetitorInfo?.Score?.find {
+                            _viewModel.currentCompetitorInfo.value?.Score?.find {
                                 it.ScoreID == ScoreConsts.Attribute_F_Status
                             }
                         if (validateRow != null) {
@@ -274,7 +274,7 @@ class MainFragment : Fragment() {
                     return@setOnLongClickListener true
                 }
                 //endregion
-                //val a =
+
                 if (lifecycleOwner != null)
                     _viewModel.competitorName_Normal.observe(lifecycleOwner!!, Observer<Boolean> {
                         if (it) {//普通显示 情况

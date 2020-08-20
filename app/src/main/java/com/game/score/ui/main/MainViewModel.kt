@@ -3,7 +3,7 @@ package com.game.score.ui.main
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.game.score.models.xml.receive.CompetitorInfo
+import com.game.score.models.xml.receive.CompetitorInfoAll
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -54,10 +54,27 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val appStatus = MutableLiveData<String>()
 
     /**
-     * CompetitorInfo 数据模型
+     * 当前是否在“休息一下”状态
+     */
+    val haveABreak = MutableLiveData(false)
+
+    /**
+     * CompetitorInfoAll 数据模型
      *
      */
-    val competitorInfo = MutableLiveData<CompetitorInfo>()
+    val competitorInfoAll = MutableLiveData<CompetitorInfoAll>()
+
+    /**
+     * 当前CompetitorInfo 在 CompetitorInfoAll.CompetitorInfo列表里的索引
+     *
+     */
+    val currentCompetitorInfoIndex = MutableLiveData<Int>()
+
+    /**
+     * CompetitorInfoAll 数据模型里的 CompetitorInfoClass 类
+     *
+     */
+    val currentCompetitorInfo = MutableLiveData<CompetitorInfoAll.CompetitorInfoClass>()
 
     /**
      * 当前分数 在 分数列表里的索引
@@ -69,22 +86,23 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      * 当前分数模型
      *
      */
-    val currentScore = MutableLiveData<CompetitorInfo.CompetitorInfoClass.ScoreClass>()
+    val currentScore = MutableLiveData<CompetitorInfoAll.CompetitorInfoClass.ScoreClass>()
     //endregion
 
     //region 清除所有信息
     /**
      * 清除所有信息
      */
-    fun clearAll() {
+    fun clearAll(clearCompetitorInfoAll: Boolean = true) {
         //【注意】此处不清除裁判名称
         eventAndPhase.value = null
         competitorName.value = null
-        competitorInfo.value = null
+        if (clearCompetitorInfoAll)
+            competitorInfoAll.value = null
+        currentCompetitorInfo.value = null
+        currentCompetitorInfoIndex.value = -1
         currentScoreIndex.value = -1
-        currentScore.value = CompetitorInfo.CompetitorInfoClass.ScoreClass.emptyValueInstance
+        currentScore.value = CompetitorInfoAll.CompetitorInfoClass.ScoreClass.emptyValueInstance
     }
     //endregion
-
-
 }
