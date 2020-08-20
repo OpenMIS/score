@@ -32,12 +32,13 @@ class MainFragment : Fragment() {
      * 数据绑定
      */
     private lateinit var _binding: FragmentMainBinding
+    private lateinit var _buttonListener: View.OnClickListener
 
     //region 数字按钮以及.与x按钮事件 字段
     /**
      * 数字按钮以及.与x按钮事件 字段
      */
-    private val _buttonListener = View.OnClickListener {
+    private val _buttonListener2 = View.OnClickListener {
         if (_viewModel.currentScore.value == null ||
             _viewModel.currentScoreIndex.value == null ||
             _viewModel.currentScoreIndex.value!! < 0
@@ -242,12 +243,13 @@ class MainFragment : Fragment() {
             //region layout里的数据与数据模型关联
             // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
             _binding.lifecycleOwner = this
+            //使用MainActivity创建的MainViewModel实例
+            _viewModel = ViewModelProvider(activity as FragmentActivity)
+                .get<MainViewModel>(MainViewModel::class.java)
+            //endregion
+            _buttonListener = ButtonOnClickListener(this, _viewModel)
             with(_binding) {
-                //使用MainActivity创建的MainViewModel实例
-                _viewModel = ViewModelProvider(activity as FragmentActivity)
-                    .get<MainViewModel>(MainViewModel::class.java)
                 viewModel = _viewModel
-                //endregion
 
                 val recyclerView = root.findViewById<RecyclerView>(R.id.score_list)
                 val scoreListAdapter = recyclerView.adapter as ScoreListAdapter
