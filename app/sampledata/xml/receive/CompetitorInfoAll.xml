@@ -66,8 +66,6 @@
         <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
             ScoreValue="229" />
     </CompetitorInfo>
-    <CompetitorInfo CompetitorID="2-4966-2" CompetitorName="2 包哈斯图力古尔(江苏队)" Event="" JudgeName="C"
-        Phase="" />
     <CompetitorInfo CompetitorID="2-4961-2" CompetitorName="3 王超(北京队)" Event="" JudgeName="C"
         Phase="">
         <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"
@@ -202,14 +200,6 @@
         <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
             ScoreValue="221" />
     </CompetitorInfo>
-    <CompetitorInfo CompetitorID="2-4967-2" CompetitorName="5 李兵(北京队)" Event="" JudgeName="C"
-        Phase="" />
-    <CompetitorInfo CompetitorID="2-4963-2" CompetitorName="6 柯艳霞(四川队)" Event="" JudgeName="C"
-        Phase="" />
-    <CompetitorInfo CompetitorID="2-4960-2" CompetitorName="7 支忠信(浙江队)" Event="" JudgeName="C"
-        Phase="" />
-    <CompetitorInfo CompetitorID="2-4962-2" CompetitorName="8 张红钊(新疆队)" Event="" JudgeName="C"
-        Phase="" />
     <CompetitorInfo CompetitorID="2-4970-2" CompetitorName="9 海米提·地力木热提(新疆队)" Event="" JudgeName="C"
         Phase="">
         <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"
@@ -277,10 +267,6 @@
         <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
             ScoreValue="193" />
     </CompetitorInfo>
-    <CompetitorInfo CompetitorID="2-4975-2" CompetitorName="10 王越陇(北京队)" Event="" JudgeName="C"
-        Phase="" />
-    <CompetitorInfo CompetitorID="2-4964-2" CompetitorName="11 谭志勤(广东队)" Event="" JudgeName="C"
-        Phase="" />
     <CompetitorInfo CompetitorID="2-4974-2" CompetitorName="12 张立军(浙江队)" Event="" JudgeName="C"
         Phase="">
         <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"
@@ -415,10 +401,6 @@
         <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
             ScoreValue="152" />
     </CompetitorInfo>
-    <CompetitorInfo CompetitorID="2-4980-2" CompetitorName="14 贾海涛(浙江队)" Event="" JudgeName="C"
-        Phase="" />
-    <CompetitorInfo CompetitorID="2-4965-2" CompetitorName="15 格日勒(浙江队)" Event="" JudgeName="C"
-        Phase="" />
     <CompetitorInfo CompetitorID="2-4976-2" CompetitorName="16 刘丽娜(新疆队)" Event="" JudgeName="C"
         Phase="">
         <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"
@@ -687,8 +669,4 @@
         <Score ScoreErrorMessage="" ScoreID="F_TotalScore" ScoreName="Total" ScoreStatus=""
             ScoreValue="254" />
     </CompetitorInfo>
-    <CompetitorInfo CompetitorID="2-4972-2" CompetitorName="20 顾兵(广东队)" Event="" JudgeName="C"
-        Phase="" />
-    <CompetitorInfo CompetitorID="2-4982-2" CompetitorName="20 米尔扎提·吐尔洪(新疆队)" Event="" JudgeName="C"
-        Phase="" />
 </Body>

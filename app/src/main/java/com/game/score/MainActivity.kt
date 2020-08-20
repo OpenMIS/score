@@ -122,6 +122,7 @@ class MainActivity : AppCompatActivity() {
             GameSettingsUtil.loadSettings(this)
 
             GameUdp.initForUI(this)
+            CompetitorInfoAllManager.MainActivity = this
 
             //绑定到Android本地服务
             val intent = Intent(this, GameService::class.java)

@@ -1,16 +1,15 @@
 package com.game.score
 
+import android.annotation.SuppressLint
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.game.score.core.ExceptionHandlerUtil
-import com.game.score.core.IGameMessageHandler
-import com.game.score.core.IGameMessageModel
-import com.game.score.core.sendInUI
+import com.game.score.core.*
 import com.game.score.models.xml.receive.CompetitorInfo
+import com.game.score.models.xml.receive.CompetitorInfoAll
 import com.game.score.models.xml.receive.HeartBeatResponse
 import com.game.score.models.xml.receive.ScoreResponse
 import com.game.score.models.xml.send.CompetitorInfoResponse
@@ -19,6 +18,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.apache.commons.lang3.time.DurationFormatUtils
+import java.io.File
 import java.util.*
 
 /**
@@ -57,6 +57,34 @@ object GameMessageHandler : IGameMessageHandler {
     }
 
     //region 处理消息
+    //region 处理CompetitorInfoAll消息
+    /**
+     * 处理CompetitorInfoAll消息
+     */
+    @SuppressLint("SdCardPath")
+    private fun handleCompetitorInfoAll(messageModel: CompetitorInfoAll) {
+
+        val filePath =
+            String.format(
+                "/sdcard/Android/data/%s/%s.xml",
+                _mainActivity.packageName, messageModel.javaClass.simpleName
+            )
+        val file = File(filePath)
+
+
+        val xmlContent: String
+        if (file.exists()) {
+            xmlContent = file.readText(Charsets.UTF_8)
+        } else {
+            //for
+            xmlContent = XmlMappers.send.writeValueAsString(messageModel)
+            file.writeText(xmlContent, Charsets.UTF_8)
+        }
+
+        //messageModel
+    }
+    //endregion
+
     //region 处理CompetitorInfo消息
     /**
      * 处理CompetitorInfo消息
@@ -358,6 +386,7 @@ object GameMessageHandler : IGameMessageHandler {
      */
     override fun handle(messageModel: IGameMessageModel) {
         when (messageModel) {
+            is CompetitorInfoAll -> handleCompetitorInfoAll(messageModel)
             is CompetitorInfo -> handleCompetitorInfo(messageModel)
             is ScoreResponse -> handleScoreResponse(messageModel)
             is HeartBeatResponse -> handleHeartBeatResponse()
