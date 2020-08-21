@@ -124,7 +124,7 @@ object CompetitorInfoAllManager {
             }
         }
 
-        Controller.updateMainUI(MainViewModel!!, MainActivity!!)
+        Controller.updateMainViewModel(MainViewModel!!, MainActivity!!)
     }
     //endregion
 

@@ -83,7 +83,7 @@ object GameMessageHandler : IGameMessageHandler {
                 //endregion
             } else {
                 haveABreak.value = false
-                Controller.updateMainUI(_mainViewModel, _mainActivity)
+                Controller.updateMainViewModel(_mainViewModel, _mainActivity)
             }
 
             //回应收到消息
@@ -222,7 +222,7 @@ object GameMessageHandler : IGameMessageHandler {
                                         ExceptionHandlerUtil.usingExceptionHandler {
                                             validateRowInApp.ScoreValue = "" //清空确认，表示未确认成绩。
                                             //定位到第一条分数为空的记录上，并设置此记录为当前记录。
-                                            Controller.goToFirstEmptyAndSetCurrent(
+                                            Controller.goToFirstEmptyScoreAndSetCurrent(
                                                 this,
                                                 recyclerView
                                             )
@@ -243,7 +243,7 @@ object GameMessageHandler : IGameMessageHandler {
                                                             validateRowInApp.ScoreValue =
                                                                 "" //清空确认，表示未确认成绩。
                                                             //定位到第一条分数为空的记录上，并设置此记录为当前记录。
-                                                            Controller.goToFirstEmptyAndSetCurrent(
+                                                            Controller.goToFirstEmptyScoreAndSetCurrent(
                                                                 this,
                                                                 recyclerView
                                                             )
@@ -301,6 +301,9 @@ object GameMessageHandler : IGameMessageHandler {
      */
     private fun haveABreak(viewModel: MainViewModel) {
         with(viewModel) {
+            val currentCompetitorInfoIndexTemp = viewModel.currentCompetitorInfoIndex.value
+            val currentScoreIndexTemp = viewModel.currentScoreIndex.value
+
             haveABreak.value = true
             clearAll(false) //清除所有信息
             competitorName_Normal.value =
@@ -308,6 +311,18 @@ object GameMessageHandler : IGameMessageHandler {
 
             competitorName.value =
                 _mainActivity.getString(R.string.validate_success_competitorName)
+
+            if (currentCompetitorInfoIndexTemp != null)
+                GameSettingsUtil.setCurrentCompetitorInfoIndexAsync(
+                    _mainActivity,
+                    currentCompetitorInfoIndexTemp
+                )
+
+            if (currentScoreIndexTemp != null)
+                GameSettingsUtil.setCurrentScoreIndexAsync(
+                    _mainActivity,
+                    currentScoreIndexTemp
+                )
         }
     }
 //endregion

@@ -47,6 +47,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val judgeName = MutableLiveData<String>("   ")
 
     /**
+     * 进度
+     *
+     * 序号/总共需要打分数，比如：1/40。
+     */
+    val progress = MutableLiveData<String>()
+
+    /**
      * App状态。
      *
      * 在线/离线
@@ -103,6 +110,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         currentCompetitorInfoIndex.value = -1
         currentScoreIndex.value = -1
         currentScore.value = CompetitorInfoAll.CompetitorInfoClass.ScoreClass.emptyValueInstance
+        progress.value = null
     }
     //endregion
 }

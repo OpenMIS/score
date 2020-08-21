@@ -15,7 +15,7 @@ class Controller {
         /**
          * 定位到第1条分数为空的记录，并设置它为当前。
          */
-        fun goToFirstEmptyAndSetCurrent(viewModel: MainViewModel, recyclerView: RecyclerView) {
+        fun goToFirstEmptyScoreAndSetCurrent(viewModel: MainViewModel, recyclerView: RecyclerView) {
             //region 定位到第一条分数为空的记录上，并设置此记录为当前记录。
             //【注意】indexOfFirst如果找不到对应的，会返回-1。
             val index =
@@ -62,28 +62,15 @@ class Controller {
         }
         //endregion
 
-        fun updateMainUI(viewModel: MainViewModel, mainActivity: MainActivity) {
+        //region 更新模型视图
+        /**
+         * 更新模型视图
+         */
+        fun updateMainViewModel(viewModel: MainViewModel, mainActivity: MainActivity) {
             with(viewModel) {
                 if (!haveABreak.value!! && competitorInfoAll.value != null &&
                     competitorInfoAll.value!!.CompetitorInfo.count() > 0
                 ) {
-                    if (currentCompetitorInfo.value == null)
-                        currentCompetitorInfo.value = competitorInfoAll.value!!.CompetitorInfo[0]
-
-                    competitorName_Normal.value = true
-                    (currentCompetitorInfo.value!!.Event + currentCompetitorInfo.value!!.Phase).let {
-                        if (it.isNotBlank()) eventAndPhase.value = it
-                    }
-
-                    currentCompetitorInfo.value!!.CompetitorName.let {
-                        if (it.isNotBlank() ||
-                            competitorName.value == mainActivity.getString(R.string.validate_success_competitorName)
-                        )
-                            competitorName.value = it
-                    }
-
-                    judgeName.value = currentCompetitorInfo.value!!.JudgeName
-
                     //region CompetitorInfo
                     var changeCompetitorInfoIndex = 0
                     if (currentCompetitorInfoIndex.value != null &&
@@ -104,25 +91,30 @@ class Controller {
 
                     if (currentCompetitorInfoIndex.value != changeCompetitorInfoIndex)
                         currentCompetitorInfoIndex.value = changeCompetitorInfoIndex
-                    //endregion
+
+                    progress.value = String.format(
+                        "%s/%s",
+                        currentCompetitorInfoIndex.value!! + 1,
+                        competitorInfoAll.value!!.CompetitorInfo.count()
+                    )
 
                     //region Score
-                    if (currentCompetitorInfo.value!!.Score!!.count() > 0) {
+                    if (currentCompetitorInfoTemp.Score!!.count() > 0) {
                         var changeScoreIndex = 0
                         if (currentScoreIndex.value != null &&
                             currentScoreIndex.value!! >= 0 &&
-                            currentScoreIndex.value!! < currentCompetitorInfo.value!!.Score!!.count()
+                            currentScoreIndex.value!! < currentCompetitorInfoTemp.Score!!.count()
                         )
                             changeScoreIndex = currentScoreIndex.value!!
                         else {
                             val temp = GameSettingsUtil.getCurrentScoreIndex(mainActivity)
                             if (temp >= 0 &&
-                                temp < currentCompetitorInfo.value!!.Score!!.count()
+                                temp < currentCompetitorInfoTemp.Score!!.count()
                             )
                                 changeScoreIndex = temp
                         }
 
-                        currentScore.value = currentCompetitorInfo.value!!.Score!![changeScoreIndex]
+                        currentScore.value = currentCompetitorInfoTemp.Score!![changeScoreIndex]
                         if (currentScoreIndex.value != changeScoreIndex)
                             currentScoreIndex.value = changeScoreIndex
                     } else {
@@ -135,8 +127,25 @@ class Controller {
 
                     //【注意】必须先设置currentScoreIndex，因为下句会触发分数List绑定。 List绑定时，使用到currentScoreIndex。
                     currentCompetitorInfo.value = currentCompetitorInfoTemp
+
+                    competitorName_Normal.value = true
+                    //region 下面必须在currentCompetitorInfo.value设置后执行
+                    (currentCompetitorInfo.value!!.Event + currentCompetitorInfo.value!!.Phase).let {
+                        if (it.isNotBlank()) eventAndPhase.value = it
+                    }
+
+                    currentCompetitorInfo.value!!.CompetitorName.let {
+                        if (it.isNotBlank() ||
+                            competitorName.value == mainActivity.getString(R.string.validate_success_competitorName)
+                        )
+                            competitorName.value = it
+                    }
+
+                    judgeName.value = currentCompetitorInfo.value!!.JudgeName
+                    //endregion
                 }
             }
         }
+        //endregion
     }
 }

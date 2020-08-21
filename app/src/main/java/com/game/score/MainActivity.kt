@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                     if (inputMessage.obj is CompetitorInfoAll) {
                         _mainViewModel.competitorInfoAll.value =
                             inputMessage.obj as CompetitorInfoAll
-                        Controller.updateMainUI(
+                        Controller.updateMainViewModel(
                             CompetitorInfoAllManager.MainViewModel!!,
                             CompetitorInfoAllManager.MainActivity!!
                         )

@@ -5,15 +5,20 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.Controller
+import com.game.score.MainActivity
 import com.game.score.R
 import com.game.score.ScoreConsts
 import com.game.score.core.ExceptionHandlerUtil
 import com.game.score.core.sendInUI
 import com.game.score.models.xml.send.ScoreList
 
+/**
+ * 主界面上的按钮点击倾听器
+ */
 class ButtonOnClickListener(
     private val mainFragment: MainFragment, private val mainViewModel: MainViewModel
 ) : View.OnClickListener {
+    //region 工具集
     //region 发送ScoreList分数列表给服务端
     /**
      * 发送ScoreList分数列表给服务端
@@ -118,7 +123,7 @@ class ButtonOnClickListener(
                 .setPositiveButton(R.string.button_text_no) { _, _ ->
                     ExceptionHandlerUtil.usingExceptionHandler {
                         //定位到第一条分数为空的记录上，并设置此记录为当前记录。
-                        Controller.goToFirstEmptyAndSetCurrent(mainViewModel, recyclerView)
+                        Controller.goToFirstEmptyScoreAndSetCurrent(mainViewModel, recyclerView)
                     }
                 }
                 //监听下方button点击事件
@@ -137,6 +142,43 @@ class ButtonOnClickListener(
 
         val dialog = builder.create()
         dialog.show()
+    }
+    //endregion
+
+    //region “下一人”按钮内部调用此方法
+    /**
+     * “下一人”按钮内部调用此方法
+     */
+    private fun next(recyclerView: RecyclerView) {
+        with(mainViewModel.currentCompetitorInfoIndex) {
+            if (mainViewModel.competitorInfoAll.value != null && value != null &&
+                value!! < mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count() - 1
+            ) {
+                value = value!! + 1
+                mainViewModel.currentCompetitorInfo.value =
+                    mainViewModel.competitorInfoAll.value!!.CompetitorInfo[value!!]
+
+                Controller.updateMainViewModel(mainViewModel, mainFragment.activity as MainActivity)
+                Controller.goToFirstEmptyScoreAndSetCurrent(mainViewModel, recyclerView)
+            }
+        }
+    }
+    //endregion
+
+    //region “上一人”按钮内部调用此方法
+    /**
+     * “上一人”按钮内部调用此方法
+     */
+    private fun previous(recyclerView: RecyclerView) {
+        with(mainViewModel.currentCompetitorInfoIndex) {
+            if (mainViewModel.competitorInfoAll.value != null && value != null && value!! > 0) {
+                value = value!! - 1
+                mainViewModel.currentCompetitorInfo.value =
+                    mainViewModel.competitorInfoAll.value!!.CompetitorInfo[value!!]
+                Controller.updateMainViewModel(mainViewModel, mainFragment.activity as MainActivity)
+                Controller.goToFirstEmptyScoreAndSetCurrent(mainViewModel, recyclerView)
+            }
+        }
     }
     //endregion
     //endregion
@@ -191,6 +233,8 @@ class ButtonOnClickListener(
                     }
                     R.id.button_send -> send(recyclerView)
                     R.id.button_V -> validate(view, recyclerView)
+                    R.id.button_P -> previous(recyclerView)
+                    R.id.button_N -> next(recyclerView)
                 }
             }
 

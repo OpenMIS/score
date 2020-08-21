@@ -432,6 +432,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="3dp"
             android:textColor="@color/colorCompetitorName"
+            android:text="@{viewModel.progress}"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline15"
             app:layout_constraintEnd_toStartOf="@id/textView_appStatus"
