@@ -6,9 +6,14 @@ package com.game.score
 class ScoreConsts {
     companion object {
         /**
-         * 特殊的XML属性 - 扣分：F_0
+         * 特殊的XML属性 - 普通扣分：F_0
          */
         const val Attribute_F_0: String = "F_0"
+
+        /**
+         * 特殊的XML属性 - 百分比扣分：F_100
+         */
+        const val Attribute_F_100: String = "F_100"
 
         /**
          * 特殊的XML属性 - 总分：F_TotalScore

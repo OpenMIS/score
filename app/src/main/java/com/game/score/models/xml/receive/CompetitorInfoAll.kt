@@ -126,6 +126,7 @@ data class CompetitorInfoAll(
                     this.Score!!.count {
                         !arrayOf(
                             ScoreConsts.Attribute_F_0,
+                            ScoreConsts.Attribute_F_100,
                             ScoreConsts.Attribute_F_Status,
                             ScoreConsts.Attribute_F_TotalScore
                         ).contains(it.ScoreID) && it.ScoreValue.isBlank()
