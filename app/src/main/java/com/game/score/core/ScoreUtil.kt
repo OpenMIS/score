@@ -25,7 +25,8 @@ class ScoreUtil {
         fun isVaild(scoreID: String, scoreValue: String): Boolean {
             var result = true
 
-            if (isScoring(scoreID)) {
+            //【注意】百分比扣分，有些赛事的小数可能不是0或5
+            if (isScoring(scoreID) && scoreID != ScoreConsts.Attribute_F_100) {
                 result = if (scoreID == ScoreConsts.Attribute_F_0)
                     scoreValue.matches("""^\d+$""".toRegex())
                 else scoreValue.matches("""^\d+(\.[05])?$""".toRegex())
