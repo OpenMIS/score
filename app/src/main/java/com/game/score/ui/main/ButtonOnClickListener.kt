@@ -1,6 +1,7 @@
 package com.game.score.ui.main
 
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -151,18 +152,6 @@ class ButtonOnClickListener(
      */
     private fun next(recyclerView: RecyclerView) {
         Controller.next(mainViewModel, mainFragment.activity as MainActivity, recyclerView)
-        with(mainViewModel.currentCompetitorInfoIndex) {
-            if (mainViewModel.competitorInfoAll.value != null && value != null &&
-                value!! < mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count() - 1
-            ) {
-                value = value!! + 1
-                mainViewModel.currentCompetitorInfo.value =
-                    mainViewModel.competitorInfoAll.value!!.CompetitorInfo[value!!]
-
-                Controller.updateMainViewModel(mainViewModel, mainFragment.activity as MainActivity)
-                Controller.goToFirstEmptyScoreAndSetCurrent(mainViewModel, recyclerView)
-            }
-        }
     }
     //endregion
 
@@ -172,8 +161,26 @@ class ButtonOnClickListener(
      */
     private fun previous(recyclerView: RecyclerView) {
         with(mainViewModel.currentCompetitorInfoIndex) {
-            if (mainViewModel.competitorInfoAll.value != null && value != null && value!! > 0) {
-                value = value!! - 1
+            if (mainViewModel.competitorInfoAll.value != null && value != null && value!! >= 0) {
+                val count = mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count()
+                value = if (value!! == 0)
+                    count - 1
+                else value!! - 1
+
+                if (value!! == count - 1) {
+                    Toast.makeText(
+                        mainFragment.activity,
+                        mainFragment.getString(R.string.toast_end),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else if (value!! == 0) {
+                    Toast.makeText(
+                        mainFragment.activity,
+                        mainFragment.getString(R.string.toast_first),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
                 mainViewModel.currentCompetitorInfo.value =
                     mainViewModel.competitorInfoAll.value!!.CompetitorInfo[value!!]
                 Controller.updateMainViewModel(mainViewModel, mainFragment.activity as MainActivity)

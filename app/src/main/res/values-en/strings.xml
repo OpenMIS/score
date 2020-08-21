@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="validate_success_competitorName">Have a break!</string>
+    <string name="app_name">Scoring</string>
+
     <string name="app_status_online">Online</string>
     <string name="app_status_offline">Offline</string>
 
+    <!-- 确认成绩 begin -->
+    <string name="validate_success_competitorName">Have a break!</string>
+
     <string name="validate_success">Validate results success</string>
     <string name="validate_Fail">Failed to validate results: Please check whether the score is wrong or empty</string>
+    <!-- 确认成绩 end -->
 
-    <string name="app_name">Scoring</string>
+    <!-- Toast 提示 Begin -->
+    <string name="toast_first">First</string>
+    <string name="toast_end">End</string>
+    <!-- Toast 提示 end -->
+
 
     <!-- alertDialog 相关 begin -->
     <string name="alertDialog_title_confirm">Confirm</string>

@@ -148,17 +148,41 @@ class Controller {
         }
         //endregion
 
+        //region 下一人
+        /**
+         * 下一人
+         */
         fun next(
             mainViewModel: MainViewModel,
             mainActivity: MainActivity,
             recyclerView: RecyclerView? = null
-        ) {
+        ): Boolean {
+            var result = false
             val recyclerView2 = recyclerView ?: mainActivity.findViewById(R.id.score_list)
             with(mainViewModel.currentCompetitorInfoIndex) {
                 if (mainViewModel.competitorInfoAll.value != null && value != null &&
-                    value!! < mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count() - 1
+                    value != -1 &&
+                    value!! < mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count()
                 ) {
-                    value = value!! + 1
+                    val count = mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count()
+                    value =
+                        if (value!! == count - 1) 0
+                        else value!! + 1
+
+                    if (value!! == count - 1) {
+                        Toast.makeText(
+                            mainActivity,
+                            mainActivity.getString(R.string.toast_end),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else if (value!! == 0) {
+                        Toast.makeText(
+                            mainActivity,
+                            mainActivity.getString(R.string.toast_first),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
                     mainViewModel.currentCompetitorInfo.value =
                         mainViewModel.competitorInfoAll.value!!.CompetitorInfo[value!!]
 
@@ -170,8 +194,13 @@ class Controller {
                         mainViewModel,
                         recyclerView2
                     )
+
+                    result = true
                 }
             }
+
+            return result
         }
+        //endregion
     }
 }

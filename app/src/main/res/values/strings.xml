@@ -7,10 +7,16 @@
     <!-- 确认成绩成功后在 competitorName 位置显示的文本 -->
     <string name="validate_success_competitorName">休息一下!</string>
 
-    <!-- Toast 提示 -->
+    <!-- Toast 提示 Begin -->
     <string name="validate_success">确认成绩成功</string>
     <string name="validate_Fail">确认成绩失败：请检查分数是否有错误或空</string>
+    <!-- Toast 提示 end -->
     <!-- 确认成绩 end -->
+
+    <!-- Toast 提示 Begin -->
+    <string name="toast_first">第一人</string>
+    <string name="toast_end">最后一人</string>
+    <!-- Toast 提示 end -->
 
     <!-- alertDialog 相关 begin -->
     <string name="alertDialog_title_confirm">确认</string>
