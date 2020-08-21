@@ -70,6 +70,7 @@ object CompetitorInfoAllManager {
 
         val mainViewModel = MainViewModel!!
 
+        //region 更新mainViewModel.competitorInfoAll
         if (mainViewModel.competitorInfoAll.value == null)
             mainViewModel.competitorInfoAll.value = competitorInfoAll
         else {
@@ -112,6 +113,7 @@ object CompetitorInfoAllManager {
                 }
             }
         }
+        //endregion
 
         saveAsync(mainViewModel.competitorInfoAll.value)
 
