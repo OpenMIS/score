@@ -204,5 +204,37 @@ class Controller {
             return result
         }
         //endregion
+
+        //region 休息一下
+        /**
+         * 休息一下
+         */
+        fun haveABreak(mainViewModel: MainViewModel, mainActivity: MainActivity) {
+            with(mainViewModel) {
+                val currentCompetitorInfoIndexTemp = mainViewModel.currentCompetitorInfoIndex.value
+                val currentScoreIndexTemp = mainViewModel.currentScoreIndex.value
+
+                haveABreak.value = true
+                clearAll(false) //清除所有信息
+                competitorName_Normal.value =
+                    false //表示在competitorName文本框显示“服务端确认成绩成功”相关消息
+
+                competitorName.value =
+                    mainActivity.getString(R.string.validate_success_competitorName)
+
+                if (currentCompetitorInfoIndexTemp != null)
+                    GameSettingsUtil.setCurrentCompetitorInfoIndexAsync(
+                        mainActivity,
+                        currentCompetitorInfoIndexTemp
+                    )
+
+                if (currentScoreIndexTemp != null)
+                    GameSettingsUtil.setCurrentScoreIndexAsync(
+                        mainActivity,
+                        currentScoreIndexTemp
+                    )
+            }
+        }
+        //endregion
     }
 }
