@@ -150,6 +150,7 @@ class ButtonOnClickListener(
      * “下一人”按钮内部调用此方法
      */
     private fun next(recyclerView: RecyclerView) {
+        Controller.next(mainViewModel, mainFragment.activity as MainActivity, recyclerView)
         with(mainViewModel.currentCompetitorInfoIndex) {
             if (mainViewModel.competitorInfoAll.value != null && value != null &&
                 value!! < mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count() - 1

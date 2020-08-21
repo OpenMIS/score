@@ -147,5 +147,31 @@ class Controller {
             }
         }
         //endregion
+
+        fun next(
+            mainViewModel: MainViewModel,
+            mainActivity: MainActivity,
+            recyclerView: RecyclerView? = null
+        ) {
+            val recyclerView2 = recyclerView ?: mainActivity.findViewById(R.id.score_list)
+            with(mainViewModel.currentCompetitorInfoIndex) {
+                if (mainViewModel.competitorInfoAll.value != null && value != null &&
+                    value!! < mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count() - 1
+                ) {
+                    value = value!! + 1
+                    mainViewModel.currentCompetitorInfo.value =
+                        mainViewModel.competitorInfoAll.value!!.CompetitorInfo[value!!]
+
+                    updateMainViewModel(
+                        mainViewModel,
+                        mainActivity
+                    )
+                    goToFirstEmptyScoreAndSetCurrent(
+                        mainViewModel,
+                        recyclerView2
+                    )
+                }
+            }
+        }
     }
 }
