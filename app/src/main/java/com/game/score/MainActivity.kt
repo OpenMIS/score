@@ -12,13 +12,15 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.core.*
 import com.game.score.databinding.ActivityMainBinding
 import com.game.score.models.GameSettings
 import com.game.score.models.xml.receive.CompetitorInfoAll
 import com.game.score.ui.main.MainViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -52,6 +54,9 @@ class MainActivity : AppCompatActivity() {
                             )
                         )
                     }
+                } else if (inputMessage.what == 2) {
+                    //根据CurrentScoreIndex设置分数列表的位置
+                    gotoByCurrentScoreIndex()
                 } else {
                     if (inputMessage.obj is CompetitorInfoAll) {
                         _mainViewModel.competitorInfoAll.value =
@@ -61,8 +66,11 @@ class MainActivity : AppCompatActivity() {
                             CompetitorInfoAllManager.MainActivity!!
                         )
 
-                        //根据CurrentScoreIndex设置分数列表的位置
-                        gotoByCurrentScoreIndex()
+                        //【注意】需要延迟1秒以上后调用gotoByCurrentScoreIndex()才有效
+                        GlobalScope.launch {
+                            delay(1000L)
+                            sendEmptyMessage(2)
+                        }
                     }
                 }
             }
@@ -117,17 +125,30 @@ class MainActivity : AppCompatActivity() {
             ) {
                 val recyclerView = findViewById<RecyclerView>(R.id.score_list)
 
-                (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
-                    index,
-                    /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
-                        这样方便看到之前打分与之后要打的分。
-                        */
-                    100
-                )
+                Controller.scrollToScoreIndex(index, recyclerView)
             }
         }
     }
 
+    //endregion
+
+    //region 注册MainViewModel的观察器
+    /**
+     * 注册MainViewModel的观察器
+     */
+    private fun registerObserve(mainViewModel: MainViewModel) {
+        mainViewModel.currentCompetitorInfoIndex.observe(this, Observer<Int> {
+            GameSettingsUtil.setCurrentCompetitorInfoIndexAsync(this, it)
+        })
+
+        mainViewModel.currentScoreIndex.observe(this, Observer<Int> {
+            GameSettingsUtil.setCurrentScoreIndexAsync(this, it)
+        })
+
+        mainViewModel.haveABreak.observe(this, Observer<Boolean> {
+            GameSettingsUtil.setHaveABreakAsync(this, it)
+        })
+    }
     //endregion
     //endregion
 
@@ -157,19 +178,7 @@ class MainActivity : AppCompatActivity() {
             }
             //endregion
 
-            //region 监听index变化
-            _mainViewModel.currentCompetitorInfoIndex.observe(this, Observer<Int> {
-                GameSettingsUtil.setCurrentCompetitorInfoIndexAsync(this, it)
-            })
-
-            _mainViewModel.currentScoreIndex.observe(this, Observer<Int> {
-                GameSettingsUtil.setCurrentScoreIndexAsync(this, it)
-            })
-
-            _mainViewModel.haveABreak.observe(this, Observer<Boolean> {
-                GameSettingsUtil.setHaveABreakAsync(this, it)
-            })
-            //endregion
+            registerObserve(_mainViewModel) //注册MainViewModel的观察器
 
             GameMessageHandler.init(this, _mainViewModel)
 

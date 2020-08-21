@@ -3,7 +3,6 @@ package com.game.score.ui.main
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.Controller
 import com.game.score.MainActivity
@@ -93,14 +92,7 @@ class ButtonOnClickListener(
                             nextIndex
                         )
 
-                    //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
-                    (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
-                        nextIndex,
-                        /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
-                        这样方便看到之前打分与之后要打的分。
-                        */
-                        100
-                    )
+                    Controller.scrollToScoreIndex(nextIndex, recyclerView)
 
                     /*smoothScrollToPosition(position)和scrollToPosition(position)效果基本相似，
                     也是把你想显示的项显示出来，只要那一项现在看得到了，那它就罢工了，
@@ -179,23 +171,6 @@ class ButtonOnClickListener(
      * “上一人”按钮内部调用此方法
      */
     private fun previous(recyclerView: RecyclerView) {
-        mainViewModel.currentScoreIndex.value.let { index ->
-            if (index != null && index >= 0 &&
-                mainViewModel.currentCompetitorInfo.value?.Score != null &&
-                index < mainViewModel.currentCompetitorInfo.value!!.Score!!.count()
-            ) {
-
-
-                (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
-                    index,
-                    /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
-                        这样方便看到之前打分与之后要打的分。
-                        */
-                    100
-                )
-            }
-        }
-        return
         with(mainViewModel.currentCompetitorInfoIndex) {
             if (mainViewModel.competitorInfoAll.value != null && value != null && value!! >= 0) {
                 val count = mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count()

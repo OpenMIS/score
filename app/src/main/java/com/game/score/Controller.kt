@@ -32,13 +32,7 @@ class Controller {
                 viewModel.currentScore.value =
                     viewModel.currentCompetitorInfo.value!!.Score!![index]
 
-                (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
-                    index,
-                    /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
-                    这样方便看到之前打分与之后要打的分。
-                    */
-                    100
-                )
+                scrollToScoreIndex(index, recyclerView)
                 recyclerView.adapter?.notifyDataSetChanged()
             }
             //endregion
@@ -115,8 +109,15 @@ class Controller {
                         }
 
                         currentScore.value = currentCompetitorInfoTemp.Score!![changeScoreIndex]
-                        if (currentScoreIndex.value != changeScoreIndex)
+                        if (currentScoreIndex.value != changeScoreIndex) {
                             currentScoreIndex.value = changeScoreIndex
+
+                            //滚动到分数列表指定的索引位置。
+                            scrollToScoreIndex(
+                                currentScoreIndex.value!!,
+                                mainActivity = mainActivity
+                            )
+                        }
                     } else {
                         currentScore.value =
                             CompetitorInfoAll.CompetitorInfoClass.ScoreClass.emptyValueInstance
@@ -234,6 +235,32 @@ class Controller {
                         currentScoreIndexTemp
                     )
             }
+        }
+        //endregion
+
+        //region 滚动到分数列表指定的索引位置
+        /**
+         * 滚动到分数列表指定的索引位置。
+         *
+         * 定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
+         */
+        fun scrollToScoreIndex(
+            index: Int,
+            recyclerView: RecyclerView? = null,
+            mainActivity: MainActivity? = null
+        ) {
+            val recyclerView2 =
+                recyclerView ?: mainActivity!!.findViewById<RecyclerView>(R.id.score_list)
+
+            //position从0开始，超过RecycleView里的个数不会报错。
+            //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
+            (recyclerView2.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
+                index,
+                /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
+                    这样方便看到之前打分与之后要打的分。
+                    */
+                100
+            )
         }
         //endregion
     }

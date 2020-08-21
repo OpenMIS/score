@@ -2,7 +2,6 @@ package com.game.score.gameMessageHandlers
 
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.Controller
 import com.game.score.MainActivity
@@ -84,14 +83,7 @@ object ScoreResponseMessageHandler : IGameMessageHandlerEx {
                             //region 定位到第一条错误的分数上
                             val recyclerView =
                                 mainActivity.findViewById<RecyclerView>(R.id.score_list)
-                            //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
-                            (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
-                                errorIndex,
-                                /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
-                                这样方便看到之前打分与之后要打的分。
-                                */
-                                100
-                            )
+                            Controller.scrollToScoreIndex(errorIndex, recyclerView)
                             //endregion
 
                             recyclerView.adapter?.notifyDataSetChanged()
