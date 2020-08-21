@@ -62,9 +62,9 @@ object CompetitorInfoAllManager {
     }
     //endregion
 
-    //region 把收到的CompetitorInfoAll消息更新到视图模型与SD卡里的CompetitorInfoAll.xml
+    //region 把收到的CompetitorInfoAll消息更新到视图模型，并且保存到SD卡里的CompetitorInfoAll.xml
     /**
-     * 把收到的CompetitorInfoAll消息更新到视图模型与SD卡里的CompetitorInfoAll.xml
+     * 把收到的CompetitorInfoAll消息更新到视图模型，并且保存到SD卡里的CompetitorInfoAll.xml
      */
     fun update(competitorInfoAll: CompetitorInfoAll) {
 
@@ -110,26 +110,38 @@ object CompetitorInfoAllManager {
                         it.copy()
                     )
                 }
-
             }
         }
 
-        GlobalScope.run {
-            ExceptionHandlerUtil.usingExceptionHandler {
-                val file = getFile()
-
-                val xmlContent: String =
-                    XmlMappers.send.writeValueAsString(mainViewModel.competitorInfoAll.value)
-                file.writeText(xmlContent, Charsets.UTF_8) //保存到SD卡里
-            }
-        }
+        saveAsync(mainViewModel.competitorInfoAll.value)
 
         Controller.updateMainViewModel(MainViewModel!!, MainActivity!!)
     }
     //endregion
 
-    fun clear() {
-        val file = getFile()
-        if (file.exists()) file.delete()
+    //region 异步保存到SD卡里的CompetitorInfoAll.xml
+    /**
+     * 异步保存到SD卡里的CompetitorInfoAll.xml
+     */
+    fun saveAsync(competitorInfoAll: CompetitorInfoAll?) {
+        GlobalScope.run {
+            ExceptionHandlerUtil.usingExceptionHandler {
+                val file = getFile()
+
+                if (competitorInfoAll == null || competitorInfoAll.CompetitorInfo.count() == 0) {
+                    clear(file)
+                } else {
+                    val xmlContent: String =
+                        XmlMappers.send.writeValueAsString(competitorInfoAll)
+                    file.writeText(xmlContent, Charsets.UTF_8) //保存到SD卡里
+                }
+            }
+        }
+    }
+    //endregion
+
+    private fun clear(file: File? = null) {
+        val file2 = file ?: getFile()
+        if (file2.exists()) file2.delete()
     }
 }

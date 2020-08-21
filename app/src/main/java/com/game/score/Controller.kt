@@ -155,7 +155,8 @@ class Controller {
         fun next(
             mainViewModel: MainViewModel,
             mainActivity: MainActivity,
-            recyclerView: RecyclerView? = null
+            recyclerView: RecyclerView? = null,
+            forDeleteCompetitorInfo: Boolean = false
         ): Boolean {
             var result = false
             val recyclerView2 = recyclerView ?: mainActivity.findViewById(R.id.score_list)
@@ -165,9 +166,10 @@ class Controller {
                     value!! < mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count()
                 ) {
                     val count = mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count()
-                    value =
-                        if (value!! == count - 1) 0
-                        else value!! + 1
+                    if (!forDeleteCompetitorInfo)
+                        value =
+                            if (value!! == count - 1) 0
+                            else value!! + 1
 
                     if (value!! == count - 1) {
                         Toast.makeText(

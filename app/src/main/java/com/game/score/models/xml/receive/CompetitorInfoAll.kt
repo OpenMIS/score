@@ -104,6 +104,9 @@ data class CompetitorInfoAll(
             @XmlTransient
             fun isScoring(): Boolean = ScoreUtil.isScoring(ScoreID)
 
+            @XmlTransient
+            fun isVaild(): Boolean = ScoreUtil.isVaild(ScoreID, ScoreValue)
+
             companion object {
                 val emptyValueInstance = ScoreClass("", "", "", "", "")
             }

@@ -177,7 +177,26 @@ object GameMessageHandler : IGameMessageHandler {
 
                 if (validateRowInApp != null) {
                     if (messageModel.CompetitorInfo.Score == null) {//服务端确认成绩成功
-                        haveABreak(this) //休息一下
+                        val findResult =
+                            _mainViewModel.competitorInfoAll.value?.CompetitorInfo?.find {
+                                it.CompetitorID == messageModel.CompetitorInfo.CompetitorID
+                            }
+
+                        if (findResult != null) {
+                            _mainViewModel.competitorInfoAll.value?.CompetitorInfo?.remove(
+                                findResult
+                            )
+
+                            CompetitorInfoAllManager.saveAsync(_mainViewModel.competitorInfoAll.value)
+                        }
+
+                        if (!Controller.next(
+                                _mainViewModel,
+                                _mainActivity,
+                                forDeleteCompetitorInfo = true
+                            )
+                        )
+                            haveABreak(this) //休息一下
 
                         Toast.makeText(
                             _mainActivity,
@@ -252,12 +271,28 @@ object GameMessageHandler : IGameMessageHandler {
                                                     //监听下方button点击事件
                                                     .setNegativeButton(R.string.button_text_yes) { _, _ ->
                                                         ExceptionHandlerUtil.usingExceptionHandler {
-                                                            clearAll() //清除所有信息
-                                                            competitorName_Normal.value =
-                                                                false //表示在competitorName文本框显示“服务端确认成绩成功”相关消息
+                                                            val findResult =
+                                                                _mainViewModel.competitorInfoAll.value?.CompetitorInfo?.find {
+                                                                    it.CompetitorID == messageModel.CompetitorInfo.CompetitorID
+                                                                }
 
-                                                            competitorName.value =
-                                                                _mainActivity.getString(R.string.validate_success_competitorName)
+                                                            if (findResult != null) {
+                                                                _mainViewModel.competitorInfoAll.value?.CompetitorInfo?.remove(
+                                                                    findResult
+                                                                )
+
+                                                                CompetitorInfoAllManager.saveAsync(
+                                                                    _mainViewModel.competitorInfoAll.value
+                                                                )
+                                                            }
+
+                                                            if (!Controller.next(
+                                                                    _mainViewModel,
+                                                                    _mainActivity,
+                                                                    forDeleteCompetitorInfo = true
+                                                                )
+                                                            )
+                                                                haveABreak(this) //休息一下
                                                         }
                                                     }.setCancelable(true) //设置对话框是可取消的
 
@@ -348,11 +383,29 @@ object GameMessageHandler : IGameMessageHandler {
      * 处理消息
      */
     override fun handle(messageModel: IGameMessageModel) {
-        when (messageModel) {
-            is CompetitorInfoAll -> handleCompetitorInfoAll(messageModel)
-            is CompetitorInfo -> handleCompetitorInfo(messageModel)
-            is ScoreResponse -> handleScoreResponse(messageModel)
-            is HeartBeatResponse -> handleHeartBeatResponse()
+        var messageHandler: IGameMessageHandlerEx? = null
+
+        try {
+            val messageHandlerClass = Class.forName(
+                String.format(
+                    "com.game.score.gameMessageHandlers.%sMessageHandler",
+                    messageModel.javaClass.simpleName
+                )
+            )
+
+            messageHandler = messageHandlerClass.kotlin.objectInstance as IGameMessageHandlerEx
+        } catch (ex: ClassNotFoundException) {
+        }
+
+        if (messageHandler != null)
+            messageHandler.handle(messageModel, _mainViewModel, _mainActivity)
+        else {
+            when (messageModel) {
+                is CompetitorInfoAll -> handleCompetitorInfoAll(messageModel)
+                is CompetitorInfo -> handleCompetitorInfo(messageModel)
+                is ScoreResponse -> handleScoreResponse(messageModel)
+                is HeartBeatResponse -> handleHeartBeatResponse()
+            }
         }
     }
 //endregion

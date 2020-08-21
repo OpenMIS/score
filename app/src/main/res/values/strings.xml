@@ -24,7 +24,7 @@
     <string name="alertDialog_title_confirmAgain">再次确认</string>
     <string name="alertDialog_message_confirmResult">是否确认成绩？</string>
     <string name="alertDialog_message_confirm_NoScoreValueCount">有%1$d项未打分，</string>
-    <string name="alertDialog_message_ForceSkipScoring">是否强制跳过打分？</string>
+    <string name="alertDialog_message_ForceSkipScoring">是否放弃打分？</string>
     <string name="button_text_yes">是</string>
     <string name="button_text_no">否</string>
     <!-- alertDialog 相关 end -->

@@ -24,29 +24,45 @@ class ButtonOnClickListener(
     /**
      * 发送ScoreList分数列表给服务端
      */
-    private fun sendScoreList() {
+    private fun sendScoreList(): Boolean {
+        var result = false
         if (mainViewModel.currentCompetitorInfo.value != null &&
             !mainViewModel.currentCompetitorInfo.value!!.Score.isNullOrEmpty()
         )
-            with(mainViewModel.currentCompetitorInfo.value!!) {
-                val scores =
-                    mutableListOf<ScoreList.ScoreListClass.ScoreClass>()
-                Score?.forEach {
-                    scores.add(
-                        ScoreList.ScoreListClass.ScoreClass(
-                            it.ScoreID,
-                            it.ScoreValue
-                        )
-                    )
-                }
 
-                ScoreList(
-                    ScoreList = ScoreList.ScoreListClass(
-                        CompetitorID = CompetitorID,
-                        Score = scores
-                    )
-                ).sendInUI()
+            if (mainViewModel.currentScore.value != null &&
+                !mainViewModel.currentScore.value!!.ScoreValue.isBlank() &&
+                !mainViewModel.currentScore.value!!.isVaild()
+            ) {
+                mainViewModel.currentScore.value!!.ScoreErrorMessage =
+                    ScoreConsts.ScoreErrorMessage_Vaild
+
+                mainViewModel.currentScore.value!!.ScoreStatus = ScoreConsts.ScoreStatus_Error
+            } else {
+                with(mainViewModel.currentCompetitorInfo.value!!) {
+                    val scores =
+                        mutableListOf<ScoreList.ScoreListClass.ScoreClass>()
+                    Score?.forEach {
+                        scores.add(
+                            ScoreList.ScoreListClass.ScoreClass(
+                                it.ScoreID,
+                                it.ScoreValue
+                            )
+                        )
+                    }
+
+                    ScoreList(
+                        ScoreList = ScoreList.ScoreListClass(
+                            CompetitorID = CompetitorID,
+                            Score = scores
+                        )
+                    ).sendInUI()
+
+                    result = true
+                }
             }
+
+        return result
     }
     //endregion
 
@@ -57,38 +73,41 @@ class ButtonOnClickListener(
     private fun send(
         recyclerView: RecyclerView
     ) {
-        sendScoreList() //发送ScoreList分数列表给服务端
-        //region 载入并定位到下一条记录
-        if (mainViewModel.currentCompetitorInfo.value?.Score != null &&
-            mainViewModel.currentScoreIndex.value != null &&
-            mainViewModel.currentScoreIndex.value!! <
-            mainViewModel.currentCompetitorInfo.value?.Score!!.count() - 1
-        ) {
-            val nextIndex = mainViewModel.currentScoreIndex.value!! + 1
-            val nextScore =
-                mainViewModel.currentCompetitorInfo.value?.Score?.get(
-                    nextIndex
-                )
-            if (nextScore != null && nextScore.isScoring()) {
-                mainViewModel.currentScoreIndex.value = nextIndex
-                mainViewModel.currentScore.value =
+        if (sendScoreList()) //发送ScoreList分数列表给服务端
+        {
+            //region 载入并定位到下一条记录
+            if (mainViewModel.currentCompetitorInfo.value?.Score != null &&
+                mainViewModel.currentScoreIndex.value != null &&
+                mainViewModel.currentScoreIndex.value!! <
+                mainViewModel.currentCompetitorInfo.value?.Score!!.count() - 1
+            ) {
+                val nextIndex = mainViewModel.currentScoreIndex.value!! + 1
+                val nextScore =
                     mainViewModel.currentCompetitorInfo.value?.Score?.get(
                         nextIndex
                     )
+                if (nextScore != null && nextScore.isScoring()) {
+                    mainViewModel.currentScoreIndex.value = nextIndex
+                    mainViewModel.currentScore.value =
+                        mainViewModel.currentCompetitorInfo.value?.Score?.get(
+                            nextIndex
+                        )
 
-                //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
-                (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
-                    nextIndex,
-                    /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
-                    这样方便看到之前打分与之后要打的分。
-                    */
-                    100
-                )
+                    //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。
+                    (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
+                        nextIndex,
+                        /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
+                        这样方便看到之前打分与之后要打的分。
+                        */
+                        100
+                    )
 
-                /*smoothScrollToPosition(position)和scrollToPosition(position)效果基本相似，
-                也是把你想显示的项显示出来，只要那一项现在看得到了，那它就罢工了，
-                不同的是smoothScrollToPosition是平滑到你想显示的项，而scrollToPosition是直接定位显示！*/
-                //recyclerView.smoothScrollToPosition(nextIndex)
+                    /*smoothScrollToPosition(position)和scrollToPosition(position)效果基本相似，
+                    也是把你想显示的项显示出来，只要那一项现在看得到了，那它就罢工了，
+                    不同的是smoothScrollToPosition是平滑到你想显示的项，而scrollToPosition是直接定位显示！*/
+                    //recyclerView.smoothScrollToPosition(nextIndex)
+                }
+                //endregion
             }
             //endregion
         }
@@ -160,6 +179,23 @@ class ButtonOnClickListener(
      * “上一人”按钮内部调用此方法
      */
     private fun previous(recyclerView: RecyclerView) {
+        mainViewModel.currentScoreIndex.value.let { index ->
+            if (index != null && index >= 0 &&
+                mainViewModel.currentCompetitorInfo.value?.Score != null &&
+                index < mainViewModel.currentCompetitorInfo.value!!.Score!!.count()
+            ) {
+
+
+                (recyclerView.layoutManager as LinearLayoutManager?)!!.scrollToPositionWithOffset(
+                    index,
+                    /*距离顶部的像素。通过此值，让正在打分的项尽量列表的上下的中间位置，
+                        这样方便看到之前打分与之后要打的分。
+                        */
+                    100
+                )
+            }
+        }
+        return
         with(mainViewModel.currentCompetitorInfoIndex) {
             if (mainViewModel.competitorInfoAll.value != null && value != null && value!! >= 0) {
                 val count = mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count()

@@ -34,5 +34,10 @@ class ScoreConsts {
          * ScoreID="F_Status"时 - ScoreValue - 确认成绩：1
          */
         const val Status_ScoreValue_Validate: String = "1"
+
+        /**
+         * 错误信息 - 无效的分数
+         */
+        const val ScoreErrorMessage_Vaild: String = "Invalid score"
     }
 }

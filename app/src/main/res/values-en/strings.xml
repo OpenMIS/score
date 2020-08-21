@@ -17,14 +17,13 @@
     <string name="toast_end">End</string>
     <!-- Toast 提示 end -->
 
-
     <!-- alertDialog 相关 begin -->
     <string name="alertDialog_title_confirm">Confirm</string>
     <string name="alertDialog_title_confirmResult">Result Validate</string>
     <string name="alertDialog_title_confirmAgain">Confirm again</string>
     <string name="alertDialog_message_confirmResult">Are you sure to validate result?</string>
     <string name="alertDialog_message_confirm_NoScoreValueCount">"%1$d items have not been scored, "</string>
-    <string name="alertDialog_message_ForceSkipScoring">Are you sure force skip scoring?</string>
+    <string name="alertDialog_message_ForceSkipScoring">Are you sure give up scoring?</string>
     <string name="button_text_yes">Yes</string>
     <string name="button_text_no">No</string>
     <!-- alertDialog 相关 end -->
