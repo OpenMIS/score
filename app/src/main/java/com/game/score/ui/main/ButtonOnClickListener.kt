@@ -10,6 +10,7 @@ import com.game.score.R
 import com.game.score.ScoreConsts
 import com.game.score.core.ExceptionHandlerUtil
 import com.game.score.core.sendInUI
+import com.game.score.core.setPosition
 import com.game.score.models.xml.send.ScoreList
 
 /**
@@ -173,7 +174,7 @@ class ButtonOnClickListener(
     private fun previous(recyclerView: RecyclerView) {
         with(mainViewModel.currentCompetitorInfoIndex) {
             if (mainViewModel.competitorInfoAll.value != null && value != null && value!! >= 0) {
-                val count = mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count()
+                val count = mainViewModel.competitorInfoAll.value!!.CompetitorInfo!!.count()
                 value = if (value!! == 0)
                     count - 1
                 else value!! - 1
@@ -183,17 +184,17 @@ class ButtonOnClickListener(
                         mainFragment.activity,
                         mainFragment.getString(R.string.toast_end),
                         Toast.LENGTH_SHORT
-                    ).show()
+                    ).setPosition().show()
                 } else if (value!! == 0) {
                     Toast.makeText(
                         mainFragment.activity,
                         mainFragment.getString(R.string.toast_first),
                         Toast.LENGTH_SHORT
-                    ).show()
+                    ).setPosition().show()
                 }
 
                 mainViewModel.currentCompetitorInfo.value =
-                    mainViewModel.competitorInfoAll.value!!.CompetitorInfo[value!!]
+                    mainViewModel.competitorInfoAll.value!!.CompetitorInfo!![value!!]
                 Controller.updateMainViewModel(mainViewModel, mainFragment.activity as MainActivity)
                 Controller.goToFirstEmptyScoreAndSetCurrent(mainViewModel, recyclerView)
             }

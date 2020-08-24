@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.core.GameSettingsUtil
 import com.game.score.core.NetworkUtil
+import com.game.score.core.setPosition
 import com.game.score.models.xml.receive.CompetitorInfoAll
 import com.game.score.ui.main.MainViewModel
 
@@ -51,7 +52,7 @@ class Controller {
                     context,
                     context.getString(R.string.toast_noWifi),
                     Toast.LENGTH_SHORT
-                ).show()
+                ).setPosition().show()
 
             return result
         }
@@ -64,25 +65,26 @@ class Controller {
         fun updateMainViewModel(viewModel: MainViewModel, mainActivity: MainActivity) {
             with(viewModel) {
                 if (!haveABreak.value!! && competitorInfoAll.value != null &&
-                    competitorInfoAll.value!!.CompetitorInfo.count() > 0
+                    competitorInfoAll.value!!.CompetitorInfo != null &&
+                    competitorInfoAll.value!!.CompetitorInfo!!.count() > 0
                 ) {
                     //region CompetitorInfo
                     var changeCompetitorInfoIndex = 0
                     if (currentCompetitorInfoIndex.value != null &&
                         currentCompetitorInfoIndex.value!! >= 0 &&
-                        currentCompetitorInfoIndex.value!! < competitorInfoAll.value!!.CompetitorInfo.count()
+                        currentCompetitorInfoIndex.value!! < competitorInfoAll.value!!.CompetitorInfo!!.count()
                     )
                         changeCompetitorInfoIndex = currentCompetitorInfoIndex.value!!
                     else {
                         val temp = GameSettingsUtil.getCurrentCompetitorInfoIndex(mainActivity)
                         if (temp >= 0 &&
-                            temp < competitorInfoAll.value!!.CompetitorInfo.count()
+                            temp < competitorInfoAll.value!!.CompetitorInfo!!.count()
                         )
                             changeCompetitorInfoIndex = temp
                     }
 
                     val currentCompetitorInfoTemp =
-                        competitorInfoAll.value!!.CompetitorInfo[changeCompetitorInfoIndex]
+                        competitorInfoAll.value!!.CompetitorInfo!![changeCompetitorInfoIndex]
 
                     if (currentCompetitorInfoIndex.value != changeCompetitorInfoIndex)
                         currentCompetitorInfoIndex.value = changeCompetitorInfoIndex
@@ -90,7 +92,7 @@ class Controller {
                     progress.value = String.format(
                         "%s/%s",
                         currentCompetitorInfoIndex.value!! + 1,
-                        competitorInfoAll.value!!.CompetitorInfo.count()
+                        competitorInfoAll.value!!.CompetitorInfo!!.count()
                     )
 
                     //region Score
@@ -165,9 +167,10 @@ class Controller {
             with(mainViewModel.currentCompetitorInfoIndex) {
                 if (mainViewModel.competitorInfoAll.value != null && value != null &&
                     value != -1 &&
-                    value!! < mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count()
+                    mainViewModel.competitorInfoAll.value!!.CompetitorInfo != null &&
+                    value!! < mainViewModel.competitorInfoAll.value!!.CompetitorInfo!!.count()
                 ) {
-                    val count = mainViewModel.competitorInfoAll.value!!.CompetitorInfo.count()
+                    val count = mainViewModel.competitorInfoAll.value!!.CompetitorInfo!!.count()
                     if (!forDeleteCompetitorInfo)
                         value =
                             if (value!! == count - 1) 0
@@ -178,17 +181,17 @@ class Controller {
                             mainActivity,
                             mainActivity.getString(R.string.toast_end),
                             Toast.LENGTH_SHORT
-                        ).show()
+                        ).setPosition().show()
                     } else if (value!! == 0) {
                         Toast.makeText(
                             mainActivity,
                             mainActivity.getString(R.string.toast_first),
                             Toast.LENGTH_SHORT
-                        ).show()
+                        ).setPosition().show()
                     }
 
                     mainViewModel.currentCompetitorInfo.value =
-                        mainViewModel.competitorInfoAll.value!!.CompetitorInfo[value!!]
+                        mainViewModel.competitorInfoAll.value!!.CompetitorInfo!![value!!]
 
                     updateMainViewModel(
                         mainViewModel,
@@ -251,7 +254,7 @@ class Controller {
             mainActivity: MainActivity? = null
         ) {
             val recyclerView2 =
-                recyclerView ?: mainActivity!!.findViewById<RecyclerView>(R.id.score_list)
+                recyclerView ?: mainActivity!!.findViewById(R.id.score_list)
 
             //position从0开始，超过RecycleView里的个数不会报错。
             //定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。

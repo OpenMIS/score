@@ -7,10 +7,7 @@ import com.game.score.Controller
 import com.game.score.MainActivity
 import com.game.score.R
 import com.game.score.ScoreConsts
-import com.game.score.core.CompetitorInfoAllManager
-import com.game.score.core.ExceptionHandlerUtil
-import com.game.score.core.IGameMessageHandlerEx
-import com.game.score.core.IGameMessageModel
+import com.game.score.core.*
 import com.game.score.models.xml.receive.ScoreResponse
 import com.game.score.ui.main.MainViewModel
 
@@ -126,13 +123,13 @@ object ScoreResponseMessageHandler : IGameMessageHandlerEx {
                                 mainActivity,
                                 R.string.validate_success,
                                 Toast.LENGTH_SHORT
-                            ).show()
+                            ).setPosition().show()
                         } else {//服务端确认成绩失败
                             Toast.makeText(
                                 mainActivity,
                                 R.string.validate_Fail,
                                 Toast.LENGTH_LONG
-                            ).show()
+                            ).setPosition().show()
 
                             if (firstErrorScore != null)  //说明分数有错误
                                 validateRowInApp.ScoreValue = "" //清空确认，表示未确认成绩。

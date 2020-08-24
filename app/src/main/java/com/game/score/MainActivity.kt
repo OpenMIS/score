@@ -47,12 +47,14 @@ class MainActivity : AppCompatActivity() {
                 if (inputMessage.what == 1) {
                     with(findViewById<TextView>(R.id.textView_appStatus)) {
                         _mainViewModel.appStatus.value = getString(R.string.app_status_offline)
-                        setTextColor(
-                            ContextCompat.getColor(
-                                context,
-                                R.color.colorAppStatus_Offline
+
+                        if (context != null) //【注意】此时的context可能为空值
+                            setTextColor(
+                                ContextCompat.getColor(
+                                    context,
+                                    R.color.colorAppStatus_Offline
+                                )
                             )
-                        )
                     }
                 } else if (inputMessage.what == 2) {
                     //根据CurrentScoreIndex设置分数列表的位置

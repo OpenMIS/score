@@ -67,57 +67,61 @@ object CompetitorInfoAllManager {
      * 把收到的CompetitorInfoAll消息更新到视图模型，并且保存到SD卡里的CompetitorInfoAll.xml
      */
     fun update(competitorInfoAll: CompetitorInfoAll) {
+        if (competitorInfoAll.CompetitorInfo != null) {//【注意】可能收到的competitorInfoAll.CompetitorInfo为空值
+            val mainViewModel = MainViewModel!!
 
-        val mainViewModel = MainViewModel!!
-
-        //region 更新mainViewModel.competitorInfoAll
-        if (mainViewModel.competitorInfoAll.value == null)
-            mainViewModel.competitorInfoAll.value = competitorInfoAll
-        else {
-            competitorInfoAll.CompetitorInfo.forEach { it ->
-                val findResult =
-                    mainViewModel.competitorInfoAll.value!!.CompetitorInfo.find { inViewModel ->
-                        inViewModel.CompetitorID == it.CompetitorID
-                    }
-
-                if (findResult != null) {
-                    //如果在视图模型里存在，则更新。
-                    findResult.CompetitorName = it.CompetitorName
-                    findResult.Event = it.Event
-
-                    //region 更新分数列表里，除分数外的其他信息。
-                    it.Score?.forEach { score ->
-                        val findScoreResult =
-                            findResult.Score?.find { inViewModel ->
-                                inViewModel.ScoreID == score.ScoreID
-                            }
-
-                        if (findScoreResult != null) {
-                            //如果在视图模型里存在，则更新。
-                            findScoreResult.ScoreName = score.ScoreName
-                        } else {
-                            //如果在视图模型里不存在，则添加。
-                            if (findResult.Score == null)
-                                findResult.Score =
-                                    mutableListOf<CompetitorInfoAll.CompetitorInfoClass.ScoreClass>()
-
-                            findResult.Score!!.add(score.copy())
+            //region 更新mainViewModel.competitorInfoAll
+            if (mainViewModel.competitorInfoAll.value == null)
+                mainViewModel.competitorInfoAll.value = competitorInfoAll
+            else {
+                competitorInfoAll.CompetitorInfo?.forEach { it ->
+                    val findResult =
+                        mainViewModel.competitorInfoAll.value!!.CompetitorInfo?.find { inViewModel ->
+                            inViewModel.CompetitorID == it.CompetitorID
                         }
+
+                    if (findResult != null) {
+                        //如果在视图模型里存在，则更新。
+                        findResult.CompetitorName = it.CompetitorName
+                        findResult.Event = it.Event
+
+                        //region 更新分数列表里，除分数外的其他信息。
+                        it.Score?.forEach { score ->
+                            val findScoreResult =
+                                findResult.Score?.find { inViewModel ->
+                                    inViewModel.ScoreID == score.ScoreID
+                                }
+
+                            if (findScoreResult != null) {
+                                //如果在视图模型里存在，则更新。
+                                findScoreResult.ScoreName = score.ScoreName
+                            } else {
+                                //如果在视图模型里不存在，则添加。
+                                if (findResult.Score == null)
+                                    findResult.Score =
+                                        mutableListOf()
+
+                                findResult.Score!!.add(score.copy())
+                            }
+                        }
+                        //endregion
+                    } else {
+                        if (mainViewModel.competitorInfoAll.value!!.CompetitorInfo == null)
+                            mainViewModel.competitorInfoAll.value!!.CompetitorInfo
+                                ?: mutableListOf()
+                        //如果在视图模型里不存在，则添加。
+                        mainViewModel.competitorInfoAll.value!!.CompetitorInfo!!.add(
+                            it.copy()
+                        )
                     }
-                    //endregion
-                } else {
-                    //如果在视图模型里不存在，则添加。
-                    mainViewModel.competitorInfoAll.value!!.CompetitorInfo.add(
-                        it.copy()
-                    )
                 }
             }
+            //endregion
+
+            saveAsync(mainViewModel.competitorInfoAll.value)
+
+            Controller.updateMainViewModel(MainViewModel!!, MainActivity!!)
         }
-        //endregion
-
-        saveAsync(mainViewModel.competitorInfoAll.value)
-
-        Controller.updateMainViewModel(MainViewModel!!, MainActivity!!)
     }
     //endregion
 
@@ -130,7 +134,9 @@ object CompetitorInfoAllManager {
             ExceptionHandlerUtil.usingExceptionHandler {
                 val file = getFile()
 
-                if (competitorInfoAll == null || competitorInfoAll.CompetitorInfo.count() == 0) {
+                if (competitorInfoAll?.CompetitorInfo == null ||
+                    competitorInfoAll.CompetitorInfo!!.count() == 0
+                ) {
                     clear(file)
                 } else {
                     val xmlContent: String =

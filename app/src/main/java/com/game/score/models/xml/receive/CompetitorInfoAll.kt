@@ -14,7 +14,10 @@ data class CompetitorInfoAll(
     @XmlAttribute
     override val MessageType: String,
 
-    var CompetitorInfo: MutableList<CompetitorInfoClass>
+    /**
+     * 【注意】可能收到空的
+     */
+    var CompetitorInfo: MutableList<CompetitorInfoClass>?
 ) : IGameMessageModel {
     @XmlAccessorType(XmlAccessType.FIELD)
     data class CompetitorInfoClass(
