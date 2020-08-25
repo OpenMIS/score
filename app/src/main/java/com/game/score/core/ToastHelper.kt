@@ -5,7 +5,7 @@ import android.widget.Toast
 
 object ToastHelper {
     fun setPosition(toast: Toast): Toast =
-        toast.apply { setGravity(Gravity.CENTER, 0, -35) }
+        toast.apply { setGravity(Gravity.CENTER, 0, -40) }
 }
 
 //region 扩展方法
