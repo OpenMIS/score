@@ -67,8 +67,14 @@ object CompetitorInfoAllManager {
      * 把收到的CompetitorInfoAll消息更新到视图模型，并且保存到SD卡里的CompetitorInfoAll.xml
      */
     fun update(competitorInfoAll: CompetitorInfoAll) {
-        if (competitorInfoAll.CompetitorInfo != null) {//【注意】可能收到的competitorInfoAll.CompetitorInfo为空值
+        if (//【注意】可能收到的competitorInfoAll.CompetitorInfo为空值
+            competitorInfoAll.CompetitorInfo != null &&
+            competitorInfoAll.CompetitorInfo!!.count() > 0
+        ) {
             val mainViewModel = MainViewModel!!
+
+            //取消“消息一下”，进去工作状态。
+            mainViewModel.haveABreak.value = false
 
             //region 更新mainViewModel.competitorInfoAll
             if (mainViewModel.competitorInfoAll.value == null)
