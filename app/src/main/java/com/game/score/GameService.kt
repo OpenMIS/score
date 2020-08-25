@@ -98,8 +98,8 @@ class GameService : Service() {
                         )
                     }
                 }
-                //endregion
             }
+            //endregion
         }
     }
 
