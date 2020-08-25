@@ -55,6 +55,11 @@
     <!-- 进入设置页面的密码 end -->
     <!--    <string name="password_for_enter_settings" translatable="false">adminliao</string>-->
 
+    <!-- 设置 begin -->
+    <string name="settings_currentCompetitorInfoIndex" translatable="false">currentCompetitorInfoIndex</string>
+    <string name="settings_currentScoreIndex" translatable="false">currentScoreIndex</string>
+    <string name="settings_haveABreak" translatable="false">haveABreak</string>
+
     <!-- 设置页面 begin -->
     <!-- 网络 begin -->
     <string name="settings_network_header">网络</string>
@@ -66,11 +71,7 @@
     <string name="settings_network_server_port">服务端端口</string>
     <string name="settings_network_server_port_key" translatable="false">network_server_port</string>
 
-    <string name="settings_currentCompetitorInfoIndex" translatable="false">currentCompetitorInfoIndex</string>
-    <string name="settings_currentScoreIndex" translatable="false">currentScoreIndex</string>
-    <string name="settings_haveABreak" translatable="false">haveABreak</string>
     <!-- 网络 end -->
-
     <!-- 客户端 begin -->
     <string name="settings_client_header">客户端</string>
 
@@ -79,4 +80,5 @@
     <string name="toast_noWifi">无Wifi网络</string>
     <!-- 客户端 end -->
     <!-- 设置页面 end -->
+    <!-- 设置 begin -->
 </resources>
