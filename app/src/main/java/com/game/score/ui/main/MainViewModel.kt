@@ -19,14 +19,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      *
      * 比如：盛装舞步个人赛资格赛
      */
-    val eventAndPhase = MutableLiveData<String>("")
+    val eventAndPhase = MutableLiveData("")
 
     /**
      * 运动员与队名。
      *
      * 比如：贾海涛(浙江队)
      */
-    val competitorName = MutableLiveData<String>("")
+    val competitorName = MutableLiveData("")
 
     /**
      * 是否显示常规数据。
@@ -35,7 +35,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      *
      * false：表示显示确认成绩成功的提示。
      */
-    val competitorName_Normal = MutableLiveData<Boolean>(false)
+    val competitorName_Normal = MutableLiveData(false)
 
     /**
      * 裁判位置代码。
@@ -44,7 +44,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      *
      * 【注意】此处默认必须为空格，否则在初始化时，无法长按进入“设置”页面。
      */
-    val judgeName = MutableLiveData<String>("   ")
+    val judgeName = MutableLiveData("   ")
 
     /**
      * 进度

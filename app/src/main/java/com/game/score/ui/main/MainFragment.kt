@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -48,7 +47,7 @@ class MainFragment : Fragment() {
             _binding.lifecycleOwner = this
             //使用MainActivity创建的MainViewModel实例
             _viewModel = ViewModelProvider(activity as FragmentActivity)
-                .get<MainViewModel>(MainViewModel::class.java)
+                .get(MainViewModel::class.java)
             //endregion
 
             _buttonListener = ButtonOnClickListener(this, _viewModel)
@@ -82,7 +81,7 @@ class MainFragment : Fragment() {
                 //endregion
 
                 if (lifecycleOwner != null)
-                    _viewModel.competitorName_Normal.observe(lifecycleOwner!!, Observer<Boolean> {
+                    _viewModel.competitorName_Normal.observe(lifecycleOwner!!, {
                         if (it) {//普通显示 情况
                             textViewCompetitorName.setCompoundDrawablesWithIntrinsicBounds(
                                 0,

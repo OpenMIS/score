@@ -45,7 +45,7 @@ class ScoreListFragment : Fragment() {
 
             //使用MainActivity创建的MainViewModel实例
             _viewModel = ViewModelProvider(activity as FragmentActivity)
-                .get<MainViewModel>(MainViewModel::class.java)
+                .get(MainViewModel::class.java)
             _binding.viewModel = _viewModel
             //endregion
 

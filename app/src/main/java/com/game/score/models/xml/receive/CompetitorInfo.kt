@@ -1,3 +1,8 @@
+@file:Suppress(
+    "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused",
+    "unused", "unused"
+)
+
 package com.game.score.models.xml.receive
 
 import com.game.score.ScoreConsts

@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.game.score.core.*
@@ -139,15 +138,15 @@ class MainActivity : AppCompatActivity() {
      * 注册MainViewModel的观察器
      */
     private fun registerObserve(mainViewModel: MainViewModel) {
-        mainViewModel.currentCompetitorInfoIndex.observe(this, Observer<Int> {
+        mainViewModel.currentCompetitorInfoIndex.observe(this, {
             GameSettingsUtil.setCurrentCompetitorInfoIndexAsync(this, it)
         })
 
-        mainViewModel.currentScoreIndex.observe(this, Observer<Int> {
+        mainViewModel.currentScoreIndex.observe(this, {
             GameSettingsUtil.setCurrentScoreIndexAsync(this, it)
         })
 
-        mainViewModel.haveABreak.observe(this, Observer<Boolean> {
+        mainViewModel.haveABreak.observe(this, {
             GameSettingsUtil.setHaveABreakAsync(this, it)
         })
     }
