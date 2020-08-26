@@ -6,7 +6,7 @@ package com.game.score.core
 class GameMessageUtil {
     companion object {
         /**
-         * 从原始消息转换过来
+         * 获取消息类型
          */
         @JvmStatic
         fun getMessageType(originalMessageContent: String): String {
