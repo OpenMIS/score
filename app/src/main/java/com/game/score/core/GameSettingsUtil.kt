@@ -146,7 +146,7 @@ class GameSettingsUtil {
 
         //endregion
 
-        //region Description
+        //region 重新载入设置
         /**
          * 重新载入设置
          */
