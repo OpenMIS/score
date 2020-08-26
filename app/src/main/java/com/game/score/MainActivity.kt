@@ -21,7 +21,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
 class MainActivity : AppCompatActivity() {
 
     //region 字段
