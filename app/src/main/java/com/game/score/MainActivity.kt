@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var _mainViewModel: MainViewModel
 
-    //region 当离线时更新界面
+    //region 更新界面
     /**
      * 更新界面。
      *
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
     val handler = object : Handler(Looper.getMainLooper()) {
         override fun handleMessage(inputMessage: Message) {//在界面线程处理
             ExceptionHandlerUtil.usingExceptionHandler {
-                if (inputMessage.what == 1) {
+                if (inputMessage.what == 1) {//当离线时更新界面
                     with(findViewById<TextView>(R.id.textView_appStatus)) {
                         _mainViewModel.appStatus.value = getString(R.string.app_status_offline)
 
