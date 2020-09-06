@@ -28,6 +28,7 @@
     <dimen name="button_number_textSize">45sp</dimen>
     <!-- 含文本按钮 字体大小 -->
     <dimen name="button_text_textSize">20sp</dimen>
+    <dimen name="button_text_long_textSize">14sp</dimen>
 
     <!-- 消息文本 字体大小 -->
     <dimen name="textView_message_textSize">16sp</dimen>

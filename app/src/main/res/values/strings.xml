@@ -41,14 +41,16 @@
     <string name="button8" translatable="false">8</string>
     <string name="button9" translatable="false">9</string>
     <string name="button0" translatable="false">0</string>
-    <string name="buttonV">确认</string>
+    <string name="buttonV" translatable="false">"确认
+Validate"</string>
     <!--<string name="buttonV" translatable="false">V</string>-->
 
     <string name="imageButton_back_contentDescription" translatable="false">Back</string>
     <!--    <string name="buttonX" translatable="false">🔙</string>-->
     <string name="buttonP">上一人</string>
     <string name="buttonN">下一人</string>
-    <string name="button_send">发送</string>
+    <string name="button_send" translatable="false">"发送
+Send"</string>
     <!--<string name="button_send" translatable="false">S</string>-->
     <!-- 按钮上面的文本 end -->
 

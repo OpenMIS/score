@@ -40,8 +40,10 @@
     <!-- 上一人、下一人 按钮 -->
     <color name="colorPN">#0000CD</color>
 
-    <!-- 提交按钮 -->
-    <color name="colorSubmit">#FF0000</color>
+    <!-- 确认按钮 -->
+    <color name="colorValidate">#FF0000</color>
+    <!-- 发送按钮 -->
+    <color name="colorSend">#33691E</color>
 
     <!-- 按钮 end -->
 
