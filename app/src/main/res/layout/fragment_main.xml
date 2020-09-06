@@ -95,10 +95,10 @@
             android:text="@string/buttonV"
             android:textColor="@color/colorValidate"
             android:textSize="@dimen/button_text_long_textSize"
-            app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline75"
-            app:layout_constraintTop_toTopOf="@+id/guideline5" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline75"
+            app:layout_constraintStart_toStartOf="@+id/guideline50"
+            app:layout_constraintTop_toTopOf="@+id/guideline87" />
 
         <Button
             android:id="@+id/button_P"
@@ -109,10 +109,10 @@
             android:text="@string/buttonP"
             android:textColor="@color/colorPN"
             android:textSize="@dimen/button_text_textSize"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline75"
-            app:layout_constraintStart_toStartOf="@+id/guideline50"
-            app:layout_constraintTop_toTopOf="@+id/guideline87" />
+            app:layout_constraintBottom_toTopOf="@+id/guideline6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline75"
+            app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
         <Button
             android:id="@+id/button_N"
@@ -431,8 +431,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="3dp"
-            android:textColor="@color/colorCompetitorName"
             android:text="@{viewModel.progress}"
+            android:textColor="@color/colorCompetitorName"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline15"
             app:layout_constraintEnd_toStartOf="@id/textView_appStatus"
@@ -446,11 +446,11 @@
             android:layout_marginEnd="3dp"
             android:text="@{viewModel.appStatus}"
             android:textColor="@color/colorAppStatus_Offline"
-            tools:text="@string/app_status_offline"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline15"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline9" />
+            app:layout_constraintTop_toTopOf="@+id/guideline9"
+            tools:text="@string/app_status_offline" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
