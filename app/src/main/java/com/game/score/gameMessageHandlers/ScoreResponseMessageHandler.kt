@@ -156,19 +156,7 @@ object ScoreResponseMessageHandler : IGameMessageHandlerEx {
                                     AlertDialog.Builder(mainActivity)
                                         .setTitle(R.string.alertDialog_title_confirm)
                                         .setMessage(message)
-                                        .setPositiveButton(
-                                            R.string.button_text_no
-                                        ) { _, _ ->
-                                            ExceptionHandlerUtil.usingExceptionHandler {
-                                                validateRowInApp.ScoreValue = "" //清空确认，表示未确认成绩。
-                                                //定位到第一条分数为空的记录上，并设置此记录为当前记录。
-                                                Controller.goToFirstEmptyScoreAndSetCurrent(
-                                                    this,
-                                                    recyclerView
-                                                )
-                                            }
-                                        }
-                                        //监听下方button点击事件
+                                        //监听左边（负）button点击事件
                                         .setNegativeButton(R.string.button_text_yes) { _, _ ->
                                             ExceptionHandlerUtil.usingExceptionHandler {
                                                 //region 再次确认
@@ -176,20 +164,7 @@ object ScoreResponseMessageHandler : IGameMessageHandlerEx {
                                                     AlertDialog.Builder(mainActivity)
                                                         .setTitle(R.string.alertDialog_title_confirmAgain)
                                                         .setMessage(message)
-                                                        .setPositiveButton(
-                                                            R.string.button_text_no
-                                                        ) { _, _ ->
-                                                            ExceptionHandlerUtil.usingExceptionHandler {
-                                                                validateRowInApp.ScoreValue =
-                                                                    "" //清空确认，表示未确认成绩。
-                                                                //定位到第一条分数为空的记录上，并设置此记录为当前记录。
-                                                                Controller.goToFirstEmptyScoreAndSetCurrent(
-                                                                    this,
-                                                                    recyclerView
-                                                                )
-                                                            }
-                                                        }
-                                                        //监听下方button点击事件
+                                                        //监听左边（负）button点击事件
                                                         .setNegativeButton(R.string.button_text_yes) { _, _ ->
                                                             ExceptionHandlerUtil.usingExceptionHandler {
                                                                 val findResult =
@@ -218,13 +193,42 @@ object ScoreResponseMessageHandler : IGameMessageHandlerEx {
                                                                         mainActivity
                                                                     ) //休息一下
                                                             }
-                                                        }.setCancelable(true) //设置对话框是可取消的
+                                                        }
+                                                        //监听右边（正）button点击事件
+                                                        .setPositiveButton(
+                                                            R.string.button_text_no
+                                                        ) { _, _ ->
+                                                            ExceptionHandlerUtil.usingExceptionHandler {
+                                                                validateRowInApp.ScoreValue =
+                                                                    "" //清空确认，表示未确认成绩。
+                                                                //定位到第一条分数为空的记录上，并设置此记录为当前记录。
+                                                                Controller.goToFirstEmptyScoreAndSetCurrent(
+                                                                    this,
+                                                                    recyclerView
+                                                                )
+                                                            }
+                                                        }
+                                                        .setCancelable(true) //设置对话框是可取消的
 
                                                 val dialog2 = builder2.create()
                                                 dialog2.show()
                                                 //endregion
                                             }
-                                        }.setCancelable(true) //设置对话框是可取消的
+                                        }
+                                        //监听右边（正）button点击事件
+                                        .setPositiveButton(
+                                            R.string.button_text_no
+                                        ) { _, _ ->
+                                            ExceptionHandlerUtil.usingExceptionHandler {
+                                                validateRowInApp.ScoreValue = "" //清空确认，表示未确认成绩。
+                                                //定位到第一条分数为空的记录上，并设置此记录为当前记录。
+                                                Controller.goToFirstEmptyScoreAndSetCurrent(
+                                                    this,
+                                                    recyclerView
+                                                )
+                                            }
+                                        }
+                                        .setCancelable(true) //设置对话框是可取消的
 
                                 val dialog = builder.create()
                                 dialog.show()

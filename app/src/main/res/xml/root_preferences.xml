@@ -11,7 +11,7 @@
             android:title="@string/settings_network_local_port"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
-            android:defaultValue="192.168.1.7"
+            android:defaultValue="192.168.1.37"
             android:key="@string/settings_network_server_host_key"
             android:title="@string/settings_network_server_host"
             app:useSimpleSummaryProvider="true" />
