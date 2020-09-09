@@ -63,6 +63,16 @@
     葛巾紫    #E9EBFE    RGB(233, 235, 254)
     极光灰    #EAEAEF    RGB(234, 234, 239)
     -->
+    <color name="保护色_绿豆沙">#C7EDCC</color>
+    <color name="保护色_银河白">#FFFFFF</color>
+    <color name="保护色_杏仁黄">#FAF9DE</color>
+    <color name="保护色_秋叶褐">#FFF2E2</color>
+    <color name="保护色_胭脂红">#FDE6E0</color>
+    <color name="保护色_青草绿">#E3EDCD</color>
+    <color name="保护色_海天蓝">#DCE2F1</color>
+    <color name="保护色_葛巾紫">#E9EBFE</color>
+    <color name="保护色_极光灰">#EAEAEF</color>
+
     <color name="colorSelectItem">#DCE2F1</color>
 
     <!-- 立体按钮 begin -->
