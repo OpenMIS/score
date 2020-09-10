@@ -8,6 +8,7 @@ import com.game.score.Controller
 import com.game.score.MainActivity
 import com.game.score.R
 import com.game.score.ScoreConsts
+import com.game.score.core.CompetitorInfoAllManager
 import com.game.score.core.ExceptionHandlerUtil
 import com.game.score.core.sendInUI
 import com.game.score.core.setPosition
@@ -211,6 +212,9 @@ class ButtonOnClickListener(
             return
 
         ExceptionHandlerUtil.usingExceptionHandler {
+            //先异步保存到磁盘
+            CompetitorInfoAllManager.saveAsync(mainViewModel.competitorInfoAll.value)
+
             val recyclerView = view.rootView.findViewById<RecyclerView>(R.id.score_list)
             val scoreListAdapter = recyclerView.adapter as ScoreListAdapter
 
