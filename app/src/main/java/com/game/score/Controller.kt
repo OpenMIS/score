@@ -164,15 +164,17 @@ class Controller {
         ): Boolean {
             var result = false
             val recyclerView2 = recyclerView ?: mainActivity.findViewById(R.id.score_list)
+            var count = 0
             with(mainViewModel.currentCompetitorInfoIndex) {
                 if (mainViewModel.competitorInfoAll.value != null && value != null &&
                     value != -1 &&
                     mainViewModel.competitorInfoAll.value!!.CompetitorInfo != null &&
-                    value!! < mainViewModel.competitorInfoAll.value!!.CompetitorInfo!!.count() +
+                    mainViewModel.competitorInfoAll.value!!.CompetitorInfo!!.count()
+                        .apply { count = this } > 0 &&
+                    value!! < count +
                     //【注意】当已经被删除时，必须补上1，因为此处value还未减去1。否则如果在最后一条上会造成此方法返回false，导致进去休息一下状态，本地xml被清空。
                     (if (forDeleteCompetitorInfo) 1 else 0)
                 ) {
-                    val count = mainViewModel.competitorInfoAll.value!!.CompetitorInfo!!.count()
                     if (!forDeleteCompetitorInfo)
                         value =
                             if (value!! == count - 1) 0
