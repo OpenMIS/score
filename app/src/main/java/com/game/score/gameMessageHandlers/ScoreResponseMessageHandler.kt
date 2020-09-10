@@ -116,7 +116,7 @@ object ScoreResponseMessageHandler : IGameMessageHandlerEx {
                             )
                                 Controller.haveABreak(
                                     mainViewModel,
-                                    mainActivity
+                                    mainActivity, true
                                 ) //休息一下
 
                             Toast.makeText(
@@ -190,7 +190,7 @@ object ScoreResponseMessageHandler : IGameMessageHandlerEx {
                                                                 )
                                                                     Controller.haveABreak(
                                                                         mainViewModel,
-                                                                        mainActivity
+                                                                        mainActivity, true
                                                                     ) //休息一下
                                                             }
                                                         }

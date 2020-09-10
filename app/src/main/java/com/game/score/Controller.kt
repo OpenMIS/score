@@ -219,11 +219,16 @@ class Controller {
         //region 休息一下
         /**
          * 休息一下
+         * @param forEnd 是否这场的所有运动员打分完成后的休息，false表示中场或临时情况休息。
          */
-        fun haveABreak(mainViewModel: MainViewModel, mainActivity: MainActivity) {
+        fun haveABreak(
+            mainViewModel: MainViewModel,
+            mainActivity: MainActivity,
+            forEnd: Boolean = false
+        ) {
             with(mainViewModel) {
-                val currentCompetitorInfoIndexTemp = mainViewModel.currentCompetitorInfoIndex.value
-                val currentScoreIndexTemp = mainViewModel.currentScoreIndex.value
+                var currentCompetitorInfoIndexTemp = mainViewModel.currentCompetitorInfoIndex.value
+                var currentScoreIndexTemp = mainViewModel.currentScoreIndex.value
 
                 haveABreak.value = true
                 clearAll(false) //清除所有信息
@@ -232,6 +237,11 @@ class Controller {
 
                 competitorName.value =
                     mainActivity.getString(R.string.validate_success_competitorName)
+
+                if (forEnd) {
+                    currentCompetitorInfoIndexTemp = -1
+                    currentScoreIndexTemp = -1
+                }
 
                 if (currentCompetitorInfoIndexTemp != null)
                     GameSettingsUtil.setCurrentCompetitorInfoIndexAsync(
@@ -244,6 +254,7 @@ class Controller {
                         mainActivity,
                         currentScoreIndexTemp
                     )
+
             }
         }
         //endregion
