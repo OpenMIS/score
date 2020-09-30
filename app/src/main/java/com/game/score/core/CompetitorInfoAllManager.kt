@@ -80,6 +80,11 @@ object CompetitorInfoAllManager {
             if (mainViewModel.competitorInfoAll.value == null)
                 mainViewModel.competitorInfoAll.value = competitorInfoAll
             else {
+                mainViewModel.competitorInfoAll.value!!.apply {
+                    MatchConfigCode = competitorInfoAll.MatchConfigCode
+                    IsDRPairMatch = competitorInfoAll.IsDRPairMatch
+                }
+
                 competitorInfoAll.CompetitorInfo?.forEach { it ->
                     val findResult =
                         mainViewModel.competitorInfoAll.value!!.CompetitorInfo?.find { inViewModel ->

@@ -5,7 +5,6 @@
 
 package com.game.score.models.xml.receive
 
-import com.game.score.ScoreConsts
 import com.game.score.core.IGameMessageModel
 import com.game.score.core.ScoreUtil
 import javax.xml.bind.annotation.*
@@ -115,27 +114,4 @@ data class CompetitorInfo(
         }
         //endregion
     }
-
-    //region 剩余必须打分的项数，已排除扣分项。
-    /**
-     * 剩余必须打分的项数，已排除扣分项。
-     */
-    @XmlTransient
-    fun remainMustScoredCount(): Int {
-        var result = 0
-
-        if (CompetitorInfo.Score != null)
-            result =
-                CompetitorInfo.Score!!.count {
-                    !arrayOf(
-                        ScoreConsts.Attribute_F_0,
-                        ScoreConsts.Attribute_F_100,
-                        ScoreConsts.Attribute_F_Status,
-                        ScoreConsts.Attribute_F_TotalScore
-                    ).contains(it.ScoreID) && it.ScoreValue.isBlank()
-                }
-
-        return result
-    }
-    //endregion
 }

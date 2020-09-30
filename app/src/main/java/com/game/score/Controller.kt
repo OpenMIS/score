@@ -18,15 +18,66 @@ class Controller {
          */
         fun goToFirstEmptyScoreAndSetCurrent(viewModel: MainViewModel, recyclerView: RecyclerView) {
             //region 定位到第一条分数为空的记录上，并设置此记录为当前记录。
+
+            //region 装舞步配对赛
+            val isDRPairMatch = viewModel.competitorInfoAll.value?.IsDRPairMatch ?: false //是否装舞步配对赛
+            var selectTable = 'A' //盛装舞步配对赛的运动员选择A还是B
+            val regex = """F_(\d+)""".toRegex()
+            if (isDRPairMatch && viewModel.currentCompetitorInfo.value?.Score != null) {
+
+                fun count(
+                    score: CompetitorInfoAll.CompetitorInfoClass.ScoreClass,
+                    start: Int,
+                    end: Int
+                ): Boolean {
+                    var result = false
+                    val matchResult = regex.find(score.ScoreID)
+                    if (matchResult != null && matchResult.groupValues[1].toInt() in start..end) {
+                        result = !arrayOf(
+                            ScoreConsts.Attribute_F_0,
+                            ScoreConsts.Attribute_F_100,
+                            ScoreConsts.Attribute_F_Status,
+                            ScoreConsts.Attribute_F_TotalScore
+                        ).contains(score.ScoreID) && score.ScoreValue.isNotBlank()
+                    }
+                    return result
+                }
+
+                val countA = viewModel.currentCompetitorInfo.value?.Score?.count {
+                    count(it, 1, 10)
+                } ?: 0
+
+                val countB = viewModel.currentCompetitorInfo.value?.Score?.count {
+                    count(it, 11, 18)
+                } ?: 0
+
+                val countC = viewModel.currentCompetitorInfo.value?.Score?.count {
+                    count(it, 19, 23)
+                } ?: 0
+
+                val max = arrayOf(countA, countB, countC).maxByOrNull { it } ?: 0
+
+                if (max > 0)
+                    if (countB == max) //如果B表打分项多视为裁判选择了B表
+                        selectTable = 'B'
+                    else if (countC == max) //如果C表打分项多视为裁判选择了C表
+                        selectTable = 'C'
+            }
+            //endregion
+
             //【注意】indexOfFirst如果找不到对应的，会返回-1。
             val index =
                 viewModel.currentCompetitorInfo.value?.Score?.indexOfFirst {
-                    !arrayOf(
+                    var result = false
+//isDRPairMatch
+                    result = !arrayOf(
                         ScoreConsts.Attribute_F_0,
                         ScoreConsts.Attribute_F_100,
                         ScoreConsts.Attribute_F_Status,
                         ScoreConsts.Attribute_F_TotalScore
                     ).contains(it.ScoreID) && it.ScoreValue.isBlank()
+
+                    result
                 }
 
             if (index != null && index >= 0) {

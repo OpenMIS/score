@@ -15,6 +15,18 @@ data class CompetitorInfoAll(
     override val MessageType: String,
 
     /**
+     * 场次配置代码
+     */
+    @XmlAttribute
+    var MatchConfigCode: String,
+
+    /**
+     * 是否盛装舞步配对赛
+     */
+    @XmlAttribute
+    var IsDRPairMatch: Boolean,
+
+    /**
      * 【注意】可能收到空的
      */
     var CompetitorInfo: MutableList<CompetitorInfoClass>?
