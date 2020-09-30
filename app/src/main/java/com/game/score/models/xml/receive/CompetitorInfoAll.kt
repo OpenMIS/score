@@ -2,6 +2,7 @@ package com.game.score.models.xml.receive
 
 import com.game.score.ScoreConsts
 import com.game.score.core.IGameMessageModel
+import com.game.score.core.LogUtil
 import com.game.score.core.ScoreUtil
 import com.game.score.models.StepRange
 import javax.xml.bind.annotation.*
@@ -152,6 +153,12 @@ data class CompetitorInfoAll(
             if (this.Score != null) {
                 //region 盛装舞步配对赛
                 val isDRPairMatch = parent?.IsDRPairMatch ?: false //是否装舞步配对赛
+                if (parent == null)
+                    LogUtil.logger.error(
+                        "CompetitorInfoAll的parent字段不应为空值，\r\n" +
+                                Thread.currentThread().stackTrace
+                    )
+
                 val stepRange: StepRange?
                 //endregion
 

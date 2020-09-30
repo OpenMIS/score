@@ -94,7 +94,11 @@ object ScoreResponseMessageHandler : IGameMessageHandlerEx {
                     }
 
                     if (validateRowInApp != null) {
-                        if (messageModel.CompetitorInfo.Score == null) {//服务端确认成绩成功
+                        val remainMustScoredCount =
+                            currentCompetitorInfo.value?.remainMustScoredCount()
+                        if (messageModel.CompetitorInfo.Score == null || //没有分数列表
+                            firstErrorScore == null && remainMustScoredCount ?: 0 == 0 //没有错误并且已经没有剩余打分项
+                        ) {//服务端确认成绩成功
                             val findResult =
                                 mainViewModel.competitorInfoAll.value?.CompetitorInfo?.find {
                                     it.CompetitorID == messageModel.CompetitorInfo.CompetitorID
@@ -135,8 +139,6 @@ object ScoreResponseMessageHandler : IGameMessageHandlerEx {
                                 validateRowInApp.ScoreValue = "" //清空确认，表示未确认成绩。
                             else {
                                 //region 提示是否强制跳过打分
-                                val remainMustScoredCount =
-                                    currentCompetitorInfo.value?.remainMustScoredCount()
                                 val emptyScoreValueCountString =
                                     if (remainMustScoredCount != null && remainMustScoredCount > 0)
                                         mainActivity.getString(

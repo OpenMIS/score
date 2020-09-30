@@ -131,6 +131,9 @@ object CompetitorInfoAllManager {
             }
             //endregion
 
+            //此处在mainViewModel.competitorInfoAll.value调用一下prepare，否则competitorInfoAll.parent的引用不正确。
+            mainViewModel.competitorInfoAll.value?.prepare()
+
             saveAsync(mainViewModel.competitorInfoAll.value)
 
             Controller.updateMainViewModel(MainViewModel!!, MainActivity!!)
