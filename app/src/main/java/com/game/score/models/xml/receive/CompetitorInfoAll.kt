@@ -3,6 +3,7 @@ package com.game.score.models.xml.receive
 import com.game.score.ScoreConsts
 import com.game.score.core.IGameMessageModel
 import com.game.score.core.ScoreUtil
+import com.game.score.models.StepRange
 import javax.xml.bind.annotation.*
 
 @XmlRootElement(name = "Body")
@@ -31,6 +32,15 @@ data class CompetitorInfoAll(
      */
     var CompetitorInfo: MutableList<CompetitorInfoClass>?
 ) : IGameMessageModel {
+
+    /**
+     * 准备数据
+     */
+    @XmlTransient
+    fun prepare() {
+        CompetitorInfo?.forEach { it.parent = this }
+    }
+
     @XmlAccessorType(XmlAccessType.FIELD)
     data class CompetitorInfoClass(
         /**
@@ -128,6 +138,9 @@ data class CompetitorInfoAll(
         }
         //endregion
 
+        @XmlTransient
+        var parent: CompetitorInfoAll? = null
+
         //region 剩余必须打分的项数，已排除扣分项。
         /**
          * 剩余必须打分的项数，已排除扣分项。
@@ -136,16 +149,38 @@ data class CompetitorInfoAll(
         fun remainMustScoredCount(): Int {
             var result = 0
 
-            if (this.Score != null)
-                result =
-                    this.Score!!.count {
-                        !arrayOf(
-                            ScoreConsts.Attribute_F_0,
-                            ScoreConsts.Attribute_F_100,
-                            ScoreConsts.Attribute_F_Status,
-                            ScoreConsts.Attribute_F_TotalScore
-                        ).contains(it.ScoreID) && it.ScoreValue.isBlank()
-                    }
+            if (this.Score != null) {
+                //region 盛装舞步配对赛
+                val isDRPairMatch = parent?.IsDRPairMatch ?: false //是否装舞步配对赛
+                val stepRange: StepRange?
+                //endregion
+
+                fun countIsBlank(score: ScoreClass) =
+                    !arrayOf(
+                        ScoreConsts.Attribute_F_0,
+                        ScoreConsts.Attribute_F_100,
+                        ScoreConsts.Attribute_F_Status,
+                        ScoreConsts.Attribute_F_TotalScore
+                    ).contains(score.ScoreID) && score.ScoreValue.isBlank()
+
+                if (isDRPairMatch) {
+                    stepRange = ScoreUtil.drJudgeSelectStepRange(
+                        parent, this
+                    )
+
+                    result =
+                        this.Score!!.count {
+                            ScoreUtil.isInStepRange(
+                                it.ScoreID,
+                                stepRange
+                            ) && countIsBlank(it)
+                        }
+                } else
+                    result =
+                        this.Score!!.count {
+                            countIsBlank(it)
+                        }
+            }
 
             return result
         }

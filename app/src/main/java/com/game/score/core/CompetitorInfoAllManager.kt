@@ -49,11 +49,11 @@ object CompetitorInfoAllManager {
                     if (exists) {
                         xmlContent = file.readText(Charsets.UTF_8)
                         val message = Message()
-                        message.obj = XmlMappers.receive.readValue(
+                        val competitorInfoAll = (XmlMappers.receive.readValue(
                             xmlContent,
                             CompetitorInfoAll::class.java
-                        ) as CompetitorInfoAll
-
+                        ) as CompetitorInfoAll).prepare()
+                        message.obj = competitorInfoAll
                         handler.sendMessage(message)
                     }
                 }
@@ -72,6 +72,8 @@ object CompetitorInfoAllManager {
             competitorInfoAll.CompetitorInfo!!.count() > 0
         ) {
             val mainViewModel = MainViewModel!!
+
+            competitorInfoAll.prepare()
 
             //取消“消息一下”，进去工作状态。
             mainViewModel.haveABreak.value = false
