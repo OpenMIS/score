@@ -8,10 +8,8 @@ import com.game.score.Controller
 import com.game.score.MainActivity
 import com.game.score.R
 import com.game.score.ScoreConsts
-import com.game.score.core.CompetitorInfoAllManager
-import com.game.score.core.ExceptionHandlerUtil
-import com.game.score.core.sendInUI
-import com.game.score.core.setPosition
+import com.game.score.core.*
+import com.game.score.models.StepRange
 import com.game.score.models.xml.send.ScoreList
 
 /**
@@ -52,12 +50,33 @@ class ButtonOnClickListener(
                         )
                     }
 
-                    ScoreList(
+
+                    val message = ScoreList(
                         ScoreList = ScoreList.ScoreListClass(
                             CompetitorID = CompetitorID,
                             Score = scores
                         )
-                    ).sendInUI()
+                    )
+
+                    //region 盛装舞步配对赛
+                    val isDRPairMatch =
+                        mainViewModel.competitorInfoAll.value?.IsDRPairMatch ?: false //是否装舞步配对赛
+                    val stepRange: StepRange?
+                    if (isDRPairMatch) {
+                        stepRange = ScoreUtil.drJudgeSelectStepRange(
+                            mainViewModel.competitorInfoAll.value,
+                            mainViewModel.currentCompetitorInfo.value
+                        )
+
+                        if (stepRange != null)
+                            message.ScoreList.apply {
+                                ScoreStart = stepRange.start
+                                ScoreEnd = stepRange.end
+                            }
+                    }
+                    //endregion
+
+                    message.sendInUI()
 
                     result = true
                 }

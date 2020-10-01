@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Body MessageType="CompetitorInfoAll">
+<Body IsDRPairMatch="False" MatchConfigCode="DRA1" MessageType="CompetitorInfoAll">
     <CompetitorInfo CompetitorID="2-4958-2" CompetitorName="1 贾海涛(浙江队)" Event="盛装舞步个人赛预赛"
         JudgeName="C" Phase="">
         <Score ScoreErrorMessage="" ScoreID="F_1" ScoreName="1 立定敬礼" ScoreStatus="Done"

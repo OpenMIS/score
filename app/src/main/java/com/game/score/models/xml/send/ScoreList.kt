@@ -16,8 +16,8 @@ data class ScoreList(
     @XmlAttribute
     override val MessageType: String = "ScoreList",
 
-
     val ScoreList: ScoreListClass
+
 ) : IGameMessageModel, IGameSendMessageModel {
 
     /**
@@ -37,7 +37,19 @@ data class ScoreList(
         @XmlAttribute
         val CompetitorID: String,
 
-        val Score: MutableList<ScoreClass>
+        val Score: MutableList<ScoreClass>,
+
+        /**
+         * 分数列表序号的有效范围开始，-1表示所有都有效。
+         */
+        @XmlAttribute
+        var ScoreStart: Int = -1,
+
+        /**
+         * 分数列表序号的有效范围结束，-1表示所有都有效。
+         */
+        @XmlAttribute
+        var ScoreEnd: Int = -1
     ) {
         @XmlAccessorType(XmlAccessType.FIELD)
         data class ScoreClass(
